@@ -69,6 +69,6 @@ fn main() {
 ```
 
 [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
-[2]: TODO
-[3]: TODO
+[2]: https://libstorage.github.io/libstoragemgmt-rust/lsm/struct.Client.html
+[3]: https://libstorage.github.io/libstoragemgmt-rust/lsm/struct.Capabilities.html
 
