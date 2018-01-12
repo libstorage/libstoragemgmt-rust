@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Client` struct in crate `lsm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Client">
+
+    <title>lsm::Client - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Struct Client</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.systems">systems</a><a href="#method.volumes">volumes</a><a href="#method.pools">pools</a><a href="#method.disks">disks</a><a href="#method.fs">fs</a><a href="#method.nfs_exports">nfs_exports</a><a href="#method.access_groups">access_groups</a><a href="#method.target_ports">target_ports</a><a href="#method.batteries">batteries</a><a href="#method.volume_create">volume_create</a><a href="#method.volume_delete">volume_delete</a><a href="#method.time_out_set">time_out_set</a><a href="#method.time_out_get">time_out_get</a><a href="#method.capabilities">capabilities</a><a href="#method.plugin_info">plugin_info</a><a href="#method.sys_read_cache_pct_set">sys_read_cache_pct_set</a><a href="#method.iscsi_chap_auth_set">iscsi_chap_auth_set</a><a href="#method.volume_resize">volume_resize</a><a href="#method.volume_replicate">volume_replicate</a><a href="#method.volume_rep_range_blk_size">volume_rep_range_blk_size</a><a href="#method.volume_replicate_range">volume_replicate_range</a><a href="#method.volume_enable">volume_enable</a><a href="#method.volume_disable">volume_disable</a><a href="#method.volume_mask">volume_mask</a><a href="#method.volume_unmask">volume_unmask</a><a href="#method.access_group_create">access_group_create</a><a href="#method.access_group_delete">access_group_delete</a><a href="#method.access_group_init_add">access_group_init_add</a><a href="#method.access_group_init_del">access_group_init_del</a><a href="#method.vols_masked_to_ag">vols_masked_to_ag</a><a href="#method.ags_granted_to_vol">ags_granted_to_vol</a><a href="#method.vol_has_child_dep">vol_has_child_dep</a><a href="#method.vol_child_dep_rm">vol_child_dep_rm</a><a href="#method.fs_create">fs_create</a><a href="#method.fs_resize">fs_resize</a><a href="#method.fs_delete">fs_delete</a><a href="#method.fs_clone">fs_clone</a><a href="#method.fs_file_clone">fs_file_clone</a><a href="#method.fs_snapshots">fs_snapshots</a><a href="#method.fs_snapshot_create">fs_snapshot_create</a><a href="#method.fs_snapshot_delete">fs_snapshot_delete</a><a href="#method.fs_snapshot_restore">fs_snapshot_restore</a><a href="#method.fs_has_child_dep">fs_has_child_dep</a><a href="#method.fs_child_dep_rm">fs_child_dep_rm</a><a href="#method.nfs_exp_auth_type_list">nfs_exp_auth_type_list</a><a href="#method.fs_export">fs_export</a><a href="#method.fs_unexport">fs_unexport</a><a href="#method.vol_raid_info">vol_raid_info</a><a href="#method.pool_member_info">pool_member_info</a><a href="#method.vol_raid_create_cap_get">vol_raid_create_cap_get</a><a href="#method.vol_raid_create">vol_raid_create</a><a href="#method.vol_ident_led_on">vol_ident_led_on</a><a href="#method.vol_ident_led_off">vol_ident_led_off</a><a href="#method.vol_cache_info">vol_cache_info</a><a href="#method.vol_phy_disk_cache_set">vol_phy_disk_cache_set</a><a href="#method.vol_write_cache_set">vol_write_cache_set</a><a href="#method.vol_read_cache_set">vol_read_cache_set</a></div></div><p class='location'><a href='index.html'>lsm</a></p><script>window.sidebarCurrent = {name: 'Client', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>lsm</a>::<wbr><a class="struct" href=''>Client</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/lsm/client.rs.html#45-48' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Client { /* fields omitted */ }</pre><div class='docblock'><p>Represent the connection to plugin.</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../lsm/struct.Client.html" title="struct lsm::Client">Client</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#170-1498' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;uri: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;password: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;timeout: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Client.html" title="struct lsm::Client">Client</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#178-203' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create a connection to plugin.
+Please refer to <a href="https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html">libstoragemgmt user guide</a> for how to choose the
+URI and password.</p>
+
+<p>The <code>timeout</code> argument is in milliseconds.</p>
+</div><h4 id='method.systems' class="method"><span id='systems.v' class='invisible'><code>pub fn <a href='#method.systems' class='fnname'>systems</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#206-208' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of systems on this connection.</p>
+</div><h4 id='method.volumes' class="method"><span id='volumes.v' class='invisible'><code>pub fn <a href='#method.volumes' class='fnname'>volumes</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#211-213' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of volumes on this connection.</p>
+</div><h4 id='method.pools' class="method"><span id='pools.v' class='invisible'><code>pub fn <a href='#method.pools' class='fnname'>pools</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#216-218' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of pools on this connection.</p>
+</div><h4 id='method.disks' class="method"><span id='disks.v' class='invisible'><code>pub fn <a href='#method.disks' class='fnname'>disks</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.Disk.html" title="struct lsm::Disk">Disk</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#221-223' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of disks on this connection.</p>
+</div><h4 id='method.fs' class="method"><span id='fs.v' class='invisible'><code>pub fn <a href='#method.fs' class='fnname'>fs</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#226-228' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of file systems on this connection.</p>
+</div><h4 id='method.nfs_exports' class="method"><span id='nfs_exports.v' class='invisible'><code>pub fn <a href='#method.nfs_exports' class='fnname'>nfs_exports</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.NfsExport.html" title="struct lsm::NfsExport">NfsExport</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#231-233' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of NFS exports on this connection.</p>
+</div><h4 id='method.access_groups' class="method"><span id='access_groups.v' class='invisible'><code>pub fn <a href='#method.access_groups' class='fnname'>access_groups</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#236-239' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of access group on this connection.</p>
+</div><h4 id='method.target_ports' class="method"><span id='target_ports.v' class='invisible'><code>pub fn <a href='#method.target_ports' class='fnname'>target_ports</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.TargetPort.html" title="struct lsm::TargetPort">TargetPort</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#242-245' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of target ports on this connection.</p>
+</div><h4 id='method.batteries' class="method"><span id='batteries.v' class='invisible'><code>pub fn <a href='#method.batteries' class='fnname'>batteries</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.Battery.html" title="struct lsm::Battery">Battery</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#248-250' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Gets a list of batteries on this connection.</p>
+</div><h4 id='method.volume_create' class="method"><span id='volume_create.v' class='invisible'><code>pub fn <a href='#method.volume_create' class='fnname'>volume_create</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pool: &amp;<a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;size_bytes: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;thinp: &amp;<a class="enum" href="../lsm/enum.VolumeCreateArgThinP.html" title="enum lsm::VolumeCreateArgThinP">VolumeCreateArgThinP</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#359-388' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create new volume.</p>
+
+<ul>
+<li><code>pool</code> -- The pool where new volume should allocated from.</li>
+<li><code>name</code> -- The name of new volume. It might be altered or
+ignored.</li>
+<li><code>size_bytes</code> -- Size in bytes of new volume. You may use function
+<a href="fn.size_human_2_size_bytes.html"><code>size_human_2_size_bytes()</code></a> to convert string like &#39;1.1 GiB&#39;
+to integer size bytes.</li>
+<li><code>thinp</code> -- Whether to create thin provisioning volume.
+Check <a href="enum.VolumeCreateArgThinP.html">VolumeCreateArgThinP</a></li>
+</ul>
+</div><h4 id='method.volume_delete' class="method"><span id='volume_delete.v' class='invisible'><code>pub fn <a href='#method.volume_delete' class='fnname'>volume_delete</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#400-405' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete a volume</p>
+
+<h1 id='errors' class='section-header'><a href='#errors'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.VolHasChildDep"><code>LsmError::VolHasChildDep</code></a> volume has child dependency. e.g.
+specified volume is a replication source. Please use
+[<code>Client::vol_child_dep_rm()</code>] to eliminate child dependency.</li>
+</ul>
+</div><h4 id='method.time_out_set' class="method"><span id='time_out_set.v' class='invisible'><code>pub fn <a href='#method.time_out_set' class='fnname'>time_out_set</a>(&amp;mut self, ms: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#408-413' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set connection timeout value in milliseconds.</p>
+</div><h4 id='method.time_out_get' class="method"><span id='time_out_get.v' class='invisible'><code>pub fn <a href='#method.time_out_get' class='fnname'>time_out_get</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#416-419' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get connection timeout value.</p>
+</div><h4 id='method.capabilities' class="method"><span id='capabilities.v' class='invisible'><code>pub fn <a href='#method.capabilities' class='fnname'>capabilities</a>(&amp;mut self, sys: &amp;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Capabilities.html" title="struct lsm::Capabilities">Capabilities</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#432-437' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get system&#39;s capabilities.</p>
+
+<p>Capability is used to indicate whether certain functionality is
+supported by specified storage system. Please check desired function
+for required capability. To verify capability is supported, use
+<a href="struct.Capabilities.html#method.is_supported"><code>Capabilities::is_supported()</code></a>. If the functionality is not
+listed in the enumerated <a href="enum.capability.html"><code>Capability</code></a> type then that functionality
+is mandatory and required to exist.</p>
+</div><h4 id='method.plugin_info' class="method"><span id='plugin_info.v' class='invisible'><code>pub fn <a href='#method.plugin_info' class='fnname'>plugin_info</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.PluginInfo.html" title="struct lsm::PluginInfo">PluginInfo</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#440-450' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get plugin information.</p>
+</div><h4 id='method.sys_read_cache_pct_set' class="method"><span id='sys_read_cache_pct_set.v' class='invisible'><code>pub fn <a href='#method.sys_read_cache_pct_set' class='fnname'>sys_read_cache_pct_set</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;sys: &amp;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;read_pct: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#459-474' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Changes the read cache percentage for the specified system.</p>
+
+<h1 id='errors-1' class='section-header'><a href='#errors-1'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.InvalidArgument"><code>LsmError::InvalidArgument</code></a>: <code>read_pct</code> is larger than 100.</li>
+</ul>
+</div><h4 id='method.iscsi_chap_auth_set' class="method"><span id='iscsi_chap_auth_set.v' class='invisible'><code>pub fn <a href='#method.iscsi_chap_auth_set' class='fnname'>iscsi_chap_auth_set</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;in_user: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;in_pass: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;out_user: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;out_pass: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#487-515' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set(override) iSCSI CHAP authentication.</p>
+
+<ul>
+<li><code>init_id</code> -- Initiator ID.</li>
+<li><code>in_user</code> -- The inbound authentication username. The inbound
+authentication means the iSCSI initiator authenticates the iSCSI
+target using CHAP.</li>
+<li><code>in_pass</code> -- The inbond authentication password.</li>
+<li><code>out_user</code> -- The outbound authentication username. The outbound
+authentication means the iSCSI target authenticates the iSCSI
+initiator using CHAP.</li>
+<li><code>out_pass</code> -- The outbound authentication password.</li>
+</ul>
+</div><h4 id='method.volume_resize' class="method"><span id='volume_resize.v' class='invisible'><code>pub fn <a href='#method.volume_resize' class='fnname'>volume_resize</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;new_size_bytes: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#523-536' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Resize a volume.</p>
+
+<p>Please check whether pool allows volume resize via
+<a href="struct.Pool.html#structfield.unsupported_actions"><code>Pool.unsupported_actions</code></a>.</p>
+</div><h4 id='method.volume_replicate' class="method"><span id='volume_replicate.v' class='invisible'><code>pub fn <a href='#method.volume_replicate' class='fnname'>volume_replicate</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pool: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;rep_type: <a class="enum" href="../lsm/enum.VolumeReplicateType.html" title="enum lsm::VolumeReplicateType">VolumeReplicateType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#611-628' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Replicate a volume.</p>
+
+<ul>
+<li><code>pool</code> -- The pool where new replication target volume should be
+allocated from. For <code>None</code>, will use the same pool of source volume.</li>
+<li><code>rep_type</code> -- Replication type.</li>
+<li><code>src_vol</code> -- Replication source volume.</li>
+<li><code>name</code> -- Name for replication target volume. Might be altered or
+ignored.</li>
+</ul>
+</div><h4 id='method.volume_rep_range_blk_size' class="method"><span id='volume_rep_range_blk_size.v' class='invisible'><code>pub fn <a href='#method.volume_rep_range_blk_size' class='fnname'>volume_rep_range_blk_size</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;sys: &amp;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#633-638' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Block size for the <a href="#method.volume_replicate_range"><code>Client::volume_replicate_range()</code></a>.</p>
+</div><h4 id='method.volume_replicate_range' class="method"><span id='volume_replicate_range.v' class='invisible'><code>pub fn <a href='#method.volume_replicate_range' class='fnname'>volume_replicate_range</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;rep_type: <a class="enum" href="../lsm/enum.VolumeReplicateType.html" title="enum lsm::VolumeReplicateType">VolumeReplicateType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst_vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;ranges: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="struct" href="../lsm/struct.BlockRange.html" title="struct lsm::BlockRange">BlockRange</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#646-663' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Replicates a portion of a volume to a volume.</p>
+
+<ul>
+<li><code>rep_type</code> -- Replication type.</li>
+<li><code>src_vol</code> -- Replication source volume.</li>
+<li><code>dst_vol</code> -- Replication target volume.</li>
+<li><code>ranges</code> -- Replication block ranges.</li>
+</ul>
+</div><h4 id='method.volume_enable' class="method"><span id='volume_enable.v' class='invisible'><code>pub fn <a href='#method.volume_enable' class='fnname'>volume_enable</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#671-676' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set a Volume to online.</p>
+
+<p>Enable the specified volume when that volume is disabled by
+administrator or via <a href="#method.volume_disable"><code>Client::volume_disable()</code></a></p>
+</div><h4 id='method.volume_disable' class="method"><span id='volume_disable.v' class='invisible'><code>pub fn <a href='#method.volume_disable' class='fnname'>volume_disable</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#679-684' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Disable the read and write access to the specified volume.</p>
+</div><h4 id='method.volume_mask' class="method"><span id='volume_mask.v' class='invisible'><code>pub fn <a href='#method.volume_mask' class='fnname'>volume_mask</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#695-705' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Grant access to a volume for the specified group, also known as LUN
+masking or mapping.</p>
+
+<h1 id='errors-2' class='section-header'><a href='#errors-2'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.EmptyAccessGroup"><code>LsmError::EmptyAccessGroup</code></a>: Cannot mask voluem to empty
+access group.</li>
+</ul>
+</div><h4 id='method.volume_unmask' class="method"><span id='volume_unmask.v' class='invisible'><code>pub fn <a href='#method.volume_unmask' class='fnname'>volume_unmask</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#708-718' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Revokes access to a volume for the specified group</p>
+</div><h4 id='method.access_group_create' class="method"><span id='access_group_create.v' class='invisible'><code>pub fn <a href='#method.access_group_create' class='fnname'>access_group_create</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_type: <a class="enum" href="../lsm/enum.InitiatorType.html" title="enum lsm::InitiatorType">InitiatorType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;sys: &amp;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#733-751' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create a access group.</p>
+
+<p>Creates a new access group with one initiator in it. You may expand
+the access group by adding more initiators via
+<a href="#method.access_group_init_add"><code>Client::access_group_init_add()</code></a></p>
+
+<h1 id='errors-3' class='section-header'><a href='#errors-3'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.ExistsInitiator"><code>LsmError::ExistsInitiator</code></a>: Specified initiator is used by
+other access group.</li>
+</ul>
+</div><h4 id='method.access_group_delete' class="method"><span id='access_group_delete.v' class='invisible'><code>pub fn <a href='#method.access_group_delete' class='fnname'>access_group_delete</a>(&amp;mut self, ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#761-766' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete an access group. Only access group with no volume masked can
+be deleted.</p>
+
+<h1 id='errors-4' class='section-header'><a href='#errors-4'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.IsMasked"><code>LsmError::IsMasked</code></a>: Access group has volume masked to.</li>
+</ul>
+</div><h4 id='method.access_group_init_add' class="method"><span id='access_group_init_add.v' class='invisible'><code>pub fn <a href='#method.access_group_init_add' class='fnname'>access_group_init_add</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_type: <a class="enum" href="../lsm/enum.InitiatorType.html" title="enum lsm::InitiatorType">InitiatorType</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#776-792' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Add an initiator to the access group.</p>
+
+<h1 id='errors-5' class='section-header'><a href='#errors-5'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.ExistsInitiator"><code>LsmError::ExistsInitiator</code></a>: Specified initiator is used by
+other access group.</li>
+</ul>
+</div><h4 id='method.access_group_init_del' class="method"><span id='access_group_init_del.v' class='invisible'><code>pub fn <a href='#method.access_group_init_del' class='fnname'>access_group_init_del</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;init_type: <a class="enum" href="../lsm/enum.InitiatorType.html" title="enum lsm::InitiatorType">InitiatorType</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#804-820' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete an initiator from an access group.</p>
+
+<h1 id='errors-6' class='section-header'><a href='#errors-6'>Errors</a></h1>
+<ul>
+<li><a href="enum.LsmError.html#variant.LastInitInAccessGroup"><code>LsmError::LastInitInAccessGroup</code></a>: Specified initiator is the
+last initiator of access group. Use
+<a href="#method.access_group_delete"><code>Client::access_group_delete()</code></a> instead.</li>
+</ul>
+</div><h4 id='method.vols_masked_to_ag' class="method"><span id='vols_masked_to_ag.v' class='invisible'><code>pub fn <a href='#method.vols_masked_to_ag' class='fnname'>vols_masked_to_ag</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#823-833' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Query volumes that the specified access group has access to.</p>
+</div><h4 id='method.ags_granted_to_vol' class="method"><span id='ags_granted_to_vol.v' class='invisible'><code>pub fn <a href='#method.ags_granted_to_vol' class='fnname'>ags_granted_to_vol</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#836-844' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Retrieves the access groups that have access to the specified volume.</p>
+</div><h4 id='method.vol_has_child_dep' class="method"><span id='vol_has_child_dep.v' class='invisible'><code>pub fn <a href='#method.vol_has_child_dep' class='fnname'>vol_has_child_dep</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#847-852' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Check whether volume has child dependencies.</p>
+</div><h4 id='method.vol_child_dep_rm' class="method"><span id='vol_child_dep_rm.v' class='invisible'><code>pub fn <a href='#method.vol_child_dep_rm' class='fnname'>vol_child_dep_rm</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#860-865' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete all child dependencies of the specified volume.</p>
+
+<p>Instruct storage system to remove all child dependencies of the
+specified volume by duplicating the required storage before breaking
+replication relationship. This function might take a long time(days or
+even weeks), you might want to invoke it in a thread.</p>
+</div><h4 id='method.fs_create' class="method"><span id='fs_create.v' class='invisible'><code>pub fn <a href='#method.fs_create' class='fnname'>fs_create</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pool: &amp;<a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;size_bytes: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#877-893' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create a new file system.</p>
+
+<ul>
+<li><code>pool</code> -- The pool where new file system should allocated from.</li>
+<li><code>name</code> -- The name of new file system. It might be altered or
+ignored.</li>
+<li><code>size_bytes</code> -- Size in bytes of new file system. You may use
+function <a href="fn.size_human_2_size_bytes.html"><code>size_human_2_size_bytes()</code></a> to convert string like
+&#39;1.1 GiB&#39; to integer size bytes.</li>
+</ul>
+</div><h4 id='method.fs_resize' class="method"><span id='fs_resize.v' class='invisible'><code>pub fn <a href='#method.fs_resize' class='fnname'>fs_resize</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;new_size_bytes: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#896-909' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Resize of file system.</p>
+</div><h4 id='method.fs_delete' class="method"><span id='fs_delete.v' class='invisible'><code>pub fn <a href='#method.fs_delete' class='fnname'>fs_delete</a>(&amp;mut self, fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#921-926' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete a file system.</p>
+
+<p>When file system has snapshot attached, all its snapshot will be
+deleted also. When file system is exported, all its exports will be
+deleted also. If specified file system is has child dependency, it
+cannot be deleted, please use <a href="#method.fs_has_child_dep()"><code>Client::fs_has_child_dep()</code></a> and
+<a href="#method.fs_child_dep_rm()"><code>Client::fs_child_dep_rm()</code></a>.</p>
+</div><h4 id='method.fs_clone' class="method"><span id='fs_clone.v' class='invisible'><code>pub fn <a href='#method.fs_clone' class='fnname'>fs_clone</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst_fs_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;snapshot: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#936-952' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Clones an existing file system</p>
+
+<p>Create a point in time read writeable space efficient copy of specified
+file system, also know as read writeable snapshot. The new file system
+will reside in the same pool of specified file system.</p>
+
+<p>Optionally, new file system could be based on a snapshot specified by
+<code>snapshot</code> argument.</p>
+</div><h4 id='method.fs_file_clone' class="method"><span id='fs_file_clone.v' class='invisible'><code>pub fn <a href='#method.fs_file_clone' class='fnname'>fs_file_clone</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_file_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst_file_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;snapshot: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#958-979' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Clones a file on a file system.</p>
+
+<p>Optionally, file contents could be based on a snapshot specified by
+<code>snapshot</code> argument.</p>
+</div><h4 id='method.fs_snapshots' class="method"><span id='fs_snapshots.v' class='invisible'><code>pub fn <a href='#method.fs_snapshots' class='fnname'>fs_snapshots</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#982-990' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get a list of snapshots of specified file system.</p>
+</div><h4 id='method.fs_snapshot_create' class="method"><span id='fs_snapshot_create.v' class='invisible'><code>pub fn <a href='#method.fs_snapshot_create' class='fnname'>fs_snapshot_create</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#993-1003' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create a file system snapshot.</p>
+</div><h4 id='method.fs_snapshot_delete' class="method"><span id='fs_snapshot_delete.v' class='invisible'><code>pub fn <a href='#method.fs_snapshot_delete' class='fnname'>fs_snapshot_delete</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;snapshot: &amp;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1006-1016' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete a file system snapshot.</p>
+</div><h4 id='method.fs_snapshot_restore' class="method"><span id='fs_snapshot_restore.v' class='invisible'><code>pub fn <a href='#method.fs_snapshot_restore' class='fnname'>fs_snapshot_restore</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;snapshot: &amp;<a class="struct" href="../lsm/struct.FileSystemSnapShot.html" title="struct lsm::FileSystemSnapShot">FileSystemSnapShot</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;all_file: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;files: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;restore_files: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1028-1074' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Restore a file system based on specified snapshot.</p>
+
+<ul>
+<li><code>fs</code> -- File system to restore.</li>
+<li><code>snapshot</code> -- Snapshot to use.</li>
+<li><code>all_file</code> -- <code>true</code> for restore all files. <code>false</code> for restore
+specified files only.</li>
+<li><code>files</code> -- Only restored specified files. Ignored if <code>all_file</code> is
+<code>true</code>.</li>
+<li><code>restore_files</code> -- If not <code>None</code>, rename restored files to defined
+file paths and names</li>
+</ul>
+</div><h4 id='method.fs_has_child_dep' class="method"><span id='fs_has_child_dep.v' class='invisible'><code>pub fn <a href='#method.fs_has_child_dep' class='fnname'>fs_has_child_dep</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;files: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1077-1088' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Checks whether file system has a child dependency.</p>
+</div><h4 id='method.fs_child_dep_rm' class="method"><span id='fs_child_dep_rm.v' class='invisible'><code>pub fn <a href='#method.fs_child_dep_rm' class='fnname'>fs_child_dep_rm</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;files: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1096-1107' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Delete all child dependencies of the specified file system.</p>
+
+<p>Instruct storage system to remove all child dependencies of the
+specified file system by duplicating the required storage before
+breaking replication relationship. This function might take a long
+time(days or even weeks), you might want to invoke it in a thread.</p>
+</div><h4 id='method.nfs_exp_auth_type_list' class="method"><span id='nfs_exp_auth_type_list.v' class='invisible'><code>pub fn <a href='#method.nfs_exp_auth_type_list' class='fnname'>nfs_exp_auth_type_list</a>(&amp;mut self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1110-1113' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get supported NFS client authentication types.</p>
+</div><h4 id='method.fs_export' class="method"><span id='fs_export.v' class='invisible'><code>pub fn <a href='#method.fs_export' class='fnname'>fs_export</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;fs: &amp;<a class="struct" href="../lsm/struct.FileSystem.html" title="struct lsm::FileSystem">FileSystem</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;export_path: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;access: &amp;<a class="struct" href="../lsm/struct.NfsAccess.html" title="struct lsm::NfsAccess">NfsAccess</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;auth_type: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;options: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.NfsExport.html" title="struct lsm::NfsExport">NfsExport</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1126-1181' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create or modify an NFS export.</p>
+
+<ul>
+<li><code>fs</code> -- File system to export.</li>
+<li><code>export_path</code> -- Export path. If already exists, will modify exist NFS
+export. If <code>None</code>, will let storage system to generate one.</li>
+<li><code>access</code> -- NFS access details.</li>
+<li><code>auth_type</code> -- NFS client authentication type. Get from
+<a href="#method.nfs_exp_auth_type_list"><code>Client::nfs_exp_auth_type_list()</code></a>.</li>
+<li><code>options</code> -- Extra NFS options.</li>
+</ul>
+</div><h4 id='method.fs_unexport' class="method"><span id='fs_unexport.v' class='invisible'><code>pub fn <a href='#method.fs_unexport' class='fnname'>fs_unexport</a>(&amp;mut self, exp: &amp;<a class="struct" href="../lsm/struct.NfsExport.html" title="struct lsm::NfsExport">NfsExport</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1184-1189' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Unexport specified NFS exports.</p>
+</div><h4 id='method.vol_raid_info' class="method"><span id='vol_raid_info.v' class='invisible'><code>pub fn <a href='#method.vol_raid_info' class='fnname'>vol_raid_info</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.VolumeRaidInfo.html" title="struct lsm::VolumeRaidInfo">VolumeRaidInfo</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1192-1211' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get volume RAID information.</p>
+</div><h4 id='method.pool_member_info' class="method"><span id='pool_member_info.v' class='invisible'><code>pub fn <a href='#method.pool_member_info' class='fnname'>pool_member_info</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pool: &amp;<a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.PoolMemberInfo.html" title="struct lsm::PoolMemberInfo">PoolMemberInfo</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1214-1250' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get pool member information.</p>
+</div><h4 id='method.vol_raid_create_cap_get' class="method"><span id='vol_raid_create_cap_get.v' class='invisible'><code>pub fn <a href='#method.vol_raid_create_cap_get' class='fnname'>vol_raid_create_cap_get</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;sys: &amp;<a class="struct" href="../lsm/struct.System.html" title="struct lsm::System">System</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="enum" href="../lsm/enum.RaidType.html" title="enum lsm::RaidType">RaidType</a>&gt;, <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1256-1282' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get system capability on creating RAIDed volume. For hardware RAID
+only.</p>
+
+<p>Returns supported RAID types and strip sizes.</p>
+</div><h4 id='method.vol_raid_create' class="method"><span id='vol_raid_create.v' class='invisible'><code>pub fn <a href='#method.vol_raid_create' class='fnname'>vol_raid_create</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;raid_type: <a class="enum" href="../lsm/enum.RaidType.html" title="enum lsm::RaidType">RaidType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;disks: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="struct" href="../lsm/struct.Disk.html" title="struct lsm::Disk">Disk</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;strip_size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1285-1357' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create RAIDed volume directly from disks. Only for hardware RAID.</p>
+</div><h4 id='method.vol_ident_led_on' class="method"><span id='vol_ident_led_on.v' class='invisible'><code>pub fn <a href='#method.vol_ident_led_on' class='fnname'>vol_ident_led_on</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1362-1367' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Turn on the identification LED for the specified volume.</p>
+
+<p>All its member disks&#39; identification LED will be turned on.</p>
+</div><h4 id='method.vol_ident_led_off' class="method"><span id='vol_ident_led_off.v' class='invisible'><code>pub fn <a href='#method.vol_ident_led_off' class='fnname'>vol_ident_led_off</a>(&amp;mut self, vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1372-1377' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Turn off the identification LED for the specified volume.</p>
+
+<p>All its member disks&#39; identification LED will be turned off.</p>
+</div><h4 id='method.vol_cache_info' class="method"><span id='vol_cache_info.v' class='invisible'><code>pub fn <a href='#method.vol_cache_info' class='fnname'>vol_cache_info</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="../lsm/struct.VolumeCacheInfo.html" title="struct lsm::VolumeCacheInfo">VolumeCacheInfo</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1380-1423' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get cache information on specified volume.</p>
+</div><h4 id='method.vol_phy_disk_cache_set' class="method"><span id='vol_phy_disk_cache_set.v' class='invisible'><code>pub fn <a href='#method.vol_phy_disk_cache_set' class='fnname'>vol_phy_disk_cache_set</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;pdc: <a class="enum" href="../lsm/enum.CachePolicy.html" title="enum lsm::CachePolicy">CachePolicy</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1426-1448' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set volume physical disk cache policy.</p>
+</div><h4 id='method.vol_write_cache_set' class="method"><span id='vol_write_cache_set.v' class='invisible'><code>pub fn <a href='#method.vol_write_cache_set' class='fnname'>vol_write_cache_set</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;wcp: <a class="enum" href="../lsm/enum.CachePolicy.html" title="enum lsm::CachePolicy">CachePolicy</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1451-1473' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set volume write cache policy.</p>
+</div><h4 id='method.vol_read_cache_set' class="method"><span id='vol_read_cache_set.v' class='invisible'><code>pub fn <a href='#method.vol_read_cache_set' class='fnname'>vol_read_cache_set</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;rcp: <a class="enum" href="../lsm/enum.CachePolicy.html" title="enum lsm::CachePolicy">CachePolicy</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/client.rs.html#1476-1497' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Set volume read cache policy.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "lsm";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

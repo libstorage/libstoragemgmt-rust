@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Pool` struct in crate `lsm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Pool">
+
+    <title>lsm::Pool - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Struct Pool</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.id">id</a><a href="#structfield.name">name</a><a href="#structfield.element_type">element_type</a><a href="#structfield.unsupported_actions">unsupported_actions</a><a href="#structfield.total_space">total_space</a><a href="#structfield.free_space">free_space</a><a href="#structfield.status">status</a><a href="#structfield.status_info">status_info</a><a href="#structfield.system_id">system_id</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Clone">Clone</a></div></div><p class='location'><a href='index.html'>lsm</a></p><script>window.sidebarCurrent = {name: 'Pool', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>lsm</a>::<wbr><a class="struct" href=''>Pool</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/lsm/data.rs.html#366-475' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Pool {
+    pub id: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>,
+    pub name: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>,
+    pub element_type: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+    pub unsupported_actions: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+    pub total_space: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+    pub free_space: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+    pub status: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a>,
+    pub status_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;,
+    pub system_id: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>,
+    // some fields omitted
+}</pre><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.id" class="structfield small-section-header">
+                           <a href="#structfield.id" class="anchor field"></a>
+                           <span id="id.v" class='invisible'>
+                           <code>id: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code>
+                           </span></span><div class='docblock'><p>Identifier.</p>
+</div><span id="structfield.name" class="structfield small-section-header">
+                           <a href="#structfield.name" class="anchor field"></a>
+                           <span id="name.v" class='invisible'>
+                           <code>name: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code>
+                           </span></span><div class='docblock'><p>Human friendly name.</p>
+</div><span id="structfield.element_type" class="structfield small-section-header">
+                           <a href="#structfield.element_type" class="anchor field"></a>
+                           <span id="element_type.v" class='invisible'>
+                           <code>element_type: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code>
+                           </span></span><div class='docblock'><p>The type of elements this pool could create.
+Valid element types are:</p>
+
+<ul>
+<li><a href="#associatedconstant.ELEMENT_TYPE_POOL"><code>Pool::ELEMENT_TYPE_POOL</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_VOLUME"><code>Pool::ELEMENT_TYPE_VOLUME</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_FS"><code>Pool::ELEMENT_TYPE_FS</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_DELTA"><code>Pool::ELEMENT_TYPE_DELTA</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_VOLUME_FULL"><code>Pool::ELEMENT_TYPE_VOLUME_FULL</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_VOLUME_THIN"><code>Pool::ELEMENT_TYPE_VOLUME_THIN</code></a></li>
+<li><a href="#associatedconstant.ELEMENT_TYPE_SYS_RESERVED"><code>Pool::ELEMENT_TYPE_SYS_RESERVED</code></a></li>
+</ul>
+
+<p>The values are stored in bitmap:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> (<span class="ident">p</span>.<span class="ident">element_type</span> <span class="op">&amp;</span> <span class="ident">Pool</span>::<span class="ident">ELEMENT_TYPE_VOLUME</span>) <span class="op">==</span> <span class="number">0</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Pool {}/{} could create volume&quot;</span>, <span class="ident">p</span>.<span class="ident">name</span>, <span class="ident">p</span>.<span class="ident">id</span>);
+}</pre>
+</div><span id="structfield.unsupported_actions" class="structfield small-section-header">
+                           <a href="#structfield.unsupported_actions" class="anchor field"></a>
+                           <span id="unsupported_actions.v" class='invisible'>
+                           <code>unsupported_actions: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code>
+                           </span></span><div class='docblock'><p>The actions does not supported by this pool.
+Valid values are:</p>
+
+<ul>
+<li><a href="#associatedconstant.UNSUPPORTED_VOLUME_GROW"><code>Pool::UNSUPPORTED_VOLUME_GROW</code></a></li>
+<li><a href="#associatedconstant.UNSUPPORTED_VOLUME_SHRINK"><code>Pool::UNSUPPORTED_VOLUME_SHRINK</code></a></li>
+</ul>
+
+<p>The values are stored in bitmap:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> (<span class="ident">p</span>.<span class="ident">unsupported_actions</span> <span class="op">&amp;</span> <span class="ident">Pool</span>::<span class="ident">UNSUPPORTED_VOLUME_GROW</span>) <span class="op">==</span> <span class="number">0</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Pool {}/{} cannot grow size of volume&quot;</span>, <span class="ident">p</span>.<span class="ident">name</span>, <span class="ident">p</span>.<span class="ident">id</span>);
+}</pre>
+</div><span id="structfield.total_space" class="structfield small-section-header">
+                           <a href="#structfield.total_space" class="anchor field"></a>
+                           <span id="total_space.v" class='invisible'>
+                           <code>total_space: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code>
+                           </span></span><div class='docblock'><p>Total space in bytes.</p>
+</div><span id="structfield.free_space" class="structfield small-section-header">
+                           <a href="#structfield.free_space" class="anchor field"></a>
+                           <span id="free_space.v" class='invisible'>
+                           <code>free_space: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code>
+                           </span></span><div class='docblock'><p>Free space in bytes.</p>
+</div><span id="structfield.status" class="structfield small-section-header">
+                           <a href="#structfield.status" class="anchor field"></a>
+                           <span id="status.v" class='invisible'>
+                           <code>status: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code>
+                           </span></span><div class='docblock'><p>Pool status stored in bitmap. Valid status value are:</p>
+
+<ul>
+<li><a href="#associatedconstant.STATUS_UNKNOWN"><code>Pool::STATUS_UNKNOWN</code></a></li>
+<li><a href="#associatedconstant.STATUS_OK"><code>Pool::STATUS_OK</code></a></li>
+<li><a href="#associatedconstant.STATUS_OTHER"><code>Pool::STATUS_OTHER</code></a></li>
+<li><a href="#associatedconstant.STATUS_DEGRADED"><code>Pool::STATUS_DEGRADED</code></a></li>
+<li><a href="#associatedconstant.STATUS_ERROR"><code>Pool::STATUS_ERROR</code></a></li>
+<li><a href="#associatedconstant.STATUS_STOPPED"><code>Pool::STATUS_STOPPED</code></a></li>
+<li><a href="#associatedconstant.STATUS_STARTING"><code>Pool::STATUS_STARTING</code></a></li>
+<li><a href="#associatedconstant.STATUS_RECONSTRUCTING"><code>Pool::STATUS_RECONSTRUCTING</code></a></li>
+<li><a href="#associatedconstant.STATUS_VERIFYING"><code>Pool::STATUS_VERIFYING</code></a></li>
+<li><a href="#associatedconstant.STATUS_INITIALIZING"><code>Pool::STATUS_INITIALIZING</code></a></li>
+<li><a href="#associatedconstant.STATUS_GROWING"><code>Pool::STATUS_GROWING</code></a></li>
+</ul>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">if</span> (<span class="ident">p</span>.<span class="ident">status</span> <span class="op">&amp;</span> <span class="ident">Pool</span>::<span class="ident">STATUS_OK</span>) <span class="op">==</span> <span class="number">0</span> {
+    <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Pool {}/{} is not healthy&quot;</span>, <span class="ident">p</span>.<span class="ident">name</span>, <span class="ident">p</span>.<span class="ident">id</span>);
+}</pre>
+</div><span id="structfield.status_info" class="structfield small-section-header">
+                           <a href="#structfield.status_info" class="anchor field"></a>
+                           <span id="status_info.v" class='invisible'>
+                           <code>status_info: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code>
+                           </span></span><div class='docblock'><p>Additional message for status.</p>
+</div><span id="structfield.system_id" class="structfield small-section-header">
+                           <a href="#structfield.system_id" class="anchor field"></a>
+                           <span id="system_id.v" class='invisible'>
+                           <code>system_id: <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a></code>
+                           </span></span><div class='docblock'><p>Identifier of owner system.</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/data.rs.html#477-542' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedconstant.ELEMENT_TYPE_POOL' class="associatedconstant"><span id='ELEMENT_TYPE_POOL.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_POOL' class="constant"><b>ELEMENT_TYPE_POOL</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_POOL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span></pre>
+<p>This pool could allocate space for sub-pool.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_VOLUME' class="associatedconstant"><span id='ELEMENT_TYPE_VOLUME.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_VOLUME' class="constant"><b>ELEMENT_TYPE_VOLUME</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_VOLUME</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span></pre>
+<p>This pool could create volume.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_FS' class="associatedconstant"><span id='ELEMENT_TYPE_FS.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_FS' class="constant"><b>ELEMENT_TYPE_FS</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_FS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span></pre>
+<p>This pool could create file system.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_DELTA' class="associatedconstant"><span id='ELEMENT_TYPE_DELTA.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_DELTA' class="constant"><b>ELEMENT_TYPE_DELTA</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_DELTA</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span></pre>
+<p>This pool could hold delta data for snapshots.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_VOLUME_FULL' class="associatedconstant"><span id='ELEMENT_TYPE_VOLUME_FULL.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_VOLUME_FULL' class="constant"><b>ELEMENT_TYPE_VOLUME_FULL</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_VOLUME_FULL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span></pre>
+<p>This pool could create fully allocated volume.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_VOLUME_THIN' class="associatedconstant"><span id='ELEMENT_TYPE_VOLUME_THIN.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_VOLUME_THIN' class="constant"><b>ELEMENT_TYPE_VOLUME_THIN</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_VOLUME_THIN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">6</span></pre>
+<p>This pool could create thin provisioned volume.</p>
+</div><h4 id='associatedconstant.ELEMENT_TYPE_SYS_RESERVED' class="associatedconstant"><span id='ELEMENT_TYPE_SYS_RESERVED.v' class='invisible'><code>pub const <a href='#associatedconstant.ELEMENT_TYPE_SYS_RESERVED' class="constant"><b>ELEMENT_TYPE_SYS_RESERVED</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">ELEMENT_TYPE_SYS_RESERVED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">10</span></pre>
+<p>This pool is reserved for system internal use.</p>
+</div><h4 id='associatedconstant.UNSUPPORTED_VOLUME_GROW' class="associatedconstant"><span id='UNSUPPORTED_VOLUME_GROW.v' class='invisible'><code>pub const <a href='#associatedconstant.UNSUPPORTED_VOLUME_GROW' class="constant"><b>UNSUPPORTED_VOLUME_GROW</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">UNSUPPORTED_VOLUME_GROW</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span></pre>
+<p>This pool cannot grow size of its volume.</p>
+</div><h4 id='associatedconstant.UNSUPPORTED_VOLUME_SHRINK' class="associatedconstant"><span id='UNSUPPORTED_VOLUME_SHRINK.v' class='invisible'><code>pub const <a href='#associatedconstant.UNSUPPORTED_VOLUME_SHRINK' class="constant"><b>UNSUPPORTED_VOLUME_SHRINK</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">UNSUPPORTED_VOLUME_SHRINK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span></pre>
+<p>This pool cannot shrink size of its volume.</p>
+</div><h4 id='associatedconstant.STATUS_UNKNOWN' class="associatedconstant"><span id='STATUS_UNKNOWN.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_UNKNOWN' class="constant"><b>STATUS_UNKNOWN</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_UNKNOWN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span></pre>
+<p>Plugin failed to query pool status.</p>
+</div><h4 id='associatedconstant.STATUS_OK' class="associatedconstant"><span id='STATUS_OK.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_OK' class="constant"><b>STATUS_OK</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span></pre>
+<p>The data of this pool is accessible with not data lose. But it might
+along with <code>Pool::STATUS_DEGRADED</code> to indicate redundancy lose.</p>
+</div><h4 id='associatedconstant.STATUS_OTHER' class="associatedconstant"><span id='STATUS_OTHER.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_OTHER' class="constant"><b>STATUS_OTHER</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span></pre>
+<p>Vendor specific status. The <code>Pool.status_info</code> property will explain
+the detail.</p>
+</div><h4 id='associatedconstant.STATUS_DEGRADED' class="associatedconstant"><span id='STATUS_DEGRADED.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_DEGRADED' class="constant"><b>STATUS_DEGRADED</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_DEGRADED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span></pre>
+<p>Pool is lost data redundancy due to I/O error or offline of one or more
+RAID member. Often come with <code>Pool::STATUS_OK</code> to indicate data is
+still accessible with not data lose. Example:</p>
+
+<ul>
+<li><p>RAID 6 pool lost access to 1 disk or 2 disks.</p></li>
+<li><p>RAID 5 pool lost access to 1 disk.</p></li>
+</ul>
+</div><h4 id='associatedconstant.STATUS_ERROR' class="associatedconstant"><span id='STATUS_ERROR.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_ERROR' class="constant"><b>STATUS_ERROR</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span></pre>
+<p>Pool data is not accessible due to some members offline. Example:</p>
+
+<ul>
+<li><p>RAID 5 pool lost access to 2 disks.</p></li>
+<li><p>RAID 0 pool lost access to 1 disks.</p></li>
+</ul>
+</div><h4 id='associatedconstant.STATUS_STOPPED' class="associatedconstant"><span id='STATUS_STOPPED.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_STOPPED' class="constant"><b>STATUS_STOPPED</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_STOPPED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">9</span></pre>
+<p>Pool is stopping by administrator. Pool data is not accessible.</p>
+</div><h4 id='associatedconstant.STATUS_STARTING' class="associatedconstant"><span id='STATUS_STARTING.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_STARTING' class="constant"><b>STATUS_STARTING</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_STARTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">10</span></pre>
+<p>Pool is reviving from STOPPED status. Pool data is not accessible yet.</p>
+</div><h4 id='associatedconstant.STATUS_RECONSTRUCTING' class="associatedconstant"><span id='STATUS_RECONSTRUCTING.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_RECONSTRUCTING' class="constant"><b>STATUS_RECONSTRUCTING</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_RECONSTRUCTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">12</span></pre>
+<p>Pool is reconstructing the hash data or mirror data. Mostly happen
+when disk revive from offline or disk replaced. <code>Pool.status_info</code> may
+contain progress of this reconstruction job. Often come with
+<code>Pool::STATUS_DEGRADED</code> and <code>Pool::STATUS_OK</code>.</p>
+</div><h4 id='associatedconstant.STATUS_VERIFYING' class="associatedconstant"><span id='STATUS_VERIFYING.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_VERIFYING' class="constant"><b>STATUS_VERIFYING</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_VERIFYING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">13</span></pre>
+<p>Array is running integrity check on data of current pool. It might be
+started by administrator or array itself. The I/O performance will be
+impacted. Pool.status_info may contain progress of this verification
+job. Often come with <code>Pool::STATUS_OK</code> to indicate data is still
+accessible.</p>
+</div><h4 id='associatedconstant.STATUS_INITIALIZING' class="associatedconstant"><span id='STATUS_INITIALIZING.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_INITIALIZING' class="constant"><b>STATUS_INITIALIZING</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">14</span></pre>
+<p>Pool is not accessable and performing initializing task. Often happen
+on newly created pool.</p>
+</div><h4 id='associatedconstant.STATUS_GROWING' class="associatedconstant"><span id='STATUS_GROWING.v' class='invisible'><code>pub const <a href='#associatedconstant.STATUS_GROWING' class="constant"><b>STATUS_GROWING</b></a>: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a></code></span></h4>
+<div class='docblock'><pre class="rust ">
+<span class="ident">STATUS_GROWING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">15</span></pre>
+<p>Pool is growing its size and doing internal jobs. <code>Pool.status_info</code>
+can contain progress of this growing job. Often come with
+<code>Pool::STATUS_OK</code> to indicate data is still accessible.</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/data.rs.html#365' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/data.rs.html#365' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/data.rs.html#365' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../lsm/struct.Pool.html" title="struct lsm::Pool">Pool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/lsm/data.rs.html#365' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "lsm";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

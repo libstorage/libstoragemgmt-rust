@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Capability` enum in crate `lsm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Capability">
+
+    <title>lsm::Capability - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc enum">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Enum Capability</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.Volumes">Volumes</a><a href="#variant.VolumeCreate">VolumeCreate</a><a href="#variant.VolumeResize">VolumeResize</a><a href="#variant.VolumeReplicate">VolumeReplicate</a><a href="#variant.VolumeReplicateClone">VolumeReplicateClone</a><a href="#variant.VolumeReplicateCopy">VolumeReplicateCopy</a><a href="#variant.VolumeReplicateMirrorAsync">VolumeReplicateMirrorAsync</a><a href="#variant.VolumeReplicateMirrorSync">VolumeReplicateMirrorSync</a><a href="#variant.VolumeRepRangeBlockSize">VolumeRepRangeBlockSize</a><a href="#variant.VolumeRepRange">VolumeRepRange</a><a href="#variant.VolumeRepRangeClone">VolumeRepRangeClone</a><a href="#variant.VolumeRepRangeCopy">VolumeRepRangeCopy</a><a href="#variant.VolumeDelete">VolumeDelete</a><a href="#variant.VolumeEnable">VolumeEnable</a><a href="#variant.VolumeDisable">VolumeDisable</a><a href="#variant.VolumeMask">VolumeMask</a><a href="#variant.VolumeUnmask">VolumeUnmask</a><a href="#variant.AccessGroups">AccessGroups</a><a href="#variant.AccessGroupCreateWwpn">AccessGroupCreateWwpn</a><a href="#variant.AccessGroupDelete">AccessGroupDelete</a><a href="#variant.AccessGroupInitAddWwpn">AccessGroupInitAddWwpn</a><a href="#variant.AccessGroupInitDel">AccessGroupInitDel</a><a href="#variant.VolsMaskedToAg">VolsMaskedToAg</a><a href="#variant.AgsGrantedToVol">AgsGrantedToVol</a><a href="#variant.VolHasChildDep">VolHasChildDep</a><a href="#variant.VolChildDepRm">VolChildDepRm</a><a href="#variant.AccessGroupCreateIscsiIqn">AccessGroupCreateIscsiIqn</a><a href="#variant.AccessGroupInitAddIscsiIqn">AccessGroupInitAddIscsiIqn</a><a href="#variant.IscsiChapAuthSet">IscsiChapAuthSet</a><a href="#variant.VolRaidInfo">VolRaidInfo</a><a href="#variant.VolumeThin">VolumeThin</a><a href="#variant.Batteries">Batteries</a><a href="#variant.VolCacheInfo">VolCacheInfo</a><a href="#variant.VolPhyDiskCacheSet">VolPhyDiskCacheSet</a><a href="#variant.VolPhysicalDiskCacheSetSystemLevel">VolPhysicalDiskCacheSetSystemLevel</a><a href="#variant.VolWriteCacheSetEnable">VolWriteCacheSetEnable</a><a href="#variant.VolWriteCacheSetAuto">VolWriteCacheSetAuto</a><a href="#variant.VolWriteCacheSetDisabled">VolWriteCacheSetDisabled</a><a href="#variant.VolWriteCacheSetImpactRead">VolWriteCacheSetImpactRead</a><a href="#variant.VolWriteCacheSetWbImpactOther">VolWriteCacheSetWbImpactOther</a><a href="#variant.VolReadCacheSet">VolReadCacheSet</a><a href="#variant.VolReadCacheSetImpactWrite">VolReadCacheSetImpactWrite</a><a href="#variant.Fs">Fs</a><a href="#variant.FsDelete">FsDelete</a><a href="#variant.FsResize">FsResize</a><a href="#variant.FsCreate">FsCreate</a><a href="#variant.FsClone">FsClone</a><a href="#variant.FsFileClone">FsFileClone</a><a href="#variant.FsSnapshots">FsSnapshots</a><a href="#variant.FsSnapshotCreate">FsSnapshotCreate</a><a href="#variant.FsSnapshotDelete">FsSnapshotDelete</a><a href="#variant.FsSnapshotRestore">FsSnapshotRestore</a><a href="#variant.FsSnapshotRestoreSpecificFiles">FsSnapshotRestoreSpecificFiles</a><a href="#variant.FsHasChildDep">FsHasChildDep</a><a href="#variant.FsChildDepRm">FsChildDepRm</a><a href="#variant.FsChildDepRmSpecificFiles">FsChildDepRmSpecificFiles</a><a href="#variant.NfsExportAuthTypeList">NfsExportAuthTypeList</a><a href="#variant.NfsExports">NfsExports</a><a href="#variant.FsExport">FsExport</a><a href="#variant.FsUnexport">FsUnexport</a><a href="#variant.FsExportCustomPath">FsExportCustomPath</a><a href="#variant.SysReadCachePctSet">SysReadCachePctSet</a><a href="#variant.SysReadCachePctGet">SysReadCachePctGet</a><a href="#variant.SysFwVersionGet">SysFwVersionGet</a><a href="#variant.SysModeGet">SysModeGet</a><a href="#variant.DiskLocation">DiskLocation</a><a href="#variant.DiskRpm">DiskRpm</a><a href="#variant.DiskLinkType">DiskLinkType</a><a href="#variant.VolumeLed">VolumeLed</a><a href="#variant.TargetPorts">TargetPorts</a><a href="#variant.Disks">Disks</a><a href="#variant.PoolMemberInfo">PoolMemberInfo</a><a href="#variant.VolumeRaidCreate">VolumeRaidCreate</a><a href="#variant.DiskVpd83Get">DiskVpd83Get</a></div></div><p class='location'><a href='index.html'>lsm</a></p><script>window.sidebarCurrent = {name: 'Capability', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>lsm</a>::<wbr><a class="enum" href=''>Capability</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/lsm/data.rs.html#1046-1212' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'><div class="docblock attributes">#[repr(usize)]
+</div>pub enum Capability {
+    Volumes,
+    VolumeCreate,
+    VolumeResize,
+    VolumeReplicate,
+    VolumeReplicateClone,
+    VolumeReplicateCopy,
+    VolumeReplicateMirrorAsync,
+    VolumeReplicateMirrorSync,
+    VolumeRepRangeBlockSize,
+    VolumeRepRange,
+    VolumeRepRangeClone,
+    VolumeRepRangeCopy,
+    VolumeDelete,
+    VolumeEnable,
+    VolumeDisable,
+    VolumeMask,
+    VolumeUnmask,
+    AccessGroups,
+    AccessGroupCreateWwpn,
+    AccessGroupDelete,
+    AccessGroupInitAddWwpn,
+    AccessGroupInitDel,
+    VolsMaskedToAg,
+    AgsGrantedToVol,
+    VolHasChildDep,
+    VolChildDepRm,
+    AccessGroupCreateIscsiIqn,
+    AccessGroupInitAddIscsiIqn,
+    IscsiChapAuthSet,
+    VolRaidInfo,
+    VolumeThin,
+    Batteries,
+    VolCacheInfo,
+    VolPhyDiskCacheSet,
+    VolPhysicalDiskCacheSetSystemLevel,
+    VolWriteCacheSetEnable,
+    VolWriteCacheSetAuto,
+    VolWriteCacheSetDisabled,
+    VolWriteCacheSetImpactRead,
+    VolWriteCacheSetWbImpactOther,
+    VolReadCacheSet,
+    VolReadCacheSetImpactWrite,
+    Fs,
+    FsDelete,
+    FsResize,
+    FsCreate,
+    FsClone,
+    FsFileClone,
+    FsSnapshots,
+    FsSnapshotCreate,
+    FsSnapshotDelete,
+    FsSnapshotRestore,
+    FsSnapshotRestoreSpecificFiles,
+    FsHasChildDep,
+    FsChildDepRm,
+    FsChildDepRmSpecificFiles,
+    NfsExportAuthTypeList,
+    NfsExports,
+    FsExport,
+    FsUnexport,
+    FsExportCustomPath,
+    SysReadCachePctSet,
+    SysReadCachePctGet,
+    SysFwVersionGet,
+    SysModeGet,
+    DiskLocation,
+    DiskRpm,
+    DiskLinkType,
+    VolumeLed,
+    TargetPorts,
+    Disks,
+    PoolMemberInfo,
+    VolumeRaidCreate,
+    DiskVpd83Get,
+}</pre><div class='docblock'><p>Represent a capability supported by specific system.</p>
+</div><h2 id='variants' class='variants small-section-header'>
+                   Variants<a href='#variants' class='anchor'></a></h2>
+<span id="variant.Volumes" class="variant small-section-header"><a href="#variant.Volumes" class="anchor field"></a><span id='Volumes.v' class='invisible'><code>Volumes</code></span></span><div class='docblock'><p>Support <code>Client::volumes()</code>.</p>
+</div><span id="variant.VolumeCreate" class="variant small-section-header"><a href="#variant.VolumeCreate" class="anchor field"></a><span id='VolumeCreate.v' class='invisible'><code>VolumeCreate</code></span></span><div class='docblock'><p>Support <code>Client::volume_create()</code>.</p>
+</div><span id="variant.VolumeResize" class="variant small-section-header"><a href="#variant.VolumeResize" class="anchor field"></a><span id='VolumeResize.v' class='invisible'><code>VolumeResize</code></span></span><div class='docblock'><p>Support <code>Client::volume_resize()</code>.</p>
+</div><span id="variant.VolumeReplicate" class="variant small-section-header"><a href="#variant.VolumeReplicate" class="anchor field"></a><span id='VolumeReplicate.v' class='invisible'><code>VolumeReplicate</code></span></span><div class='docblock'><p>Support <code>Client::volume_replicate()</code>.</p>
+</div><span id="variant.VolumeReplicateClone" class="variant small-section-header"><a href="#variant.VolumeReplicateClone" class="anchor field"></a><span id='VolumeReplicateClone.v' class='invisible'><code>VolumeReplicateClone</code></span></span><div class='docblock'><p>Support <code>Client::volume_replicate()</code> with
+<code>VolumeReplicateType::Clone</code>.</p>
+</div><span id="variant.VolumeReplicateCopy" class="variant small-section-header"><a href="#variant.VolumeReplicateCopy" class="anchor field"></a><span id='VolumeReplicateCopy.v' class='invisible'><code>VolumeReplicateCopy</code></span></span><div class='docblock'><p>Support <code>Client::volume_replicate()</code> with
+<code>VolumeReplicateType::Copy</code>.</p>
+</div><span id="variant.VolumeReplicateMirrorAsync" class="variant small-section-header"><a href="#variant.VolumeReplicateMirrorAsync" class="anchor field"></a><span id='VolumeReplicateMirrorAsync.v' class='invisible'><code>VolumeReplicateMirrorAsync</code></span></span><div class='docblock'><p>Support <code>Client::volume_replicate()</code> with
+<code>VolumeReplicateType::MirrorAsync</code>.</p>
+</div><span id="variant.VolumeReplicateMirrorSync" class="variant small-section-header"><a href="#variant.VolumeReplicateMirrorSync" class="anchor field"></a><span id='VolumeReplicateMirrorSync.v' class='invisible'><code>VolumeReplicateMirrorSync</code></span></span><div class='docblock'><p>Support <code>Client::volume_replicate()</code> with
+<code>VolumeReplicateType::MirrorSync</code>.</p>
+</div><span id="variant.VolumeRepRangeBlockSize" class="variant small-section-header"><a href="#variant.VolumeRepRangeBlockSize" class="anchor field"></a><span id='VolumeRepRangeBlockSize.v' class='invisible'><code>VolumeRepRangeBlockSize</code></span></span><div class='docblock'><p>Support <code>Client::volume_rep_range_blk_size()</code>.</p>
+</div><span id="variant.VolumeRepRange" class="variant small-section-header"><a href="#variant.VolumeRepRange" class="anchor field"></a><span id='VolumeRepRange.v' class='invisible'><code>VolumeRepRange</code></span></span><div class='docblock'><p>Support <code>Client::volume_rep_range()</code>.</p>
+</div><span id="variant.VolumeRepRangeClone" class="variant small-section-header"><a href="#variant.VolumeRepRangeClone" class="anchor field"></a><span id='VolumeRepRangeClone.v' class='invisible'><code>VolumeRepRangeClone</code></span></span><div class='docblock'><p>Support <code>Client::volume_rep_range()</code> with <code>VolumeReplicateType::Clone</code>.</p>
+</div><span id="variant.VolumeRepRangeCopy" class="variant small-section-header"><a href="#variant.VolumeRepRangeCopy" class="anchor field"></a><span id='VolumeRepRangeCopy.v' class='invisible'><code>VolumeRepRangeCopy</code></span></span><div class='docblock'><p>Support <code>Client::volume_rep_range()</code> with <code>VolumeReplicateType::Copy</code>.</p>
+</div><span id="variant.VolumeDelete" class="variant small-section-header"><a href="#variant.VolumeDelete" class="anchor field"></a><span id='VolumeDelete.v' class='invisible'><code>VolumeDelete</code></span></span><div class='docblock'><p>Support <code>Client::volume_delete()</code>.</p>
+</div><span id="variant.VolumeEnable" class="variant small-section-header"><a href="#variant.VolumeEnable" class="anchor field"></a><span id='VolumeEnable.v' class='invisible'><code>VolumeEnable</code></span></span><div class='docblock'><p>Support <code>Client::volume_enable()</code>.</p>
+</div><span id="variant.VolumeDisable" class="variant small-section-header"><a href="#variant.VolumeDisable" class="anchor field"></a><span id='VolumeDisable.v' class='invisible'><code>VolumeDisable</code></span></span><div class='docblock'><p>Support <code>Client::volume_disable()</code>.</p>
+</div><span id="variant.VolumeMask" class="variant small-section-header"><a href="#variant.VolumeMask" class="anchor field"></a><span id='VolumeMask.v' class='invisible'><code>VolumeMask</code></span></span><div class='docblock'><p>Support <code>Client::volume_mask()</code>.</p>
+</div><span id="variant.VolumeUnmask" class="variant small-section-header"><a href="#variant.VolumeUnmask" class="anchor field"></a><span id='VolumeUnmask.v' class='invisible'><code>VolumeUnmask</code></span></span><div class='docblock'><p>Support <code>Client::volume_unmask()</code>.</p>
+</div><span id="variant.AccessGroups" class="variant small-section-header"><a href="#variant.AccessGroups" class="anchor field"></a><span id='AccessGroups.v' class='invisible'><code>AccessGroups</code></span></span><div class='docblock'><p>Support <code>Client::access_groups()</code>.</p>
+</div><span id="variant.AccessGroupCreateWwpn" class="variant small-section-header"><a href="#variant.AccessGroupCreateWwpn" class="anchor field"></a><span id='AccessGroupCreateWwpn.v' class='invisible'><code>AccessGroupCreateWwpn</code></span></span><div class='docblock'><p>Support <code>Client::access_group_create()</code> with <code>InitiatorType::Wwpn</code>.</p>
+</div><span id="variant.AccessGroupDelete" class="variant small-section-header"><a href="#variant.AccessGroupDelete" class="anchor field"></a><span id='AccessGroupDelete.v' class='invisible'><code>AccessGroupDelete</code></span></span><div class='docblock'><p>Support <code>Client::access_group_delete()</code>.</p>
+</div><span id="variant.AccessGroupInitAddWwpn" class="variant small-section-header"><a href="#variant.AccessGroupInitAddWwpn" class="anchor field"></a><span id='AccessGroupInitAddWwpn.v' class='invisible'><code>AccessGroupInitAddWwpn</code></span></span><div class='docblock'><p>Support <code>Client::access_group_init_add()</code> with <code>InitiatorType::Wwpn</code>.</p>
+</div><span id="variant.AccessGroupInitDel" class="variant small-section-header"><a href="#variant.AccessGroupInitDel" class="anchor field"></a><span id='AccessGroupInitDel.v' class='invisible'><code>AccessGroupInitDel</code></span></span><div class='docblock'><p>Support <code>Client::access_group_init_del()</code>.</p>
+</div><span id="variant.VolsMaskedToAg" class="variant small-section-header"><a href="#variant.VolsMaskedToAg" class="anchor field"></a><span id='VolsMaskedToAg.v' class='invisible'><code>VolsMaskedToAg</code></span></span><div class='docblock'><p>Support <code>Client::vols_masked_to_ag()</code>.</p>
+</div><span id="variant.AgsGrantedToVol" class="variant small-section-header"><a href="#variant.AgsGrantedToVol" class="anchor field"></a><span id='AgsGrantedToVol.v' class='invisible'><code>AgsGrantedToVol</code></span></span><div class='docblock'><p>Support <code>Client::ags_granted_to_vol()</code>.</p>
+</div><span id="variant.VolHasChildDep" class="variant small-section-header"><a href="#variant.VolHasChildDep" class="anchor field"></a><span id='VolHasChildDep.v' class='invisible'><code>VolHasChildDep</code></span></span><div class='docblock'><p>Support <code>Client::vol_has_child_dep()</code>.</p>
+</div><span id="variant.VolChildDepRm" class="variant small-section-header"><a href="#variant.VolChildDepRm" class="anchor field"></a><span id='VolChildDepRm.v' class='invisible'><code>VolChildDepRm</code></span></span><div class='docblock'><p>Support <code>Client::vol_child_dep_rm()</code>.</p>
+</div><span id="variant.AccessGroupCreateIscsiIqn" class="variant small-section-header"><a href="#variant.AccessGroupCreateIscsiIqn" class="anchor field"></a><span id='AccessGroupCreateIscsiIqn.v' class='invisible'><code>AccessGroupCreateIscsiIqn</code></span></span><div class='docblock'><p>Support <code>Client::access_group_create()</code> with <code>InitiatorType::IscsiIqn</code>.</p>
+</div><span id="variant.AccessGroupInitAddIscsiIqn" class="variant small-section-header"><a href="#variant.AccessGroupInitAddIscsiIqn" class="anchor field"></a><span id='AccessGroupInitAddIscsiIqn.v' class='invisible'><code>AccessGroupInitAddIscsiIqn</code></span></span><div class='docblock'><p>Support <code>Client::access_group_init_add()</code> with
+<code>InitiatorType::IscsiIqn</code>.</p>
+</div><span id="variant.IscsiChapAuthSet" class="variant small-section-header"><a href="#variant.IscsiChapAuthSet" class="anchor field"></a><span id='IscsiChapAuthSet.v' class='invisible'><code>IscsiChapAuthSet</code></span></span><div class='docblock'><p>Support <code>Client::iscsi_chap_auth_set()</code>.</p>
+</div><span id="variant.VolRaidInfo" class="variant small-section-header"><a href="#variant.VolRaidInfo" class="anchor field"></a><span id='VolRaidInfo.v' class='invisible'><code>VolRaidInfo</code></span></span><div class='docblock'><p>Support <code>Client::vol_raid_info()</code>.</p>
+</div><span id="variant.VolumeThin" class="variant small-section-header"><a href="#variant.VolumeThin" class="anchor field"></a><span id='VolumeThin.v' class='invisible'><code>VolumeThin</code></span></span><div class='docblock'><p>Support <code>Client::volume_crate()</code> with
+<code>thinp=VolumeCreateArgThinP::Thin</code> argument.</p>
+</div><span id="variant.Batteries" class="variant small-section-header"><a href="#variant.Batteries" class="anchor field"></a><span id='Batteries.v' class='invisible'><code>Batteries</code></span></span><div class='docblock'><p>Support <code>Client::batteries()</code>.</p>
+</div><span id="variant.VolCacheInfo" class="variant small-section-header"><a href="#variant.VolCacheInfo" class="anchor field"></a><span id='VolCacheInfo.v' class='invisible'><code>VolCacheInfo</code></span></span><div class='docblock'><p>Support <code>Client::vol_cache_info()</code>.</p>
+</div><span id="variant.VolPhyDiskCacheSet" class="variant small-section-header"><a href="#variant.VolPhyDiskCacheSet" class="anchor field"></a><span id='VolPhyDiskCacheSet.v' class='invisible'><code>VolPhyDiskCacheSet</code></span></span><div class='docblock'><p>Support <code>Client::vol_phy_disk_cache_set().</code></p>
+</div><span id="variant.VolPhysicalDiskCacheSetSystemLevel" class="variant small-section-header"><a href="#variant.VolPhysicalDiskCacheSetSystemLevel" class="anchor field"></a><span id='VolPhysicalDiskCacheSetSystemLevel.v' class='invisible'><code>VolPhysicalDiskCacheSetSystemLevel</code></span></span><div class='docblock'><p>Indicate the <code>Client::vol_phy_disk_cache_set()</code> will change system
+settings which are effective on all volumes in this storage system.
+For example, on HPE SmartArray, the physical disk cache setting is a
+controller level setting.</p>
+</div><span id="variant.VolWriteCacheSetEnable" class="variant small-section-header"><a href="#variant.VolWriteCacheSetEnable" class="anchor field"></a><span id='VolWriteCacheSetEnable.v' class='invisible'><code>VolWriteCacheSetEnable</code></span></span><div class='docblock'><p>Support <code>Client::vol_write_cache_set()</code> with
+<code>wcp=Cache::Enabled</code>.</p>
+</div><span id="variant.VolWriteCacheSetAuto" class="variant small-section-header"><a href="#variant.VolWriteCacheSetAuto" class="anchor field"></a><span id='VolWriteCacheSetAuto.v' class='invisible'><code>VolWriteCacheSetAuto</code></span></span><div class='docblock'><p>Support <code>Client::vol_write_cache_set()</code> with
+<code>wcp=Cache::Auto</code>.</p>
+</div><span id="variant.VolWriteCacheSetDisabled" class="variant small-section-header"><a href="#variant.VolWriteCacheSetDisabled" class="anchor field"></a><span id='VolWriteCacheSetDisabled.v' class='invisible'><code>VolWriteCacheSetDisabled</code></span></span><div class='docblock'><p>Support <code>Client::vol_write_cache_set()</code> with
+<code>wcp=Cache::Disabled</code>.</p>
+</div><span id="variant.VolWriteCacheSetImpactRead" class="variant small-section-header"><a href="#variant.VolWriteCacheSetImpactRead" class="anchor field"></a><span id='VolWriteCacheSetImpactRead.v' class='invisible'><code>VolWriteCacheSetImpactRead</code></span></span><div class='docblock'><p>Indicate the <code>Client::vol_write_cache_set()</code> might also impact read
+cache policy.</p>
+</div><span id="variant.VolWriteCacheSetWbImpactOther" class="variant small-section-header"><a href="#variant.VolWriteCacheSetWbImpactOther" class="anchor field"></a><span id='VolWriteCacheSetWbImpactOther.v' class='invisible'><code>VolWriteCacheSetWbImpactOther</code></span></span><div class='docblock'><p>Indicate the <code>Client::vol_write_cache_set()</code> with
+<code>wcp=Cache::Enabled</code> might impact other volumes in the same
+system.</p>
+</div><span id="variant.VolReadCacheSet" class="variant small-section-header"><a href="#variant.VolReadCacheSet" class="anchor field"></a><span id='VolReadCacheSet.v' class='invisible'><code>VolReadCacheSet</code></span></span><div class='docblock'><p>Support <code>Client::vol_read_cache_set()</code>.</p>
+</div><span id="variant.VolReadCacheSetImpactWrite" class="variant small-section-header"><a href="#variant.VolReadCacheSetImpactWrite" class="anchor field"></a><span id='VolReadCacheSetImpactWrite.v' class='invisible'><code>VolReadCacheSetImpactWrite</code></span></span><div class='docblock'><p>Indicate the <code>Client::vol_read_cache_set()</code> might also impact write
+cache policy.</p>
+</div><span id="variant.Fs" class="variant small-section-header"><a href="#variant.Fs" class="anchor field"></a><span id='Fs.v' class='invisible'><code>Fs</code></span></span><div class='docblock'><p>Support <code>Client::fs()</code>.</p>
+</div><span id="variant.FsDelete" class="variant small-section-header"><a href="#variant.FsDelete" class="anchor field"></a><span id='FsDelete.v' class='invisible'><code>FsDelete</code></span></span><div class='docblock'><p>Support <code>Client::fs_delete()</code>.</p>
+</div><span id="variant.FsResize" class="variant small-section-header"><a href="#variant.FsResize" class="anchor field"></a><span id='FsResize.v' class='invisible'><code>FsResize</code></span></span><div class='docblock'><p>Support <code>Client::fs_resize()</code>.</p>
+</div><span id="variant.FsCreate" class="variant small-section-header"><a href="#variant.FsCreate" class="anchor field"></a><span id='FsCreate.v' class='invisible'><code>FsCreate</code></span></span><div class='docblock'><p>Support <code>Client::fs_create()</code>.</p>
+</div><span id="variant.FsClone" class="variant small-section-header"><a href="#variant.FsClone" class="anchor field"></a><span id='FsClone.v' class='invisible'><code>FsClone</code></span></span><div class='docblock'><p>Support <code>Client::fs_clone()</code>.</p>
+</div><span id="variant.FsFileClone" class="variant small-section-header"><a href="#variant.FsFileClone" class="anchor field"></a><span id='FsFileClone.v' class='invisible'><code>FsFileClone</code></span></span><div class='docblock'><p>Support <code>Client::fs_file_clone()</code>.</p>
+</div><span id="variant.FsSnapshots" class="variant small-section-header"><a href="#variant.FsSnapshots" class="anchor field"></a><span id='FsSnapshots.v' class='invisible'><code>FsSnapshots</code></span></span><div class='docblock'><p>Support <code>Client::fs_snapshots()</code>.</p>
+</div><span id="variant.FsSnapshotCreate" class="variant small-section-header"><a href="#variant.FsSnapshotCreate" class="anchor field"></a><span id='FsSnapshotCreate.v' class='invisible'><code>FsSnapshotCreate</code></span></span><div class='docblock'><p>Support <code>Client::fs_snapshot_create()</code>.</p>
+</div><span id="variant.FsSnapshotDelete" class="variant small-section-header"><a href="#variant.FsSnapshotDelete" class="anchor field"></a><span id='FsSnapshotDelete.v' class='invisible'><code>FsSnapshotDelete</code></span></span><div class='docblock'><p>Support <code>Client::fs_snapshot_delete()</code>.</p>
+</div><span id="variant.FsSnapshotRestore" class="variant small-section-header"><a href="#variant.FsSnapshotRestore" class="anchor field"></a><span id='FsSnapshotRestore.v' class='invisible'><code>FsSnapshotRestore</code></span></span><div class='docblock'><p>Support <code>Client::fs_snapshot_restore()</code>.</p>
+</div><span id="variant.FsSnapshotRestoreSpecificFiles" class="variant small-section-header"><a href="#variant.FsSnapshotRestoreSpecificFiles" class="anchor field"></a><span id='FsSnapshotRestoreSpecificFiles.v' class='invisible'><code>FsSnapshotRestoreSpecificFiles</code></span></span><div class='docblock'><p>Support <code>Client::fs_snapshot_restore()</code> with <code>files</code> arugment.</p>
+</div><span id="variant.FsHasChildDep" class="variant small-section-header"><a href="#variant.FsHasChildDep" class="anchor field"></a><span id='FsHasChildDep.v' class='invisible'><code>FsHasChildDep</code></span></span><div class='docblock'><p>Support <code>Client::fs_has_child_dep()</code>.</p>
+</div><span id="variant.FsChildDepRm" class="variant small-section-header"><a href="#variant.FsChildDepRm" class="anchor field"></a><span id='FsChildDepRm.v' class='invisible'><code>FsChildDepRm</code></span></span><div class='docblock'><p>Support <code>Client::fs_child_dep_rm()</code>.</p>
+</div><span id="variant.FsChildDepRmSpecificFiles" class="variant small-section-header"><a href="#variant.FsChildDepRmSpecificFiles" class="anchor field"></a><span id='FsChildDepRmSpecificFiles.v' class='invisible'><code>FsChildDepRmSpecificFiles</code></span></span><div class='docblock'><p>Support <code>Client::fs_child_dep_rm()</code> with <code>files</code> argument.</p>
+</div><span id="variant.NfsExportAuthTypeList" class="variant small-section-header"><a href="#variant.NfsExportAuthTypeList" class="anchor field"></a><span id='NfsExportAuthTypeList.v' class='invisible'><code>NfsExportAuthTypeList</code></span></span><div class='docblock'><p>Support <code>Client:::nfs_exp_auth_type_list()</code>.</p>
+</div><span id="variant.NfsExports" class="variant small-section-header"><a href="#variant.NfsExports" class="anchor field"></a><span id='NfsExports.v' class='invisible'><code>NfsExports</code></span></span><div class='docblock'><p>Support <code>Client::nfs_exports()</code>.</p>
+</div><span id="variant.FsExport" class="variant small-section-header"><a href="#variant.FsExport" class="anchor field"></a><span id='FsExport.v' class='invisible'><code>FsExport</code></span></span><div class='docblock'><p>Support <code>Client::fs_export()</code>.</p>
+</div><span id="variant.FsUnexport" class="variant small-section-header"><a href="#variant.FsUnexport" class="anchor field"></a><span id='FsUnexport.v' class='invisible'><code>FsUnexport</code></span></span><div class='docblock'><p>Support <code>Client::fs_unexport()</code>.</p>
+</div><span id="variant.FsExportCustomPath" class="variant small-section-header"><a href="#variant.FsExportCustomPath" class="anchor field"></a><span id='FsExportCustomPath.v' class='invisible'><code>FsExportCustomPath</code></span></span><div class='docblock'><p>Support <code>Client::fs_export()</code> with <code>export_path</code> argument.</p>
+</div><span id="variant.SysReadCachePctSet" class="variant small-section-header"><a href="#variant.SysReadCachePctSet" class="anchor field"></a><span id='SysReadCachePctSet.v' class='invisible'><code>SysReadCachePctSet</code></span></span><div class='docblock'><p>Support <code>Client::system_read_cache_pct_set()</code></p>
+</div><span id="variant.SysReadCachePctGet" class="variant small-section-header"><a href="#variant.SysReadCachePctGet" class="anchor field"></a><span id='SysReadCachePctGet.v' class='invisible'><code>SysReadCachePctGet</code></span></span><div class='docblock'><p>Support <code>Client::systems()</code> with valid <code>read_cache_pct</code> property.</p>
+</div><span id="variant.SysFwVersionGet" class="variant small-section-header"><a href="#variant.SysFwVersionGet" class="anchor field"></a><span id='SysFwVersionGet.v' class='invisible'><code>SysFwVersionGet</code></span></span><div class='docblock'><p>Support <code>Client::systems()</code> with valid <code>fw_version</code> property.</p>
+</div><span id="variant.SysModeGet" class="variant small-section-header"><a href="#variant.SysModeGet" class="anchor field"></a><span id='SysModeGet.v' class='invisible'><code>SysModeGet</code></span></span><div class='docblock'><p>Support <code>Client::systems()</code> with valid <code>mode</code> property.</p>
+</div><span id="variant.DiskLocation" class="variant small-section-header"><a href="#variant.DiskLocation" class="anchor field"></a><span id='DiskLocation.v' class='invisible'><code>DiskLocation</code></span></span><div class='docblock'><p>Support <code>Client::disks()</code> with valid <code>location</code> property.</p>
+</div><span id="variant.DiskRpm" class="variant small-section-header"><a href="#variant.DiskRpm" class="anchor field"></a><span id='DiskRpm.v' class='invisible'><code>DiskRpm</code></span></span><div class='docblock'><p>Support <code>Client::disks()</code> with valid <code>rpm</code> property.</p>
+</div><span id="variant.DiskLinkType" class="variant small-section-header"><a href="#variant.DiskLinkType" class="anchor field"></a><span id='DiskLinkType.v' class='invisible'><code>DiskLinkType</code></span></span><div class='docblock'><p>Support <code>Client::disks()</code> with valid <code>link_type</code> property.</p>
+</div><span id="variant.VolumeLed" class="variant small-section-header"><a href="#variant.VolumeLed" class="anchor field"></a><span id='VolumeLed.v' class='invisible'><code>VolumeLed</code></span></span><div class='docblock'><p>Support <code>Client::vol_ident_led_on()</code> and <code>Client::vol_ident_led_off()</code>.</p>
+</div><span id="variant.TargetPorts" class="variant small-section-header"><a href="#variant.TargetPorts" class="anchor field"></a><span id='TargetPorts.v' class='invisible'><code>TargetPorts</code></span></span><div class='docblock'><p>Support <code>Client::target_ports()</code>.</p>
+</div><span id="variant.Disks" class="variant small-section-header"><a href="#variant.Disks" class="anchor field"></a><span id='Disks.v' class='invisible'><code>Disks</code></span></span><div class='docblock'><p>Support <code>Client::disks()</code>.</p>
+</div><span id="variant.PoolMemberInfo" class="variant small-section-header"><a href="#variant.PoolMemberInfo" class="anchor field"></a><span id='PoolMemberInfo.v' class='invisible'><code>PoolMemberInfo</code></span></span><div class='docblock'><p>Support <code>Client::pool_member_info()</code>.</p>
+</div><span id="variant.VolumeRaidCreate" class="variant small-section-header"><a href="#variant.VolumeRaidCreate" class="anchor field"></a><span id='VolumeRaidCreate.v' class='invisible'><code>VolumeRaidCreate</code></span></span><div class='docblock'><p>Support <code>Client::vol_raid_create_cap_get()</code> and
+<code>Client::vol_raid_create()</code>.</p>
+</div><span id="variant.DiskVpd83Get" class="variant small-section-header"><a href="#variant.DiskVpd83Get" class="anchor field"></a><span id='DiskVpd83Get.v' class='invisible'><code>DiskVpd83Get</code></span></span><div class='docblock'><p>Support <code>Client::disks()</code> with valid <code>vpd83</code> property.</p>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "lsm";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
