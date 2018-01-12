@@ -86,16 +86,16 @@ pub struct System {
     ///  * [`System::STATUS_OTHER`][6]
     ///
     /// ```rust
-    /// use lsm::{Client, System};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let syss = c.systems().unwrap();
-    ///
-    /// for s in syss {
-    ///     if (s.status & System::STATUS_OK) == 0 {
-    ///         println!("System is not healthy");
-    ///     }
+    /// # use lsm::{Client, System};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let syss = c.systems().unwrap();
+    /// #
+    /// # for s in syss {
+    /// if (s.status & System::STATUS_OK) == 0 {
+    ///     println!("System {}/{} is not healthy", s.name, s.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.STATUS_UNKNOWN
     /// [2]: #associatedconstant.STATUS_OK
@@ -383,16 +383,16 @@ pub struct Pool {
     /// The values are stored in bitmap:
     ///
     /// ```rust
-    /// use lsm::{Client, Pool};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let ps = c.pools().unwrap();
-    ///
-    /// for p in ps {
-    ///     if (p.element_type & Pool::ELEMENT_TYPE_VOLUME) == 0 {
-    ///         println!("Pool {} could create volume", p.name);
-    ///     }
+    /// # use lsm::{Client, Pool};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let ps = c.pools().unwrap();
+    /// #
+    /// # for p in ps {
+    /// if (p.element_type & Pool::ELEMENT_TYPE_VOLUME) == 0 {
+    ///     println!("Pool {}/{} could create volume", p.name, p.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.ELEMENT_TYPE_POOL
     /// [2]: #associatedconstant.ELEMENT_TYPE_VOLUME
@@ -411,16 +411,16 @@ pub struct Pool {
     /// The values are stored in bitmap:
     ///
     /// ```rust
-    /// use lsm::{Client, Pool};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let ps = c.pools().unwrap();
-    ///
-    /// for p in ps {
-    ///     if (p.unsupported_actions & Pool::UNSUPPORTED_VOLUME_GROW) == 0 {
-    ///         println!("Pool {} cannot grow size of volume", p.name);
-    ///     }
+    /// # use lsm::{Client, Pool};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let ps = c.pools().unwrap();
+    /// #
+    /// # for p in ps {
+    /// if (p.unsupported_actions & Pool::UNSUPPORTED_VOLUME_GROW) == 0 {
+    ///     println!("Pool {}/{} cannot grow size of volume", p.name, p.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.UNSUPPORTED_VOLUME_GROW
     /// [2]: #associatedconstant.UNSUPPORTED_VOLUME_SHRINK
@@ -444,16 +444,16 @@ pub struct Pool {
     ///  * [`Pool::STATUS_GROWING`][11]
     ///
     /// ```rust
-    /// use lsm::{Client, Pool};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let ps = c.pools().unwrap();
-    ///
-    /// for p in ps {
-    ///     if (p.status & Pool::STATUS_OK) == 0 {
-    ///         println!("Pool is not healthy");
-    ///     }
+    /// # use lsm::{Client, Pool};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let ps = c.pools().unwrap();
+    /// #
+    /// # for p in ps {
+    /// if (p.status & Pool::STATUS_OK) == 0 {
+    ///     println!("Pool {}/{} is not healthy", p.name, p.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.STATUS_UNKNOWN
     /// [2]: #associatedconstant.STATUS_OK
@@ -574,16 +574,16 @@ pub struct Disk {
     ///  * [`Disk::STATUS_FREE`][14]
     ///
     /// ```rust
-    /// use lsm::{Client, Disk};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let ds = c.disks().unwrap();
-    ///
-    /// for d in ds {
-    ///     if (d.status & Disk::STATUS_OK) == 0 {
-    ///         println!("Disk is not healthy");
-    ///     }
+    /// # use lsm::{Client, Disk};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let ds = c.disks().unwrap();
+    /// #
+    /// # for d in ds {
+    /// if (d.status & Disk::STATUS_OK) == 0 {
+    ///     println!("Disk {}/{} is not healthy", d.name, d.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.STATUS_UNKNOWN
     /// [2]: #associatedconstant.STATUS_OK
@@ -966,16 +966,16 @@ pub struct Battery {
     ///  * [`Battery::STATUS_ERROR`][8]
     ///
     /// ```rust
-    /// use lsm::{Client, Battery};
-    ///
-    /// let mut c = Client::new("sim://", None, None).unwrap();
-    /// let bs = c.batteries().unwrap();
-    ///
-    /// for b in bs {
-    ///     if (b.status & Battery::STATUS_OK) == 0 {
-    ///         println!("Battery is not healthy");
-    ///     }
+    /// # use lsm::{Client, Battery};
+    /// #
+    /// # let mut c = Client::new("sim://", None, None).unwrap();
+    /// # let bs = c.batteries().unwrap();
+    /// #
+    /// # for b in bs {
+    /// if (b.status & Battery::STATUS_OK) == 0 {
+    ///     println!("Battery {}/{} is not healthy", b.name, b.id);
     /// }
+    /// # }
     /// ```
     /// [1]: #associatedconstant.STATUS_UNKNOWN
     /// [2]: #associatedconstant.STATUS_OTHER
