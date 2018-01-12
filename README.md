@@ -29,6 +29,8 @@ To use `LibStorageMgmt` rust binding, you need:
 
  * Invoke required method of [`lsm::Client`][2].
 
+ * Follow [the crate document][4]
+
 # Example code using simulator plugin
 
 ```rust
@@ -71,4 +73,4 @@ fn main() {
 [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
 [2]: https://libstorage.github.io/libstoragemgmt-rust/lsm/struct.Client.html
 [3]: https://libstorage.github.io/libstoragemgmt-rust/lsm/struct.Capabilities.html
-
+[4]: https://libstorage.github.io/libstoragemgmt-rust/
