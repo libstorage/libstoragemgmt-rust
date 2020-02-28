@@ -284,7 +284,7 @@ pub enum RaidType {
 impl From<i32> for RaidType {
     fn from(i: i32) -> RaidType {
         match i {
-            0...6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20...22 => unsafe {
+            0..=6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20..=22 => unsafe {
                 transmute(i)
             },
             _ => RaidType::Unknown,
@@ -661,7 +661,7 @@ fn int_to_disk_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<DiskType, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        0 | 1 | 3...9 | 51...54 => unsafe { Ok(transmute(i)) },
+        0 | 1 | 3..=9 | 51..=54 => unsafe { Ok(transmute(i)) },
         _ => Ok(DiskType::Unknown),
     }
 }
@@ -710,7 +710,7 @@ fn int_to_disk_link_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<Option<DiskLinkType>, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        -2...11 => unsafe { Ok(Some(transmute(i))) },
+        -2..=11 => unsafe { Ok(Some(transmute(i))) },
         _ => Ok(Some(DiskLinkType::Unknown)),
     }
 }
