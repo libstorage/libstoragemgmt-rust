@@ -130,9 +130,7 @@ impl TransPort {
 
 impl Drop for TransPort {
     fn drop(&mut self) {
-        if self.invoke("plugin_unregister", None).is_ok() {
-            ()
-        }
+        if self.invoke("plugin_unregister", None).is_ok() {}
     }
 }
 
