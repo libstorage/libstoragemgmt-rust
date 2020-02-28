@@ -778,7 +778,7 @@ impl Client {
         ag: &AccessGroup,
         init_id: &str,
         init_type: InitiatorType,
-    ) -> Result<(AccessGroup)> {
+    ) -> Result<AccessGroup> {
         verify_init_id_str(init_id, init_type)?;
         let mut args = Map::new();
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
@@ -806,7 +806,7 @@ impl Client {
         ag: &AccessGroup,
         init_id: &str,
         init_type: InitiatorType,
-    ) -> Result<(AccessGroup)> {
+    ) -> Result<AccessGroup> {
         verify_init_id_str(init_id, init_type)?;
         let mut args = Map::new();
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
