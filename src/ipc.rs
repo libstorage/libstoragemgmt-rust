@@ -136,7 +136,7 @@ impl Drop for TransPort {
 
 pub(crate) fn uds_path() -> String {
     match env::var(UDS_PATH_VAR_NAME) {
-        Ok(v) => v.to_string(),
+        Ok(v) => v,
         Err(_) => UDS_PATH_DEFAULT.to_string(),
     }
 }
