@@ -25,8 +25,8 @@
 // DEALINGS IN THE SOFTWARE.
 //
 // Author: Gris Ge <fge@redhat.com>
-use std::result;
 use std::fmt;
+use std::result;
 
 #[derive(Debug)]
 pub enum LsmError {
@@ -79,9 +79,7 @@ impl ::std::error::Error for LsmError {
             LsmError::LibBug(_) => "Library bug",
             LsmError::PluginBug(_) => "Plugin bug",
             LsmError::TimeOut(_) => "Timeout",
-            LsmError::DaemonNotRunning(_) => {
-                "LibStoragemgmt daemon is not running"
-            }
+            LsmError::DaemonNotRunning(_) => "LibStoragemgmt daemon is not running",
             LsmError::PermissionDenied(_) => "Permission denied",
             LsmError::NameConflict(_) => "Name conflict",
             LsmError::ExistsInitiator(_) => "Initiator exists and in use",
@@ -93,9 +91,7 @@ impl ::std::error::Error for LsmError {
             LsmError::NoMemory(_) => "Plugin ran out of memory",
             LsmError::NoSupport(_) => "Not supported",
             LsmError::IsMasked(_) => "Volume masked to access group",
-            LsmError::HasChildDependency(_) => {
-                "Volume or file system has child dependency"
-            }
+            LsmError::HasChildDependency(_) => "Volume or file system has child dependency",
             LsmError::NotFoundAccessGroup(_) => "Access group not found",
             LsmError::NotFoundFs(_) => "File system not found",
             LsmError::NotFoundJob(_) => "Job not found",
@@ -105,41 +101,23 @@ impl ::std::error::Error for LsmError {
             LsmError::NotFoundNfsExport(_) => "NFS export not found",
             LsmError::NotFoundSystem(_) => "System not found",
             LsmError::NotFoundDisk(_) => "Disk not found",
-            LsmError::NotLicensed(_) => {
-                "Specified feature is not licensed in storage system"
-            }
-            LsmError::NoSupportOnlineChange(_) => {
-                "Specified action require item in offline mode"
-            }
-            LsmError::NoSupportOfflineChange(_) => {
-                "Specified action require item in online mode"
-            }
+            LsmError::NotLicensed(_) => "Specified feature is not licensed in storage system",
+            LsmError::NoSupportOnlineChange(_) => "Specified action require item in offline mode",
+            LsmError::NoSupportOfflineChange(_) => "Specified action require item in online mode",
             LsmError::PluginAuthFailed(_) => "Authentication failed in plugin",
             LsmError::PluginIpcFail(_) => "IPC communication to plugin failed",
-            LsmError::PluginSocketPermission(_) => {
-                "Permission deny on IPC communication to plugin"
-            }
+            LsmError::PluginSocketPermission(_) => "Permission deny on IPC communication to plugin",
             LsmError::PluginNotExist(_) => "Specified plugin does not exist",
             LsmError::NoEnoughSpace(_) => "No enough space",
-            LsmError::TransportCommunication(_) => {
-                "Error when communicating with plug-in"
-            }
-            LsmError::TransportSerialization(_) => {
-                "Incorrect transport serialization"
-            }
+            LsmError::TransportCommunication(_) => "Error when communicating with plug-in",
+            LsmError::TransportSerialization(_) => "Incorrect transport serialization",
             LsmError::TransportInvalidArg(_) => "Invalid transport argument",
             LsmError::LastInitInAccessGroup(_) => {
                 "Refused to remove the last initiator from access group"
             }
-            LsmError::UnSupportedSearchKey(_) => {
-                "Specified search key is not supported"
-            }
-            LsmError::EmptyAccessGroup(_) => {
-                "Refused to mask volume to empty access group"
-            }
-            LsmError::PoolNotReady(_) => {
-                "Pool is not ready for specified action"
-            }
+            LsmError::UnSupportedSearchKey(_) => "Specified search key is not supported",
+            LsmError::EmptyAccessGroup(_) => "Refused to mask volume to empty access group",
+            LsmError::PoolNotReady(_) => "Pool is not ready for specified action",
             LsmError::DiskNotFree(_) => "Disk is not free for specified action",
         }
     }
@@ -303,118 +281,44 @@ impl From<LsmErrorIpc> for LsmError {
     fn from(e: LsmErrorIpc) -> Self {
         match e.code {
             ERROR_NUMBER_LIB_BUG => LsmError::LibBug(e.message),
-            ERROR_NUMBER_PLUGIN_BUG => {
-                LsmError::PluginBug(e.message)
-            }
+            ERROR_NUMBER_PLUGIN_BUG => LsmError::PluginBug(e.message),
             ERROR_NUMBER_TIMEOUT => LsmError::TimeOut(e.message),
-            ERROR_NUMBER_NAME_CONFLICT => {
-                LsmError::NameConflict(e.message)
-            }
-            ERROR_NUMBER_EXISTS_INITIATOR => {
-                LsmError::ExistsInitiator(e.message)
-            }
-            ERROR_NUMBER_INVALID_ARGUMENT => {
-                LsmError::InvalidArgument(e.message)
-            }
-            ERROR_NUMBER_NO_STATE_CHANGE => {
-                LsmError::NoStateChange(e.message)
-            }
-            ERROR_NUMBER_NETWORK_CONNREFUSED => {
-                LsmError::NetworkConRefused(e.message)
-            }
-            ERROR_NUMBER_NETWORK_HOSTDOWN => {
-                LsmError::NetworkHostDown(e.message)
-            }
-            ERROR_NUMBER_NETWORK_ERROR => {
-                LsmError::NetworkError(e.message)
-            }
-            ERROR_NUMBER_NO_MEMORY => {
-                LsmError::NoMemory(e.message)
-            }
-            ERROR_NUMBER_NO_SUPPORT => {
-                LsmError::NoSupport(e.message)
-            }
-            ERROR_NUMBER_IS_MASKED => {
-                LsmError::IsMasked(e.message)
-            }
-            ERROR_NUMBER_HAS_CHILD_DEPENDENCY => {
-                LsmError::HasChildDependency(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_ACCESS_GROUP => {
-                LsmError::NotFoundAccessGroup(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_FS => {
-                LsmError::NotFoundFs(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_JOB => {
-                LsmError::NotFoundJob(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_POOL => {
-                LsmError::NotFoundPool(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_FS_SS => {
-                LsmError::NotFoundFsSnapshot(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_VOLUME => {
-                LsmError::NotFoundVolume(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_NFS_EXPORT => {
-                LsmError::NotFoundNfsExport(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_SYSTEM => {
-                LsmError::NotFoundSystem(e.message)
-            }
-            ERROR_NUMBER_NOT_FOUND_DISK => {
-                LsmError::NotFoundDisk(e.message)
-            }
-            ERROR_NUMBER_NOT_LICENSED => {
-                LsmError::NotLicensed(e.message)
-            }
-            ERROR_NUMBER_NO_SUPPORT_ONLINE_CHANGE => {
-                LsmError::NoSupportOnlineChange(e.message)
-            }
-            ERROR_NUMBER_NO_SUPPORT_OFFLINE_CHANGE => {
-                LsmError::NoSupportOfflineChange(e.message)
-            }
-            ERROR_NUMBER_PLUGIN_AUTH_FAILED => {
-                LsmError::PluginAuthFailed(e.message)
-            }
-            ERROR_NUMBER_PLUGIN_IPC_FAIL => {
-                LsmError::PluginIpcFail(e.message)
-            }
-            ERROR_NUMBER_PLUGIN_SOCKET_PERMISSION => {
-                LsmError::PluginSocketPermission(e.message)
-            }
-            ERROR_NUMBER_PLUGIN_NOT_EXIST => {
-                LsmError::PluginNotExist(e.message)
-            }
-            ERROR_NUMBER_NOT_ENOUGH_SPACE => {
-                LsmError::NoEnoughSpace(e.message)
-            }
-            ERROR_NUMBER_TRANSPORT_COMMUNICATION => {
-                LsmError::TransportCommunication(e.message)
-            }
-            ERROR_NUMBER_TRANSPORT_SERIALIZATION => {
-                LsmError::TransportSerialization(e.message)
-            }
-            ERROR_NUMBER_TRANSPORT_INVALID_ARG => {
-                LsmError::TransportInvalidArg(e.message)
-            }
-            ERROR_NUMBER_LAST_INIT_IN_ACCESS_GROUP => {
-                LsmError::LastInitInAccessGroup(e.message)
-            }
-            ERROR_NUMBER_UNSUPPORTED_SEARCH_KEY => {
-                LsmError::UnSupportedSearchKey(e.message)
-            }
-            ERROR_NUMBER_EMPTY_ACCESS_GROUP => {
-                LsmError::EmptyAccessGroup(e.message)
-            }
-            ERROR_NUMBER_POOL_NOT_READY => {
-                LsmError::PoolNotReady(e.message)
-            }
-            ERROR_NUMBER_DISK_NOT_FREE => {
-                LsmError::DiskNotFree(e.message)
-            }
+            ERROR_NUMBER_NAME_CONFLICT => LsmError::NameConflict(e.message),
+            ERROR_NUMBER_EXISTS_INITIATOR => LsmError::ExistsInitiator(e.message),
+            ERROR_NUMBER_INVALID_ARGUMENT => LsmError::InvalidArgument(e.message),
+            ERROR_NUMBER_NO_STATE_CHANGE => LsmError::NoStateChange(e.message),
+            ERROR_NUMBER_NETWORK_CONNREFUSED => LsmError::NetworkConRefused(e.message),
+            ERROR_NUMBER_NETWORK_HOSTDOWN => LsmError::NetworkHostDown(e.message),
+            ERROR_NUMBER_NETWORK_ERROR => LsmError::NetworkError(e.message),
+            ERROR_NUMBER_NO_MEMORY => LsmError::NoMemory(e.message),
+            ERROR_NUMBER_NO_SUPPORT => LsmError::NoSupport(e.message),
+            ERROR_NUMBER_IS_MASKED => LsmError::IsMasked(e.message),
+            ERROR_NUMBER_HAS_CHILD_DEPENDENCY => LsmError::HasChildDependency(e.message),
+            ERROR_NUMBER_NOT_FOUND_ACCESS_GROUP => LsmError::NotFoundAccessGroup(e.message),
+            ERROR_NUMBER_NOT_FOUND_FS => LsmError::NotFoundFs(e.message),
+            ERROR_NUMBER_NOT_FOUND_JOB => LsmError::NotFoundJob(e.message),
+            ERROR_NUMBER_NOT_FOUND_POOL => LsmError::NotFoundPool(e.message),
+            ERROR_NUMBER_NOT_FOUND_FS_SS => LsmError::NotFoundFsSnapshot(e.message),
+            ERROR_NUMBER_NOT_FOUND_VOLUME => LsmError::NotFoundVolume(e.message),
+            ERROR_NUMBER_NOT_FOUND_NFS_EXPORT => LsmError::NotFoundNfsExport(e.message),
+            ERROR_NUMBER_NOT_FOUND_SYSTEM => LsmError::NotFoundSystem(e.message),
+            ERROR_NUMBER_NOT_FOUND_DISK => LsmError::NotFoundDisk(e.message),
+            ERROR_NUMBER_NOT_LICENSED => LsmError::NotLicensed(e.message),
+            ERROR_NUMBER_NO_SUPPORT_ONLINE_CHANGE => LsmError::NoSupportOnlineChange(e.message),
+            ERROR_NUMBER_NO_SUPPORT_OFFLINE_CHANGE => LsmError::NoSupportOfflineChange(e.message),
+            ERROR_NUMBER_PLUGIN_AUTH_FAILED => LsmError::PluginAuthFailed(e.message),
+            ERROR_NUMBER_PLUGIN_IPC_FAIL => LsmError::PluginIpcFail(e.message),
+            ERROR_NUMBER_PLUGIN_SOCKET_PERMISSION => LsmError::PluginSocketPermission(e.message),
+            ERROR_NUMBER_PLUGIN_NOT_EXIST => LsmError::PluginNotExist(e.message),
+            ERROR_NUMBER_NOT_ENOUGH_SPACE => LsmError::NoEnoughSpace(e.message),
+            ERROR_NUMBER_TRANSPORT_COMMUNICATION => LsmError::TransportCommunication(e.message),
+            ERROR_NUMBER_TRANSPORT_SERIALIZATION => LsmError::TransportSerialization(e.message),
+            ERROR_NUMBER_TRANSPORT_INVALID_ARG => LsmError::TransportInvalidArg(e.message),
+            ERROR_NUMBER_LAST_INIT_IN_ACCESS_GROUP => LsmError::LastInitInAccessGroup(e.message),
+            ERROR_NUMBER_UNSUPPORTED_SEARCH_KEY => LsmError::UnSupportedSearchKey(e.message),
+            ERROR_NUMBER_EMPTY_ACCESS_GROUP => LsmError::EmptyAccessGroup(e.message),
+            ERROR_NUMBER_POOL_NOT_READY => LsmError::PoolNotReady(e.message),
+            ERROR_NUMBER_DISK_NOT_FREE => LsmError::DiskNotFree(e.message),
             _ => LsmError::LibBug(format!("Invalid error: {:?}", e)),
         }
     }

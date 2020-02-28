@@ -19,9 +19,10 @@
 extern crate lsm;
 extern crate rand;
 
+use lsm::{
+    CachePolicy, Client, Disk, NfsAccess, Pool, RaidType, System, Volume, VolumeCreateArgThinP,
+};
 use rand::Rng;
-use lsm::{CachePolicy, Client, Disk, NfsAccess, Pool, RaidType, System,
-          Volume, VolumeCreateArgThinP};
 
 static SIM_SYS_ID: &'static str = "sim-01";
 
@@ -30,8 +31,7 @@ fn make_connection() -> Client {
 }
 
 fn random_string(prefix: &str) -> String {
-    let rand_str: String =
-        rand::thread_rng().gen_ascii_chars().take(5).collect();
+    let rand_str: String = rand::thread_rng().gen_ascii_chars().take(5).collect();
     format!("{}{}", prefix, rand_str)
 }
 
@@ -59,7 +59,8 @@ fn create_vol(c: &mut Client, pool: &Pool, name: &str) -> Volume {
         name,
         lsm::size_human_2_size_bytes("1GiB"),
         &VolumeCreateArgThinP::Default,
-    ).unwrap()
+    )
+    .unwrap()
 }
 
 #[test]
@@ -94,12 +95,14 @@ fn vol() {
         lsm::size_bytes_2_size_human(updated_vol.size_bytes()),
         updated_vol.size_bytes()
     );
-    let dst_vol = c.volume_replicate(
-        None,
-        lsm::VolumeReplicateType::Clone,
-        &updated_vol,
-        &random_string("vol_rep_dst_"),
-    ).unwrap();
+    let dst_vol = c
+        .volume_replicate(
+            None,
+            lsm::VolumeReplicateType::Clone,
+            &updated_vol,
+            &random_string("vol_rep_dst_"),
+        )
+        .unwrap();
     println!("new replicate target volume: '{:?}'", dst_vol);
 
     println!(
@@ -107,8 +110,7 @@ fn vol() {
         c.volume_rep_range_blk_size(&get_sys()).unwrap()
     );
 
-    let dst_vol2 =
-        create_vol(&mut c, &pool, &random_string("vol_rep_range_dst_"));
+    let dst_vol2 = create_vol(&mut c, &pool, &random_string("vol_rep_range_dst_"));
     let ranges = [
         lsm::BlockRange::new(10u64, 50u64, 10u64),
         lsm::BlockRange::new(100u64, 150u64, 10u64),
@@ -119,7 +121,8 @@ fn vol() {
         &updated_vol,
         &dst_vol2,
         &ranges,
-    ).unwrap();
+    )
+    .unwrap();
 
     /* There is no need for us to check whether certain function works or not,
      * that's the job plugin_test. Here we just make sure client binding sent
@@ -131,12 +134,14 @@ fn vol() {
     c.volume_delete(&dst_vol2).unwrap();
     c.volume_delete(&dst_vol).unwrap();
 
-    let ag = c.access_group_create(
-        &random_string("ag_"),
-        &random_iqn(),
-        lsm::InitiatorType::IscsiIqn,
-        &get_sys(),
-    ).unwrap();
+    let ag = c
+        .access_group_create(
+            &random_string("ag_"),
+            &random_iqn(),
+            lsm::InitiatorType::IscsiIqn,
+            &get_sys(),
+        )
+        .unwrap();
 
     c.volume_mask(&updated_vol, &ag).unwrap();
     c.volume_unmask(&updated_vol, &ag).unwrap();
@@ -168,7 +173,8 @@ fn file_system() {
     let mut c = make_connection();
     let pool = get_pool();
     let size_1gib = lsm::size_human_2_size_bytes("1GiB");
-    let fs = c.fs_create(&pool, &random_string("fs_"), size_1gib)
+    let fs = c
+        .fs_create(&pool, &random_string("fs_"), size_1gib)
         .unwrap();
     let fs = c.fs_resize(&fs, size_1gib * 2).unwrap();
     println!("Got new fs: '{:?}'", fs);
@@ -176,13 +182,15 @@ fn file_system() {
     let fss = c.fs().unwrap();
     assert!(fss.len() >= 1);
 
-    let snap = c.fs_snapshot_create(&fs, &random_string("fs_snap_"))
+    let snap = c
+        .fs_snapshot_create(&fs, &random_string("fs_snap_"))
         .unwrap();
     println!("Got new fs snapshot: '{:?}'", snap);
     let snaps = c.fs_snapshots(&fs).unwrap();
     assert_eq!(1, snaps.len());
 
-    let dst_fs = c.fs_clone(&fs, &random_string("fs_clone_dst_"), Some(&snap))
+    let dst_fs = c
+        .fs_clone(&fs, &random_string("fs_clone_dst_"), Some(&snap))
         .unwrap();
     println!("Got new clone target fs: '{:?}'", dst_fs);
 
@@ -203,11 +211,13 @@ fn nfs_export() {
         c.nfs_exp_auth_type_list().unwrap()
     );
     let pool = get_pool();
-    let fs = c.fs_create(
-        &pool,
-        &random_string("fs_"),
-        lsm::size_human_2_size_bytes("1GiB"),
-    ).unwrap();
+    let fs = c
+        .fs_create(
+            &pool,
+            &random_string("fs_"),
+            lsm::size_human_2_size_bytes("1GiB"),
+        )
+        .unwrap();
     let access = NfsAccess {
         root_list: &["localhost"],
         rw_list: &["abc.com", "localhost"],
@@ -215,7 +225,8 @@ fn nfs_export() {
         anon_uid: None,
         anon_gid: None,
     };
-    let exp = c.fs_export(&fs, Some(&random_string("/")), &access, None, None)
+    let exp = c
+        .fs_export(&fs, Some(&random_string("/")), &access, None, None)
         .unwrap();
     let eps = c.nfs_exports().unwrap();
     assert!(!eps.is_empty());
@@ -226,12 +237,14 @@ fn nfs_export() {
 #[test]
 fn ag() {
     let mut c = make_connection();
-    let ag = c.access_group_create(
-        &random_string("ag_"),
-        &random_iqn(),
-        lsm::InitiatorType::IscsiIqn,
-        &get_sys(),
-    ).unwrap();
+    let ag = c
+        .access_group_create(
+            &random_string("ag_"),
+            &random_iqn(),
+            lsm::InitiatorType::IscsiIqn,
+            &get_sys(),
+        )
+        .unwrap();
     println!("Created new ag: '{:?}'", ag);
 
     let ags = c.access_groups().unwrap();
@@ -239,18 +252,16 @@ fn ag() {
     assert!(ags.len() >= 1);
 
     let tmp_init = &random_iqn();
-    let ag =
-        c.access_group_init_add(&ag, tmp_init, lsm::InitiatorType::IscsiIqn)
-            .unwrap();
+    let ag = c
+        .access_group_init_add(&ag, tmp_init, lsm::InitiatorType::IscsiIqn)
+        .unwrap();
     println!("updated ag after add init: '{:?}'", ag);
-    let ag = c.access_group_init_add(
-        &ag,
-        "0x20:00:00:81:23:45:ac:01",
-        lsm::InitiatorType::Wwpn,
-    ).unwrap();
-    let ag =
-        c.access_group_init_del(&ag, tmp_init, lsm::InitiatorType::IscsiIqn)
-            .unwrap();
+    let ag = c
+        .access_group_init_add(&ag, "0x20:00:00:81:23:45:ac:01", lsm::InitiatorType::Wwpn)
+        .unwrap();
+    let ag = c
+        .access_group_init_del(&ag, tmp_init, lsm::InitiatorType::IscsiIqn)
+        .unwrap();
     println!("Updated ag after del init: '{:?}'", ag);
     c.access_group_delete(&ag).unwrap();
 }
@@ -316,12 +327,14 @@ fn iscsi_auth() {
 #[test]
 fn vol_mask() {
     let mut c = make_connection();
-    let ag = c.access_group_create(
-        &random_string("ag_"),
-        &random_iqn(),
-        lsm::InitiatorType::IscsiIqn,
-        &get_sys(),
-    ).unwrap();
+    let ag = c
+        .access_group_create(
+            &random_string("ag_"),
+            &random_iqn(),
+            lsm::InitiatorType::IscsiIqn,
+            &get_sys(),
+        )
+        .unwrap();
     let pool = get_pool();
     let vol = create_vol(&mut c, &pool, &random_string("vol_"));
     c.volume_mask(&vol, &ag).unwrap();
@@ -339,12 +352,14 @@ fn vol_child_dep() {
     let mut c = make_connection();
     let pool = get_pool();
     let vol = create_vol(&mut c, &pool, &random_string("vol_"));
-    let dst_vol = c.volume_replicate(
-        None,
-        lsm::VolumeReplicateType::Clone,
-        &vol,
-        &random_string("vol_rep_dst_"),
-    ).unwrap();
+    let dst_vol = c
+        .volume_replicate(
+            None,
+            lsm::VolumeReplicateType::Clone,
+            &vol,
+            &random_string("vol_rep_dst_"),
+        )
+        .unwrap();
     assert_eq!(true, c.vol_has_child_dep(&vol).unwrap());
     c.vol_child_dep_rm(&vol).unwrap();
     c.volume_delete(&vol).unwrap();
@@ -355,12 +370,15 @@ fn vol_child_dep() {
 fn fs_child_dep() {
     let mut c = make_connection();
     let pool = get_pool();
-    let fs = c.fs_create(
-        &pool,
-        &random_string("fs_"),
-        lsm::size_human_2_size_bytes("1GiB"),
-    ).unwrap();
-    let dst_fs = c.fs_clone(&fs, &random_string("fs_clone_dst_"), None)
+    let fs = c
+        .fs_create(
+            &pool,
+            &random_string("fs_"),
+            lsm::size_human_2_size_bytes("1GiB"),
+        )
+        .unwrap();
+    let dst_fs = c
+        .fs_clone(&fs, &random_string("fs_clone_dst_"), None)
         .unwrap();
     assert_eq!(true, c.fs_has_child_dep(&fs, None).unwrap());
     c.fs_child_dep_rm(&fs, None).unwrap();
@@ -401,12 +419,9 @@ fn vrc() {
             chose_disks.push(disk.clone());
         }
     }
-    let vol = c.vol_raid_create(
-        &random_string("vrc_"),
-        RaidType::Raid1,
-        &chose_disks,
-        None,
-    ).unwrap();
+    let vol = c
+        .vol_raid_create(&random_string("vrc_"), RaidType::Raid1, &chose_disks, None)
+        .unwrap();
     println!("Created RAID volume '{:?}'", vol);
     let vol_raid_info = c.vol_raid_info(&vol).unwrap();
     println!("Volume RAID info: '{:?}'", vol_raid_info);

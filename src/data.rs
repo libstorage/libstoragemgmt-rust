@@ -71,7 +71,8 @@ fn gen_disk_class_string() -> String {
 ///  * A Linux system running NFS service
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct System {
-    #[serde(default = "gen_system_class_string")] class: String,
+    #[serde(default = "gen_system_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -189,7 +190,8 @@ fn sys_mod_to_int<S: Serializer>(
 /// [1]: https://en.wikipedia.org/wiki/Multipath_I/O
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Volume {
-    #[serde(default = "gen_vol_class_string")] class: String,
+    #[serde(default = "gen_vol_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -285,9 +287,7 @@ pub enum RaidType {
 impl From<i32> for RaidType {
     fn from(i: i32) -> RaidType {
         match i {
-            0..=6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20..=22 => unsafe {
-                transmute(i)
-            },
+            0..=6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20..=22 => unsafe { transmute(i) },
             _ => RaidType::Unknown,
         }
     }
@@ -353,10 +353,7 @@ fn int_to_bool<'de, D: Deserializer<'de>>(
 }
 
 #[allow(clippy::trivially_copy_pass_by_ref)]
-fn bool_to_int<S: Serializer>(
-    b: &bool,
-    serializer: S,
-) -> ::std::result::Result<S::Ok, S::Error> {
+fn bool_to_int<S: Serializer>(b: &bool, serializer: S) -> ::std::result::Result<S::Ok, S::Error> {
     if *b {
         serializer.serialize_i8(1i8)
     } else {
@@ -366,7 +363,8 @@ fn bool_to_int<S: Serializer>(
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Pool {
-    #[serde(default = "gen_pool_class_string")] class: String,
+    #[serde(default = "gen_pool_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -545,7 +543,8 @@ impl Pool {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Disk {
-    #[serde(default = "gen_disk_class_string")] class: String,
+    #[serde(default = "gen_disk_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -776,7 +775,8 @@ impl Disk {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct FileSystem {
-    #[serde(default = "gen_fs_class_string")] class: String,
+    #[serde(default = "gen_fs_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -794,7 +794,8 @@ pub struct FileSystem {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct FileSystemSnapShot {
-    #[serde(default = "gen_fs_snap_class_string")] class: String,
+    #[serde(default = "gen_fs_snap_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Human friendly name.
@@ -806,7 +807,8 @@ pub struct FileSystemSnapShot {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct NfsExport {
-    #[serde(default = "gen_exp_class_string")] class: String,
+    #[serde(default = "gen_exp_class_string")]
+    class: String,
     /// Identifier.
     pub id: String,
     /// Identifier of file system.
@@ -839,7 +841,8 @@ impl NfsExport {
 /// Access group is also known as host group on some storage system, it defines
 /// a group of initiators sharing the same access to the volume.
 pub struct AccessGroup {
-    #[serde(default = "gen_ag_class_string")] class: String,
+    #[serde(default = "gen_ag_class_string")]
+    class: String,
     /// Identifier
     pub id: String,
     /// Human friendly name.
@@ -1236,18 +1239,17 @@ impl Capabilities {
 /// Represent a block range used `Client::volume_replicate_range()`.
 pub struct BlockRange {
     class: String,
-    #[serde(rename = "src_block")] src_blk_addr: u64,
-    #[serde(rename = "dest_block")] dst_blk_addr: u64,
-    #[serde(rename = "block_count")] blk_count: u64,
+    #[serde(rename = "src_block")]
+    src_blk_addr: u64,
+    #[serde(rename = "dest_block")]
+    dst_blk_addr: u64,
+    #[serde(rename = "block_count")]
+    blk_count: u64,
 }
 
 impl BlockRange {
     /// Create a block range.
-    pub fn new(
-        src_blk_addr: u64,
-        dst_blk_addr: u64,
-        blk_count: u64,
-    ) -> BlockRange {
+    pub fn new(src_blk_addr: u64, dst_blk_addr: u64, blk_count: u64) -> BlockRange {
         BlockRange {
             class: "BlockRange".to_string(),
             src_blk_addr,

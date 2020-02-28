@@ -26,12 +26,12 @@
 //
 // Author: Gris Ge <fge@redhat.com>
 
-use std::env;
-use std::os::unix::net::UnixStream;
-use std::str;
-use std::io::prelude::{Read, Write};
 use serde_json;
 use serde_json::{Map, Number, Value};
+use std::env;
+use std::io::prelude::{Read, Write};
+use std::os::unix::net::UnixStream;
+use std::str;
 
 use super::error::*;
 
@@ -58,15 +58,14 @@ impl TransPort {
                          socket folder: '{}'",
                         plugin_uds_path
                     )),
-                )
+                );
             }
         };
         Ok(TransPort { so })
     }
 
     fn send(&mut self, msg: &str) -> Result<()> {
-        let msg =
-            format!("{:0padding$}{}", msg.len(), msg, padding = IPC_HDR_LEN);
+        let msg = format!("{:0padding$}{}", msg.len(), msg, padding = IPC_HDR_LEN);
 
         self.so.write_all(msg.as_bytes())?;
         Ok(())
@@ -88,11 +87,7 @@ impl TransPort {
         Ok(msg)
     }
 
-    pub(crate) fn invoke(
-        &mut self,
-        cmd: &str,
-        args: Option<Map<String, Value>>,
-    ) -> Result<Value> {
+    pub(crate) fn invoke(&mut self, cmd: &str, args: Option<Map<String, Value>>) -> Result<Value> {
         let mut msg = Map::new();
         msg.insert("method".to_string(), Value::String(cmd.to_string()));
         msg.insert("id".to_string(), Value::Number(Number::from(IPC_JSON_ID)));
