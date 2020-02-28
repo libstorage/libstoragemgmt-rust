@@ -302,118 +302,118 @@ pub(crate) struct LsmErrorIpc {
 impl From<LsmErrorIpc> for LsmError {
     fn from(e: LsmErrorIpc) -> Self {
         match e.code {
-            ERROR_NUMBER_LIB_BUG => LsmError::LibBug(format!("{}", e.message)),
+            ERROR_NUMBER_LIB_BUG => LsmError::LibBug(e.message),
             ERROR_NUMBER_PLUGIN_BUG => {
-                LsmError::PluginBug(format!("{}", e.message))
+                LsmError::PluginBug(e.message)
             }
-            ERROR_NUMBER_TIMEOUT => LsmError::TimeOut(format!("{}", e.message)),
+            ERROR_NUMBER_TIMEOUT => LsmError::TimeOut(e.message),
             ERROR_NUMBER_NAME_CONFLICT => {
-                LsmError::NameConflict(format!("{}", e.message))
+                LsmError::NameConflict(e.message)
             }
             ERROR_NUMBER_EXISTS_INITIATOR => {
-                LsmError::ExistsInitiator(format!("{}", e.message))
+                LsmError::ExistsInitiator(e.message)
             }
             ERROR_NUMBER_INVALID_ARGUMENT => {
-                LsmError::InvalidArgument(format!("{}", e.message))
+                LsmError::InvalidArgument(e.message)
             }
             ERROR_NUMBER_NO_STATE_CHANGE => {
-                LsmError::NoStateChange(format!("{}", e.message))
+                LsmError::NoStateChange(e.message)
             }
             ERROR_NUMBER_NETWORK_CONNREFUSED => {
-                LsmError::NetworkConRefused(format!("{}", e.message))
+                LsmError::NetworkConRefused(e.message)
             }
             ERROR_NUMBER_NETWORK_HOSTDOWN => {
-                LsmError::NetworkHostDown(format!("{}", e.message))
+                LsmError::NetworkHostDown(e.message)
             }
             ERROR_NUMBER_NETWORK_ERROR => {
-                LsmError::NetworkError(format!("{}", e.message))
+                LsmError::NetworkError(e.message)
             }
             ERROR_NUMBER_NO_MEMORY => {
-                LsmError::NoMemory(format!("{}", e.message))
+                LsmError::NoMemory(e.message)
             }
             ERROR_NUMBER_NO_SUPPORT => {
-                LsmError::NoSupport(format!("{}", e.message))
+                LsmError::NoSupport(e.message)
             }
             ERROR_NUMBER_IS_MASKED => {
-                LsmError::IsMasked(format!("{}", e.message))
+                LsmError::IsMasked(e.message)
             }
             ERROR_NUMBER_HAS_CHILD_DEPENDENCY => {
-                LsmError::HasChildDependency(format!("{}", e.message))
+                LsmError::HasChildDependency(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_ACCESS_GROUP => {
-                LsmError::NotFoundAccessGroup(format!("{}", e.message))
+                LsmError::NotFoundAccessGroup(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_FS => {
-                LsmError::NotFoundFs(format!("{}", e.message))
+                LsmError::NotFoundFs(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_JOB => {
-                LsmError::NotFoundJob(format!("{}", e.message))
+                LsmError::NotFoundJob(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_POOL => {
-                LsmError::NotFoundPool(format!("{}", e.message))
+                LsmError::NotFoundPool(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_FS_SS => {
-                LsmError::NotFoundFsSnapshot(format!("{}", e.message))
+                LsmError::NotFoundFsSnapshot(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_VOLUME => {
-                LsmError::NotFoundVolume(format!("{}", e.message))
+                LsmError::NotFoundVolume(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_NFS_EXPORT => {
-                LsmError::NotFoundNfsExport(format!("{}", e.message))
+                LsmError::NotFoundNfsExport(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_SYSTEM => {
-                LsmError::NotFoundSystem(format!("{}", e.message))
+                LsmError::NotFoundSystem(e.message)
             }
             ERROR_NUMBER_NOT_FOUND_DISK => {
-                LsmError::NotFoundDisk(format!("{}", e.message))
+                LsmError::NotFoundDisk(e.message)
             }
             ERROR_NUMBER_NOT_LICENSED => {
-                LsmError::NotLicensed(format!("{}", e.message))
+                LsmError::NotLicensed(e.message)
             }
             ERROR_NUMBER_NO_SUPPORT_ONLINE_CHANGE => {
-                LsmError::NoSupportOnlineChange(format!("{}", e.message))
+                LsmError::NoSupportOnlineChange(e.message)
             }
             ERROR_NUMBER_NO_SUPPORT_OFFLINE_CHANGE => {
-                LsmError::NoSupportOfflineChange(format!("{}", e.message))
+                LsmError::NoSupportOfflineChange(e.message)
             }
             ERROR_NUMBER_PLUGIN_AUTH_FAILED => {
-                LsmError::PluginAuthFailed(format!("{}", e.message))
+                LsmError::PluginAuthFailed(e.message)
             }
             ERROR_NUMBER_PLUGIN_IPC_FAIL => {
-                LsmError::PluginIpcFail(format!("{}", e.message))
+                LsmError::PluginIpcFail(e.message)
             }
             ERROR_NUMBER_PLUGIN_SOCKET_PERMISSION => {
-                LsmError::PluginSocketPermission(format!("{}", e.message))
+                LsmError::PluginSocketPermission(e.message)
             }
             ERROR_NUMBER_PLUGIN_NOT_EXIST => {
-                LsmError::PluginNotExist(format!("{}", e.message))
+                LsmError::PluginNotExist(e.message)
             }
             ERROR_NUMBER_NOT_ENOUGH_SPACE => {
-                LsmError::NoEnoughSpace(format!("{}", e.message))
+                LsmError::NoEnoughSpace(e.message)
             }
             ERROR_NUMBER_TRANSPORT_COMMUNICATION => {
-                LsmError::TransportCommunication(format!("{}", e.message))
+                LsmError::TransportCommunication(e.message)
             }
             ERROR_NUMBER_TRANSPORT_SERIALIZATION => {
-                LsmError::TransportSerialization(format!("{}", e.message))
+                LsmError::TransportSerialization(e.message)
             }
             ERROR_NUMBER_TRANSPORT_INVALID_ARG => {
-                LsmError::TransportInvalidArg(format!("{}", e.message))
+                LsmError::TransportInvalidArg(e.message)
             }
             ERROR_NUMBER_LAST_INIT_IN_ACCESS_GROUP => {
-                LsmError::LastInitInAccessGroup(format!("{}", e.message))
+                LsmError::LastInitInAccessGroup(e.message)
             }
             ERROR_NUMBER_UNSUPPORTED_SEARCH_KEY => {
-                LsmError::UnSupportedSearchKey(format!("{}", e.message))
+                LsmError::UnSupportedSearchKey(e.message)
             }
             ERROR_NUMBER_EMPTY_ACCESS_GROUP => {
-                LsmError::EmptyAccessGroup(format!("{}", e.message))
+                LsmError::EmptyAccessGroup(e.message)
             }
             ERROR_NUMBER_POOL_NOT_READY => {
-                LsmError::PoolNotReady(format!("{}", e.message))
+                LsmError::PoolNotReady(e.message)
             }
             ERROR_NUMBER_DISK_NOT_FREE => {
-                LsmError::DiskNotFree(format!("{}", e.message))
+                LsmError::DiskNotFree(e.message)
             }
             _ => LsmError::LibBug(format!("Invalid error: {:?}", e)),
         }
