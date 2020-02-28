@@ -174,6 +174,7 @@ fn int_to_sys_mod<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(clippy::trivially_copy_pass_by_ref)]
 fn sys_mod_to_int<S: Serializer>(
     m: &SystemMode,
     serializer: S,
@@ -351,6 +352,7 @@ fn int_to_bool<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(clippy::trivially_copy_pass_by_ref)]
 fn bool_to_int<S: Serializer>(
     b: &bool,
     serializer: S,
@@ -666,6 +668,7 @@ fn int_to_disk_type<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(clippy::trivially_copy_pass_by_ref)]
 fn disk_type_to_int<S: Serializer>(
     t: &DiskType,
     serializer: S,
@@ -715,6 +718,7 @@ fn int_to_disk_link_type<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(clippy::trivially_copy_pass_by_ref)]
 fn disk_link_type_to_int<S: Serializer>(
     t: &Option<DiskLinkType>,
     serializer: S,
@@ -875,6 +879,7 @@ fn int_to_init_type<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(clippy::trivially_copy_pass_by_ref)]
 fn init_type_to_int<S: Serializer>(
     i: &InitiatorType,
     serializer: S,
