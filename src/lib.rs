@@ -62,7 +62,7 @@
 //! ```rust
 //! extern crate lsm;
 //! use lsm::{Client, LsmError};
-//! fn main() {
+//!
 //!     let mut c: Client = match Client::new("sim://", None, None) {
 //!         Ok(i) => i,
 //!         Err(e) => {
@@ -93,7 +93,7 @@
 //!             }
 //!         }
 //!     }
-//! }
+//!
 //! ```
 //!
 //! [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
