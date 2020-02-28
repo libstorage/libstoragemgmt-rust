@@ -38,8 +38,8 @@ use super::error::*;
 const IPC_HDR_LEN: usize = 10; // length of u32 max string.
 const IPC_JSON_ID: u8 = 100;
 const IPC_BUFF_SIZE: usize = 8192;
-static UDS_PATH_DEFAULT: &'static str = "/var/run/lsm/ipc";
-static UDS_PATH_VAR_NAME: &'static str = "LSM_UDS_PATH";
+static UDS_PATH_DEFAULT: &str = "/var/run/lsm/ipc";
+static UDS_PATH_VAR_NAME: &str = "LSM_UDS_PATH";
 
 pub(crate) struct TransPort {
     so: UnixStream,
