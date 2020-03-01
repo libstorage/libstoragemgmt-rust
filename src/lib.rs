@@ -62,7 +62,7 @@
 //! ```rust
 //! extern crate lsm;
 //! use lsm::{Client, LsmError};
-//! fn main() {
+//!
 //!     let mut c: Client = match Client::new("sim://", None, None) {
 //!         Ok(i) => i,
 //!         Err(e) => {
@@ -93,7 +93,7 @@
 //!             }
 //!         }
 //!     }
-//! }
+//!
 //! ```
 //!
 //! [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
@@ -103,17 +103,17 @@
 extern crate serde;
 #[macro_use]
 extern crate serde_derive;
+extern crate regex;
 extern crate serde_json;
 extern crate url;
-extern crate regex;
 
-pub use self::error::LsmError;
-pub use self::client::{Client, available_plugins, PluginInfo};
+pub use self::client::{available_plugins, Client, PluginInfo};
 pub use self::data::*;
+pub use self::error::LsmError;
 pub use self::misc::{size_bytes_2_size_human, size_human_2_size_bytes};
 
-mod error;
 mod client;
-mod ipc;
 mod data;
+mod error;
+mod ipc;
 mod misc;

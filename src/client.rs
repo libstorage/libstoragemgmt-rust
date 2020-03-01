@@ -26,16 +26,16 @@
 //
 // Author: Gris Ge <fge@redhat.com>
 
+use serde_json;
+use serde_json::{Map, Value};
+use std::fs::read_dir;
 use std::thread::sleep;
 use std::time::Duration;
-use serde_json::{Map, Value};
-use serde_json;
 use url;
-use std::fs::read_dir;
 
 use super::data::*;
-use super::ipc::{uds_path, TransPort};
 use super::error::*;
+use super::ipc::{uds_path, TransPort};
 use super::misc::verify_init_id_str;
 
 const DEFAULT_TIMEOUT: u32 = 30_000;
@@ -133,11 +133,10 @@ pub fn available_plugins() -> Result<Vec<PluginInfo>> {
                     //
                     Err(_) => continue,
                     Ok(dir_entry) => {
-                        let plugin_name =
-                            match dir_entry.file_name().into_string() {
-                                Ok(i) => i,
-                                Err(_) => continue,
-                            };
+                        let plugin_name = match dir_entry.file_name().into_string() {
+                            Ok(i) => i,
+                            Err(_) => continue,
+                        };
                         let plugin_ipc_path = get_plugin_ipc_path(&plugin_name);
                         // We cannot use self.plugin_info() here, as we need
                         // to bypass the plugin_register() and
@@ -145,8 +144,7 @@ pub fn available_plugins() -> Result<Vec<PluginInfo>> {
                         //
                         let mut tp = TransPort::new(&plugin_ipc_path)?;
                         let val = tp.invoke("plugin_info", None)?;
-                        let data: Vec<String> =
-                            serde_json::from_value(val.clone())?;
+                        let data: Vec<String> = serde_json::from_value(val.clone())?;
                         let desc = data.get(0).ok_or_plugin_bug(&val)?;
                         let version = data.get(1).ok_or_plugin_bug(&val)?;
                         ret.push(PluginInfo {
@@ -175,11 +173,7 @@ impl Client {
     /// The `timeout` argument is in milliseconds.
     ///
     /// [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
-    pub fn new(
-        uri: &str,
-        password: Option<&str>,
-        timeout: Option<u32>,
-    ) -> Result<Client> {
+    pub fn new(uri: &str, password: Option<&str>, timeout: Option<u32>) -> Result<Client> {
         let p = match url::Url::parse(uri) {
             Ok(p) => p,
             Err(e) => {
@@ -234,14 +228,16 @@ impl Client {
 
     /// Gets a list of access group on this connection.
     pub fn access_groups(&mut self) -> Result<Vec<AccessGroup>> {
-        Ok(serde_json::from_value(self.tp
-            .invoke("access_groups", None)?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("access_groups", None)?,
+        )?)
     }
 
     /// Gets a list of target ports on this connection.
     pub fn target_ports(&mut self) -> Result<Vec<TargetPort>> {
-        Ok(serde_json::from_value(self.tp
-            .invoke("target_ports", None)?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("target_ports", None)?,
+        )?)
     }
 
     /// Gets a list of batteries on this connection.
@@ -260,30 +256,34 @@ impl Client {
         loop {
             let mut args = Map::new();
             args.insert("job_id".to_string(), serde_json::to_value(job_id)?);
-            let j: Job = serde_json::from_value(self.tp
-                .invoke("job_status", Some(args))?)?;
+            let j: Job = serde_json::from_value(self.tp.invoke("job_status", Some(args))?)?;
 
             match j.status {
                 JOB_STATUS_INPROGRESS => {
                     sleep(Duration::new(JOB_RETRY_INTERVAL, 0));
                     continue;
-                },
+                }
                 JOB_STATUS_COMPLETE => match j.data {
                     Some(v) => {
                         self._job_free(job_id)?;
                         return Ok(v);
-                    },
-                    None => break
+                    }
+                    None => break,
                 },
                 JOB_STATUS_ERROR =>
-                    // The invoke command should already got error detail
-                    // and returned. If not, got buggy plugin.
-                    return Err(
-                        LsmError::PluginBug(
-                            "Got no error detail for failed job".to_string())),
-                _ => return Err(
-                    LsmError::PluginBug(
-                        format!("Got invalid job status {}", j.status))),
+                // The invoke command should already got error detail
+                // and returned. If not, got buggy plugin.
+                {
+                    return Err(LsmError::PluginBug(
+                        "Got no error detail for failed job".to_string(),
+                    ))
+                }
+                _ => {
+                    return Err(LsmError::PluginBug(format!(
+                        "Got invalid job status {}",
+                        j.status
+                    )))
+                }
             };
         }
         Ok(Value::Null)
@@ -331,8 +331,7 @@ impl Client {
             Ok(j) => {
                 if j.is_null() {
                     Err(LsmError::PluginBug(
-                        "Expecting a file system snapshot, but got None"
-                            .to_string(),
+                        "Expecting a file system snapshot, but got None".to_string(),
                     ))
                 } else {
                     let f: FileSystemSnapShot = serde_json::from_value(j)?;
@@ -365,21 +364,12 @@ impl Client {
     ) -> Result<Volume> {
         let mut args = Map::new();
         let thinp_val = match *thinp {
-            VolumeCreateArgThinP::Full => {
-                serde_json::to_value(VOLUME_THINP_YES)?
-            }
-            VolumeCreateArgThinP::Thin => {
-                serde_json::to_value(VOLUME_THINP_NO)?
-            }
-            VolumeCreateArgThinP::Default => {
-                serde_json::to_value(VOLUME_THINP_DEFAULT)?
-            }
+            VolumeCreateArgThinP::Full => serde_json::to_value(VOLUME_THINP_YES)?,
+            VolumeCreateArgThinP::Thin => serde_json::to_value(VOLUME_THINP_NO)?,
+            VolumeCreateArgThinP::Default => serde_json::to_value(VOLUME_THINP_DEFAULT)?,
         };
         args.insert("provisioning".to_string(), thinp_val);
-        args.insert(
-            "size_bytes".to_string(),
-            serde_json::to_value(size_bytes)?,
-        );
+        args.insert("size_bytes".to_string(), serde_json::to_value(size_bytes)?);
         args.insert("volume_name".to_string(), serde_json::to_value(name)?);
         args.insert("pool".to_string(), serde_json::to_value(pool)?);
 
@@ -414,8 +404,9 @@ impl Client {
 
     /// Get connection timeout value.
     pub fn time_out_get(&mut self) -> Result<u32> {
-        Ok(serde_json::from_value(self.tp
-            .invoke("time_out_get", None)?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("time_out_get", None)?,
+        )?)
     }
 
     /// Get system's capabilities.
@@ -432,8 +423,9 @@ impl Client {
     pub fn capabilities(&mut self, sys: &System) -> Result<Capabilities> {
         let mut args = Map::new();
         args.insert("system".to_string(), serde_json::to_value(sys)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("capabilities", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("capabilities", Some(args))?,
+        )?)
     }
 
     /// Get plugin information.
@@ -456,11 +448,7 @@ impl Client {
     ///  * [`LsmError::InvalidArgument`][1]: `read_pct` is larger than 100.
     ///
     /// [1]: enum.LsmError.html#variant.InvalidArgument
-    pub fn sys_read_cache_pct_set(
-        &mut self,
-        sys: &System,
-        read_pct: u32,
-    ) -> Result<()> {
+    pub fn sys_read_cache_pct_set(&mut self, sys: &System, read_pct: u32) -> Result<()> {
         if read_pct > 100 {
             return Err(LsmError::InvalidArgument(
                 "Invalid read_pct, should be in range 0 - 100".to_string(),
@@ -469,8 +457,9 @@ impl Client {
         let mut args = Map::new();
         args.insert("system".to_string(), serde_json::to_value(sys)?);
         args.insert("read_pct".to_string(), serde_json::to_value(read_pct)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("system_read_cache_pct_update", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("system_read_cache_pct_update", Some(args))?,
+        )?)
     }
 
     /// Set(override) iSCSI CHAP authentication.
@@ -520,11 +509,7 @@ impl Client {
     /// [`Pool.unsupported_actions`][1].
     ///
     /// [1]: struct.Pool.html#structfield.unsupported_actions
-    pub fn volume_resize(
-        &mut self,
-        vol: &Volume,
-        new_size_bytes: u64,
-    ) -> Result<Volume> {
+    pub fn volume_resize(&mut self, vol: &Volume, new_size_bytes: u64) -> Result<Volume> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
         args.insert(
@@ -579,10 +564,7 @@ impl Client {
         }
     }
 
-    fn get_fs_snap_from_asyn(
-        &mut self,
-        ret: &Value,
-    ) -> Result<FileSystemSnapShot> {
+    fn get_fs_snap_from_asyn(&mut self, ret: &Value) -> Result<FileSystemSnapShot> {
         let ret_array = ret.as_array().ok_or_plugin_bug(ret)?;
         if ret_array.len() != 2 {
             return Err(LsmError::PluginBug(format!(
@@ -633,8 +615,10 @@ impl Client {
     pub fn volume_rep_range_blk_size(&mut self, sys: &System) -> Result<i32> {
         let mut args = Map::new();
         args.insert("system".to_string(), serde_json::to_value(sys)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("volume_replicate_range_block_size", Some(args))?)?)
+        Ok(serde_json::from_value(self.tp.invoke(
+            "volume_replicate_range_block_size",
+            Some(args),
+        )?)?)
     }
 
     /// Replicates a portion of a volume to a volume.
@@ -692,11 +676,7 @@ impl Client {
     ///    access group.
     ///
     /// [1]: enum.LsmError.html#variant.EmptyAccessGroup
-    pub fn volume_mask(
-        &mut self,
-        vol: &Volume,
-        ag: &AccessGroup,
-    ) -> Result<()> {
+    pub fn volume_mask(&mut self, vol: &Volume, ag: &AccessGroup) -> Result<()> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
@@ -705,11 +685,7 @@ impl Client {
     }
 
     /// Revokes access to a volume for the specified group
-    pub fn volume_unmask(
-        &mut self,
-        vol: &Volume,
-        ag: &AccessGroup,
-    ) -> Result<()> {
+    pub fn volume_unmask(&mut self, vol: &Volume, ag: &AccessGroup) -> Result<()> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
@@ -746,8 +722,9 @@ impl Client {
             serde_json::to_value(init_type as i32)?,
         );
         args.insert("system".to_string(), serde_json::to_value(sys)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("access_group_create", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("access_group_create", Some(args))?,
+        )?)
     }
 
     /// Delete an access group. Only access group with no volume masked can
@@ -778,7 +755,7 @@ impl Client {
         ag: &AccessGroup,
         init_id: &str,
         init_type: InitiatorType,
-    ) -> Result<(AccessGroup)> {
+    ) -> Result<AccessGroup> {
         verify_init_id_str(init_id, init_type)?;
         let mut args = Map::new();
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
@@ -787,8 +764,9 @@ impl Client {
             "init_type".to_string(),
             serde_json::to_value(init_type as i32)?,
         );
-        Ok(serde_json::from_value(self.tp
-            .invoke("access_group_initiator_add", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("access_group_initiator_add", Some(args))?,
+        )?)
     }
 
     /// Delete an initiator from an access group.
@@ -806,7 +784,7 @@ impl Client {
         ag: &AccessGroup,
         init_id: &str,
         init_type: InitiatorType,
-    ) -> Result<(AccessGroup)> {
+    ) -> Result<AccessGroup> {
         verify_init_id_str(init_id, init_type)?;
         let mut args = Map::new();
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
@@ -815,15 +793,14 @@ impl Client {
             "init_type".to_string(),
             serde_json::to_value(init_type as i32)?,
         );
-        Ok(serde_json::from_value(self.tp
-            .invoke("access_group_initiator_delete", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp
+                .invoke("access_group_initiator_delete", Some(args))?,
+        )?)
     }
 
     /// Query volumes that the specified access group has access to.
-    pub fn vols_masked_to_ag(
-        &mut self,
-        ag: &AccessGroup,
-    ) -> Result<Vec<Volume>> {
+    pub fn vols_masked_to_ag(&mut self, ag: &AccessGroup) -> Result<Vec<Volume>> {
         let mut args = Map::new();
         args.insert("access_group".to_string(), serde_json::to_value(ag)?);
         Ok(serde_json::from_value(self.tp.invoke(
@@ -833,22 +810,22 @@ impl Client {
     }
 
     /// Retrieves the access groups that have access to the specified volume.
-    pub fn ags_granted_to_vol(
-        &mut self,
-        vol: &Volume,
-    ) -> Result<Vec<AccessGroup>> {
+    pub fn ags_granted_to_vol(&mut self, vol: &Volume) -> Result<Vec<AccessGroup>> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("access_groups_granted_to_volume", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp
+                .invoke("access_groups_granted_to_volume", Some(args))?,
+        )?)
     }
 
     /// Check whether volume has child dependencies.
     pub fn vol_has_child_dep(&mut self, vol: &Volume) -> Result<bool> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("volume_child_dependency", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("volume_child_dependency", Some(args))?,
+        )?)
     }
 
     /// Delete all child dependencies of the specified volume.
@@ -874,17 +851,9 @@ impl Client {
     ///    '1.1 GiB' to integer size bytes.
     ///
     /// [1]: fn.size_human_2_size_bytes.html
-    pub fn fs_create(
-        &mut self,
-        pool: &Pool,
-        name: &str,
-        size_bytes: u64,
-    ) -> Result<FileSystem> {
+    pub fn fs_create(&mut self, pool: &Pool, name: &str, size_bytes: u64) -> Result<FileSystem> {
         let mut args = Map::new();
-        args.insert(
-            "size_bytes".to_string(),
-            serde_json::to_value(size_bytes)?,
-        );
+        args.insert("size_bytes".to_string(), serde_json::to_value(size_bytes)?);
         args.insert("name".to_string(), serde_json::to_value(name)?);
         args.insert("pool".to_string(), serde_json::to_value(pool)?);
 
@@ -893,11 +862,7 @@ impl Client {
     }
 
     /// Resize of file system.
-    pub fn fs_resize(
-        &mut self,
-        fs: &FileSystem,
-        new_size_bytes: u64,
-    ) -> Result<FileSystem> {
+    pub fn fs_resize(&mut self, fs: &FileSystem, new_size_bytes: u64) -> Result<FileSystem> {
         let mut args = Map::new();
         args.insert("fs".to_string(), serde_json::to_value(fs)?);
         args.insert(
@@ -979,14 +944,12 @@ impl Client {
     }
 
     /// Get a list of snapshots of specified file system.
-    pub fn fs_snapshots(
-        &mut self,
-        fs: &FileSystem,
-    ) -> Result<Vec<FileSystemSnapShot>> {
+    pub fn fs_snapshots(&mut self, fs: &FileSystem) -> Result<Vec<FileSystemSnapShot>> {
         let mut args = Map::new();
         args.insert("fs".to_string(), serde_json::to_value(fs)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("fs_snapshots", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("fs_snapshots", Some(args))?,
+        )?)
     }
 
     /// Create a file system snapshot.
@@ -1074,17 +1037,14 @@ impl Client {
     }
 
     /// Checks whether file system has a child dependency.
-    pub fn fs_has_child_dep(
-        &mut self,
-        fs: &FileSystem,
-        files: Option<Vec<&str>>,
-    ) -> Result<bool> {
+    pub fn fs_has_child_dep(&mut self, fs: &FileSystem, files: Option<Vec<&str>>) -> Result<bool> {
         let mut args = Map::new();
         args.insert("fs".to_string(), serde_json::to_value(fs)?);
         let files: Vec<&str> = files.unwrap_or_default();
         args.insert("files".to_string(), serde_json::to_value(files)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("fs_child_dependency", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("fs_child_dependency", Some(args))?,
+        )?)
     }
 
     /// Delete all child dependencies of the specified file system.
@@ -1093,11 +1053,7 @@ impl Client {
     /// specified file system by duplicating the required storage before
     /// breaking replication relationship. This function might take a long
     /// time(days or even weeks), you might want to invoke it in a thread.
-    pub fn fs_child_dep_rm(
-        &mut self,
-        fs: &FileSystem,
-        files: Option<Vec<&str>>,
-    ) -> Result<()> {
+    pub fn fs_child_dep_rm(&mut self, fs: &FileSystem, files: Option<Vec<&str>>) -> Result<()> {
         let mut args = Map::new();
         args.insert("fs".to_string(), serde_json::to_value(fs)?);
         let files: Vec<&str> = files.unwrap_or_default();
@@ -1108,8 +1064,9 @@ impl Client {
 
     /// Get supported NFS client authentication types.
     pub fn nfs_exp_auth_type_list(&mut self) -> Result<Vec<String>> {
-        Ok(serde_json::from_value(self.tp
-            .invoke("export_auth", None)?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("export_auth", None)?,
+        )?)
     }
 
     /// Create or modify an NFS export.
@@ -1137,8 +1094,7 @@ impl Client {
 
         if rw_list.is_empty() && ro_list.is_empty() {
             return Err(LsmError::InvalidArgument(
-                "At least one host should exists in `rw_list` or `ro_list`"
-                    .to_string(),
+                "At least one host should exists in `rw_list` or `ro_list`".to_string(),
             ));
         }
         for host in root_list {
@@ -1176,24 +1132,26 @@ impl Client {
         args.insert("anon_gid".to_string(), serde_json::to_value(anon_gid)?);
         args.insert("auth_type".to_string(), serde_json::to_value(auth_type)?);
         args.insert("options".to_string(), serde_json::to_value(options)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("export_fs", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("export_fs", Some(args))?,
+        )?)
     }
 
     /// Unexport specified NFS exports.
     pub fn fs_unexport(&mut self, exp: &NfsExport) -> Result<()> {
         let mut args = Map::new();
         args.insert("export".to_string(), serde_json::to_value(exp)?);
-        Ok(serde_json::from_value(self.tp
-            .invoke("export_remove", Some(args))?)?)
+        Ok(serde_json::from_value(
+            self.tp.invoke("export_remove", Some(args))?,
+        )?)
     }
 
     /// Get volume RAID information.
     pub fn vol_raid_info(&mut self, vol: &Volume) -> Result<VolumeRaidInfo> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
-        let ret: Vec<i32> = serde_json::from_value(self.tp
-            .invoke("volume_raid_info", Some(args))?)?;
+        let ret: Vec<i32> =
+            serde_json::from_value(self.tp.invoke("volume_raid_info", Some(args))?)?;
         if ret.len() != 5 {
             return Err(LsmError::PluginBug(format!(
                 "vol_raid_info() is expecting 5 i64 from plugin, \
@@ -1222,28 +1180,29 @@ impl Client {
                 ret
             )));
         }
-        let raid_type: i32 = serde_json::from_value(
-            ret_array.get(0).ok_or_plugin_bug(&ret)?.clone(),
-        )?;
+        let raid_type: i32 =
+            serde_json::from_value(ret_array.get(0).ok_or_plugin_bug(&ret)?.clone())?;
         let raid_type: RaidType = From::from(raid_type);
-        let member_type: u32 = serde_json::from_value(
-            ret_array.get(1).ok_or_plugin_bug(&ret)?.clone(),
-        )?;
-        let member_ids: Vec<String> = serde_json::from_value(
-            ret_array.get(2).ok_or_plugin_bug(&ret)?.clone(),
-        )?;
+        let member_type: u32 =
+            serde_json::from_value(ret_array.get(1).ok_or_plugin_bug(&ret)?.clone())?;
+        let member_ids: Vec<String> =
+            serde_json::from_value(ret_array.get(2).ok_or_plugin_bug(&ret)?.clone())?;
         let mut members: Vec<PoolMember> = Vec::new();
         match member_type {
-            POOL_MEMBER_TYPE_DISK => for disk in self.disks()? {
-                if member_ids.contains(&disk.id) {
-                    members.push(PoolMember::Disk(disk));
+            POOL_MEMBER_TYPE_DISK => {
+                for disk in self.disks()? {
+                    if member_ids.contains(&disk.id) {
+                        members.push(PoolMember::Disk(disk));
+                    }
                 }
-            },
-            POOL_MEMBER_TYPE_POOL => for pool in self.pools()? {
-                if member_ids.contains(&pool.id) {
-                    members.push(PoolMember::Pool(pool));
+            }
+            POOL_MEMBER_TYPE_POOL => {
+                for pool in self.pools()? {
+                    if member_ids.contains(&pool.id) {
+                        members.push(PoolMember::Pool(pool));
+                    }
                 }
-            },
+            }
             _ => (),
         };
         Ok(PoolMemberInfo { raid_type, members })
@@ -1253,10 +1212,7 @@ impl Client {
     /// only.
     ///
     /// Returns supported RAID types and strip sizes.
-    pub fn vol_raid_create_cap_get(
-        &mut self,
-        sys: &System,
-    ) -> Result<(Vec<RaidType>, Vec<u32>)> {
+    pub fn vol_raid_create_cap_get(&mut self, sys: &System) -> Result<(Vec<RaidType>, Vec<u32>)> {
         let mut args = Map::new();
         args.insert("system".to_string(), serde_json::to_value(sys)?);
         let ret = self.tp.invoke("volume_raid_create_cap_get", Some(args))?;
@@ -1268,12 +1224,10 @@ impl Client {
                 ret
             )));
         }
-        let raid_types: Vec<i32> = serde_json::from_value(
-            ret_array.get(0).ok_or_plugin_bug(&ret)?.clone(),
-        )?;
-        let strip_sizes: Vec<u32> = serde_json::from_value(
-            ret_array.get(1).ok_or_plugin_bug(&ret)?.clone(),
-        )?;
+        let raid_types: Vec<i32> =
+            serde_json::from_value(ret_array.get(0).ok_or_plugin_bug(&ret)?.clone())?;
+        let strip_sizes: Vec<u32> =
+            serde_json::from_value(ret_array.get(1).ok_or_plugin_bug(&ret)?.clone())?;
         let mut new_raid_types: Vec<RaidType> = Vec::new();
         for raid_type in raid_types {
             new_raid_types.push(From::from(raid_type));
@@ -1290,9 +1244,7 @@ impl Client {
         strip_size: Option<u32>,
     ) -> Result<Volume> {
         if disks.is_empty() {
-            return Err(LsmError::InvalidArgument(
-                "no disk included".to_string(),
-            ));
+            return Err(LsmError::InvalidArgument("no disk included".to_string()));
         }
 
         if raid_type == RaidType::Raid1 && disks.len() != 2 {
@@ -1313,30 +1265,21 @@ impl Client {
             ));
         }
 
-        if raid_type == RaidType::Raid10
-            && (disks.len() % 2 != 0 || disks.len() < 4)
-        {
+        if raid_type == RaidType::Raid10 && (disks.len() % 2 != 0 || disks.len() < 4) {
             return Err(LsmError::InvalidArgument(
-                "RAID 10 require even disks count and 4 or more disks"
-                    .to_string(),
+                "RAID 10 require even disks count and 4 or more disks".to_string(),
             ));
         }
 
-        if raid_type == RaidType::Raid50
-            && (disks.len() % 2 != 0 || disks.len() < 6)
-        {
+        if raid_type == RaidType::Raid50 && (disks.len() % 2 != 0 || disks.len() < 6) {
             return Err(LsmError::InvalidArgument(
-                "RAID 50 require even disks count and 6 or more disks"
-                    .to_string(),
+                "RAID 50 require even disks count and 6 or more disks".to_string(),
             ));
         }
 
-        if raid_type == RaidType::Raid60
-            && (disks.len() % 2 != 0 || disks.len() < 8)
-        {
+        if raid_type == RaidType::Raid60 && (disks.len() % 2 != 0 || disks.len() < 8) {
             return Err(LsmError::InvalidArgument(
-                "RAID 60 require even disks count and 8 or more disks"
-                    .to_string(),
+                "RAID 60 require even disks count and 8 or more disks".to_string(),
             ));
         }
 
@@ -1348,12 +1291,10 @@ impl Client {
         );
         args.insert("disks".to_string(), serde_json::to_value(disks)?);
         let strip_size = strip_size.unwrap_or(0u32);
-        args.insert(
-            "strip_size".to_string(),
-            serde_json::to_value(strip_size)?,
-        );
-        Ok(serde_json::from_value(self.tp
-            .invoke("volume_raid_create", Some(args))?)?)
+        args.insert("strip_size".to_string(), serde_json::to_value(strip_size)?);
+        Ok(serde_json::from_value(
+            self.tp.invoke("volume_raid_create", Some(args))?,
+        )?)
     }
 
     /// Turn on the identification LED for the specified volume.
@@ -1380,8 +1321,8 @@ impl Client {
     pub fn vol_cache_info(&mut self, vol: &Volume) -> Result<VolumeCacheInfo> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
-        let ret: Vec<u8> = serde_json::from_value(self.tp
-            .invoke("volume_cache_info", Some(args))?)?;
+        let ret: Vec<u8> =
+            serde_json::from_value(self.tp.invoke("volume_cache_info", Some(args))?)?;
         if ret.len() != 5 {
             return Err(LsmError::PluginBug(format!(
                 "vol_cache_info() is expecting 5 u8 from plugin, \
@@ -1414,20 +1355,14 @@ impl Client {
             physical_disk_cache_status: match ret[4] {
                 PHYSICAL_DISK_CACHE_ENABLED => CachePolicy::Enabled,
                 PHYSICAL_DISK_CACHE_DISABLED => CachePolicy::Disabled,
-                PHYSICAL_DISK_CACHE_USE_DISK_SETTING => {
-                    CachePolicy::UseDiskSetting
-                }
+                PHYSICAL_DISK_CACHE_USE_DISK_SETTING => CachePolicy::UseDiskSetting,
                 _ => CachePolicy::Unknown,
             },
         })
     }
 
     /// Set volume physical disk cache policy.
-    pub fn vol_phy_disk_cache_set(
-        &mut self,
-        vol: &Volume,
-        pdc: CachePolicy,
-    ) -> Result<()> {
+    pub fn vol_phy_disk_cache_set(&mut self, vol: &Volume, pdc: CachePolicy) -> Result<()> {
         let pdc: u8 = match pdc {
             CachePolicy::Enabled => PHYSICAL_DISK_CACHE_ENABLED,
             CachePolicy::Disabled => PHYSICAL_DISK_CACHE_DISABLED,
@@ -1448,11 +1383,7 @@ impl Client {
     }
 
     /// Set volume write cache policy.
-    pub fn vol_write_cache_set(
-        &mut self,
-        vol: &Volume,
-        wcp: CachePolicy,
-    ) -> Result<()> {
+    pub fn vol_write_cache_set(&mut self, vol: &Volume, wcp: CachePolicy) -> Result<()> {
         let wcp: u8 = match wcp {
             CachePolicy::Enabled => WRITE_CACHE_POLICY_WRITE_BACK,
             CachePolicy::Disabled => WRITE_CACHE_POLICY_WRITE_THROUGH,
@@ -1473,11 +1404,7 @@ impl Client {
     }
 
     /// Set volume read cache policy.
-    pub fn vol_read_cache_set(
-        &mut self,
-        vol: &Volume,
-        rcp: CachePolicy,
-    ) -> Result<()> {
+    pub fn vol_read_cache_set(&mut self, vol: &Volume, rcp: CachePolicy) -> Result<()> {
         let rcp: u8 = match rcp {
             CachePolicy::Enabled => READ_CACHE_POLICY_ENABLED,
             CachePolicy::Disabled => READ_CACHE_POLICY_DISABLED,

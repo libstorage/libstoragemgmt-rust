@@ -28,8 +28,8 @@
 
 use regex::Regex;
 
-use super::error::*;
 use super::data::InitiatorType;
+use super::error::*;
 
 struct SizeUnit<'a> {
     unit: &'a str,
@@ -135,7 +135,7 @@ pub fn size_human_2_size_bytes(s: &str) -> u64 {
         Some(u) => {
             let tmp = u.as_str().to_uppercase();
             println!("tmp: {}", tmp);
-            if ! tmp.ends_with('B') {
+            if !tmp.ends_with('B') {
                 format!("{}IB", tmp)
             } else {
                 tmp
@@ -172,10 +172,7 @@ pub fn size_bytes_2_size_human(i: u64) -> String {
     format!("{:.2}{}", num, unit)
 }
 
-pub(crate) fn verify_init_id_str(
-    init_id: &str,
-    init_type: InitiatorType,
-) -> Result<()> {
+pub(crate) fn verify_init_id_str(init_id: &str, init_type: InitiatorType) -> Result<()> {
     let valid: bool = match init_type {
         InitiatorType::Wwpn => {
             let regex_wwpn = Regex::new(
@@ -187,8 +184,7 @@ pub(crate) fn verify_init_id_str(
             regex_wwpn.is_match(init_id)
         }
         InitiatorType::IscsiIqn => {
-            init_id.starts_with("iqn") || init_id.starts_with("eui")
-                || init_id.starts_with("naa")
+            init_id.starts_with("iqn") || init_id.starts_with("eui") || init_id.starts_with("naa")
         }
         _ => {
             return Err(LsmError::InvalidArgument(format!(
