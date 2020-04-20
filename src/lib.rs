@@ -53,7 +53,7 @@
 //!
 //!  * Make a connection to plugin via [`lsm::Client`][2].
 //!
-//!  * Check required [`capacity`][3] is supported.
+//!  * Check required [`lsm::Capabilities`][3] for supported functionality.
 //!
 //!  * Invoke required method of [`lsm::Client`][2].
 //!
@@ -98,7 +98,7 @@
 //!
 //! [1]: https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html
 //! [2]: struct.Client.html
-//! [3]: struct.Capacities.html
+//! [3]: struct.Capabilities.html
 
 extern crate serde;
 #[macro_use]

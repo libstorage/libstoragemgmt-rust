@@ -25,7 +25,7 @@ To use `LibStorageMgmt` rust binding, you need:
 
  * Make a connection to plugin via [`lsm::Client`][2].
 
- * Check required [`capacity`][3] is supported.
+ * Check required [`lsm::Capabilities`][3] for supported functionality.
 
  * Invoke required method of [`lsm::Client`][2].
 
