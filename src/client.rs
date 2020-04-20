@@ -107,7 +107,7 @@ pub struct PluginInfo {
     pub name: String,
 }
 
-/// Query all aviable plugin from libstoragemgmt daemon.
+/// Query all available plugins from libStorageMgmt daemon (lsmd).
 ///
 /// # Errors
 ///
@@ -128,7 +128,7 @@ pub fn available_plugins() -> Result<Vec<PluginInfo>> {
         Ok(paths) => {
             for path in paths {
                 match path {
-                    // Got error when interate, it might happen when
+                    // Got error when iterate, it might happen when
                     // daemon is starting.
                     //
                     Err(_) => continue,
@@ -468,7 +468,7 @@ impl Client {
     ///  * `in_user` -- The inbound authentication username. The inbound
     ///    authentication means the iSCSI initiator authenticates the iSCSI
     ///    target using CHAP.
-    ///  * `in_pass` -- The inbond authentication password.
+    ///  * `in_pass` -- The inbound authentication password.
     ///  * `out_user` -- The outbound authentication username. The outbound
     ///    authentication means the iSCSI target authenticates the iSCSI
     ///    initiator using CHAP.
@@ -672,7 +672,7 @@ impl Client {
     ///
     /// # Errors
     ///
-    ///  * [`LsmError::EmptyAccessGroup`][1]: Cannot mask voluem to empty
+    ///  * [`LsmError::EmptyAccessGroup`][1]: Cannot mask volume to empty
     ///    access group.
     ///
     /// [1]: enum.LsmError.html#variant.EmptyAccessGroup
