@@ -1,421 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `lsm` crate.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, lsm">
-
-    <title>lsm - Rust</title>
-
-    <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../main.css">
-    
-
-    
-    
-</head>
-<body class="rustdoc mod">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        <p class='location'>Crate lsm</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'lsm', ty: 'mod', relpath: '../'};</script></div>
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>lsm</a></span><span class='out-of-band'><span id='render-detail'>
-                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                       [<span class='inner'>&#x2212;</span>]
-                   </a>
-               </span><a class='srclink' href='../src/lsm/lib.rs.html#29-119' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'>
-<h1 id='libstoragemgmt' class='section-header'><a href='#libstoragemgmt'><code>LibStorageMgmt</code></a></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `lsm` crate."><meta name="keywords" content="rust, rustlang, rust-lang, lsm"><title>lsm - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../lsm/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate lsm</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all lsm's items</p></a><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'lsm', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/lsm/lib.rs.html#29-119' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>lsm</a></span></h1><div class='docblock'><h1 id="libstoragemgmt" class="section-header"><a href="#libstoragemgmt"><code>LibStorageMgmt</code></a></h1>
 <p><code>LibStorageMgmt</code> provides a set of API for programmatically manage their
 storage hardware in a vendor neutral way supporting these actions:</p>
-
 <ul>
-<li><p>List storage pools, volumes, access groups, or file systems.</p></li>
-<li><p>Create and delete volumes, access groups, file systems, or NFS exports.</p></li>
-<li><p>Grant and remove access to volumes, access groups, or initiators.</p></li>
-<li><p>Replicate volumes with snapshots, clones, and copies.</p></li>
-<li><p>Create and delete access groups and edit members of a group.</p></li>
-<li><p>List Linux local SCSI/ATA/NVMe disks.</p></li>
-<li><p>Control IDENT/FAULT LED of local disk via SES(SCSI Enclosure Service).</p></li>
+<li>
+<p>List storage pools, volumes, access groups, or file systems.</p>
+</li>
+<li>
+<p>Create and delete volumes, access groups, file systems, or NFS exports.</p>
+</li>
+<li>
+<p>Grant and remove access to volumes, access groups, or initiators.</p>
+</li>
+<li>
+<p>Replicate volumes with snapshots, clones, and copies.</p>
+</li>
+<li>
+<p>Create and delete access groups and edit members of a group.</p>
+</li>
+<li>
+<p>List Linux local SCSI/ATA/NVMe disks.</p>
+</li>
+<li>
+<p>Control IDENT/FAULT LED of local disk via SES(SCSI Enclosure Service).</p>
+</li>
 </ul>
-
 <p>To use <code>LibStorageMgmt</code> rust binding, you need:</p>
-
 <ul>
-<li><p>Start the libstoragemgmt daemon(<code>lsmd</code>)</p></li>
-<li><p>Choose a URI after reading <a href="https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html"><code>LibStorageMgmt</code> user guide</a></p></li>
-<li><p>Make a connection to plugin via <a href="struct.Client.html"><code>lsm::Client</code></a>.</p></li>
-<li><p>Check required <a href="struct.Capacities.html"><code>capacity</code></a> is supported.</p></li>
-<li><p>Invoke required method of <a href="struct.Client.html"><code>lsm::Client</code></a>.</p></li>
+<li>
+<p>Start the libstoragemgmt daemon(<code>lsmd</code>)</p>
+</li>
+<li>
+<p>Choose a URI after reading <a href="https://libstorage.github.io/libstoragemgmt-doc/doc/user_guide.html"><code>LibStorageMgmt</code> user guide</a></p>
+</li>
+<li>
+<p>Make a connection to plugin via <a href="struct.Client.html"><code>lsm::Client</code></a>.</p>
+</li>
+<li>
+<p>Check required <a href="struct.Capacities.html"><code>capacity</code></a> is supported.</p>
+</li>
+<li>
+<p>Invoke required method of <a href="struct.Client.html"><code>lsm::Client</code></a>.</p>
+</li>
 </ul>
-
-<h1 id='example-code-using-simulator-plugin' class='section-header'><a href='#example-code-using-simulator-plugin'>Example code using simulator plugin</a></h1>
-<pre class="rust rust-example-rendered">
+<h1 id="example-code-using-simulator-plugin" class="section-header"><a href="#example-code-using-simulator-plugin">Example code using simulator plugin</a></h1>
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">lsm</span>;
 <span class="kw">use</span> <span class="ident">lsm</span>::{<span class="ident">Client</span>, <span class="ident">LsmError</span>};
-<span class="kw">fn</span> <span class="ident">main</span>() {
+
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c</span>: <span class="ident">Client</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">Client</span>::<span class="ident">new</span>(<span class="string">&quot;sim://&quot;</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="ident">i</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">i</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">match</span> <span class="ident">e</span> {
                 <span class="comment">// Error handling goes here</span>
-                <span class="ident">LsmError</span>::<span class="ident">DaemonNotRunning</span>(_) <span class="op">=&gt;</span>
+                <span class="ident">LsmError</span>::<span class="ident">DaemonNotRunning</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span>
                     <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Please start the libstoragemgmt daemon&quot;</span>),
-                _ <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)
             };
         },
     };
     <span class="kw">let</span> <span class="ident">syss</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">c</span>.<span class="ident">systems</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="ident">i</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)         <span class="comment">// Please use error handling as above.</span>
+        <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">i</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)         <span class="comment">// Please use error handling as above.</span>
     };
     <span class="kw">for</span> <span class="ident">s</span> <span class="kw">in</span> <span class="ident">syss</span> {
         <span class="kw">let</span> <span class="ident">cap</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">c</span>.<span class="ident">capabilities</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="ident">i</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)     <span class="comment">// Please use error handling as above.</span>
+            <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">i</span>,
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>)     <span class="comment">// Please use error handling as above.</span>
         };
         <span class="kw">if</span> <span class="ident">cap</span>.<span class="ident">is_supported</span>(<span class="ident">lsm</span>::<span class="ident">Capability</span>::<span class="ident">Volumes</span>) {
             <span class="kw">let</span> <span class="ident">vols</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">c</span>.<span class="ident">volumes</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="ident">i</span>,
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>) <span class="comment">// Please use error handling as above.</span>
+                <span class="prelude-val">Ok</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">i</span>,
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="ident">e</span>) <span class="comment">// Please use error handling as above.</span>
             };
             <span class="kw">for</span> <span class="ident">vol</span> <span class="kw">in</span> <span class="ident">vols</span> {
                 <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Got volume: {} {}&quot;</span>, <span class="ident">vol</span>.<span class="ident">name</span>, <span class="ident">vol</span>.<span class="ident">id</span>);
             }
         }
     }
-}</pre>
+</pre></div>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.AccessGroup.html"
-                                  title='struct lsm::AccessGroup'>AccessGroup</a></td>
-                           <td class='docblock-short'>
-                                <p>Access group is also known as host group on some storage system, it defines
+<table><tr class='module-item'><td><a class="struct" href="struct.AccessGroup.html" title='lsm::AccessGroup struct'>AccessGroup</a></td><td class='docblock-short'><p>Access group is also known as host group on some storage system, it defines
 a group of initiators sharing the same access to the volume.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Battery.html"
-                                  title='struct lsm::Battery'>Battery</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a battery.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.BlockRange.html"
-                                  title='struct lsm::BlockRange'>BlockRange</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a block range used <code>Client::volume_replicate_range()</code>.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Capabilities.html"
-                                  title='struct lsm::Capabilities'>Capabilities</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent capabilities supported by specific system.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Client.html"
-                                  title='struct lsm::Client'>Client</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent the connection to plugin.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Disk.html"
-                                  title='struct lsm::Disk'>Disk</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FileSystem.html"
-                                  title='struct lsm::FileSystem'>FileSystem</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.FileSystemSnapShot.html"
-                                  title='struct lsm::FileSystemSnapShot'>FileSystemSnapShot</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.NfsAccess.html"
-                                  title='struct lsm::NfsAccess'>NfsAccess</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent NFS access control information.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.NfsExport.html"
-                                  title='struct lsm::NfsExport'>NfsExport</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.PluginInfo.html"
-                                  title='struct lsm::PluginInfo'>PluginInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a plugin information</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Pool.html"
-                                  title='struct lsm::Pool'>Pool</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.PoolMemberInfo.html"
-                                  title='struct lsm::PoolMemberInfo'>PoolMemberInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent pool membership informtion.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.System.html"
-                                  title='struct lsm::System'>System</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a storage system. Examples:</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.TargetPort.html"
-                                  title='struct lsm::TargetPort'>TargetPort</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a target port which is the front-end port of storage system which
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Battery.html" title='lsm::Battery struct'>Battery</a></td><td class='docblock-short'><p>Represent a battery.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.BlockRange.html" title='lsm::BlockRange struct'>BlockRange</a></td><td class='docblock-short'><p>Represent a block range used <code>Client::volume_replicate_range()</code>.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Capabilities.html" title='lsm::Capabilities struct'>Capabilities</a></td><td class='docblock-short'><p>Represent capabilities supported by specific system.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Client.html" title='lsm::Client struct'>Client</a></td><td class='docblock-short'><p>Represent the connection to plugin.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Disk.html" title='lsm::Disk struct'>Disk</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.FileSystem.html" title='lsm::FileSystem struct'>FileSystem</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.FileSystemSnapShot.html" title='lsm::FileSystemSnapShot struct'>FileSystemSnapShot</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.NfsAccess.html" title='lsm::NfsAccess struct'>NfsAccess</a></td><td class='docblock-short'><p>Represent NFS access control information.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.NfsExport.html" title='lsm::NfsExport struct'>NfsExport</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.PluginInfo.html" title='lsm::PluginInfo struct'>PluginInfo</a></td><td class='docblock-short'><p>Represent a plugin information</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Pool.html" title='lsm::Pool struct'>Pool</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.PoolMemberInfo.html" title='lsm::PoolMemberInfo struct'>PoolMemberInfo</a></td><td class='docblock-short'><p>Represent pool membership informtion.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.System.html" title='lsm::System struct'>System</a></td><td class='docblock-short'><p>Represent a storage system. Examples:</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.TargetPort.html" title='lsm::TargetPort struct'>TargetPort</a></td><td class='docblock-short'><p>Represent a target port which is the front-end port of storage system which
 storage user/client connect to and get storage service from.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Volume.html"
-                                  title='struct lsm::Volume'>Volume</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a storage volume. Also known as LUN(Logical Unit Number) or
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Volume.html" title='lsm::Volume struct'>Volume</a></td><td class='docblock-short'><p>Represent a storage volume. Also known as LUN(Logical Unit Number) or
 Storage Volume or Virtual Disk. The host OS treats it as block devices (one
 volume can be exposed as many disks when <a href="https://en.wikipedia.org/wiki/Multipath_I/O">multipath I/O</a> is enabled).</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.VolumeCacheInfo.html"
-                                  title='struct lsm::VolumeCacheInfo'>VolumeCacheInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent volume cache informtion.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.VolumeRaidInfo.html"
-                                  title='struct lsm::VolumeRaidInfo'>VolumeRaidInfo</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent volume RAID informtion.</p>
-                           </td>
-                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.BatteryType.html"
-                                  title='enum lsm::BatteryType'>BatteryType</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.CachePolicy.html"
-                                  title='enum lsm::CachePolicy'>CachePolicy</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a volume cache policy.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Capability.html"
-                                  title='enum lsm::Capability'>Capability</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a capability supported by specific system.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.DiskLinkType.html"
-                                  title='enum lsm::DiskLinkType'>DiskLinkType</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent disk data link type.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.DiskType.html"
-                                  title='enum lsm::DiskType'>DiskType</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent disk type.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.InitiatorType.html"
-                                  title='enum lsm::InitiatorType'>InitiatorType</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.LsmError.html"
-                                  title='enum lsm::LsmError'>LsmError</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.PoolMember.html"
-                                  title='enum lsm::PoolMember'>PoolMember</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a Pool member.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.PortType.html"
-                                  title='enum lsm::PortType'>PortType</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.RaidType.html"
-                                  title='enum lsm::RaidType'>RaidType</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a RAID type.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.SystemMode.html"
-                                  title='enum lsm::SystemMode'>SystemMode</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.VolumeCreateArgThinP.html"
-                                  title='enum lsm::VolumeCreateArgThinP'>VolumeCreateArgThinP</a></td>
-                           <td class='docblock-short'>
-                                <p>For argument <code>thinp</code> of <code>Client::volume_create()</code></p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.VolumeReplicateType.html"
-                                  title='enum lsm::VolumeReplicateType'>VolumeReplicateType</a></td>
-                           <td class='docblock-short'>
-                                <p>Represent a volume replication type.</p>
-                           </td>
-                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.available_plugins.html"
-                                  title='fn lsm::available_plugins'>available_plugins</a></td>
-                           <td class='docblock-short'>
-                                <p>Query all aviable plugin from libstoragemgmt daemon.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.size_bytes_2_size_human.html"
-                                  title='fn lsm::size_bytes_2_size_human'>size_bytes_2_size_human</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.size_human_2_size_bytes.html"
-                                  title='fn lsm::size_human_2_size_bytes'>size_human_2_size_bytes</a></td>
-                           <td class='docblock-short'>
-                                <p>Convert human readable size string into integer size in bytes.</p>
-                           </td>
-                       </tr></table></section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>↑</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>↓</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>↹</dt>
-                    <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../";
-        window.currentCrate = "lsm";
-    </script>
-    <script src="../main.js"></script>
-    <script defer src="../search-index.js"></script>
-</body>
-</html>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.VolumeCacheInfo.html" title='lsm::VolumeCacheInfo struct'>VolumeCacheInfo</a></td><td class='docblock-short'><p>Represent volume cache informtion.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.VolumeRaidInfo.html" title='lsm::VolumeRaidInfo struct'>VolumeRaidInfo</a></td><td class='docblock-short'><p>Represent volume RAID informtion.</p>
+</td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table><tr class='module-item'><td><a class="enum" href="enum.BatteryType.html" title='lsm::BatteryType enum'>BatteryType</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.CachePolicy.html" title='lsm::CachePolicy enum'>CachePolicy</a></td><td class='docblock-short'><p>Represent a volume cache policy.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Capability.html" title='lsm::Capability enum'>Capability</a></td><td class='docblock-short'><p>Represent a capability supported by specific system.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.DiskLinkType.html" title='lsm::DiskLinkType enum'>DiskLinkType</a></td><td class='docblock-short'><p>Represent disk data link type.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.DiskType.html" title='lsm::DiskType enum'>DiskType</a></td><td class='docblock-short'><p>Represent disk type.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.InitiatorType.html" title='lsm::InitiatorType enum'>InitiatorType</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.LsmError.html" title='lsm::LsmError enum'>LsmError</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.PoolMember.html" title='lsm::PoolMember enum'>PoolMember</a></td><td class='docblock-short'><p>Represent a Pool member.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.PortType.html" title='lsm::PortType enum'>PortType</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.RaidType.html" title='lsm::RaidType enum'>RaidType</a></td><td class='docblock-short'><p>Represent a RAID type.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.SystemMode.html" title='lsm::SystemMode enum'>SystemMode</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.VolumeCreateArgThinP.html" title='lsm::VolumeCreateArgThinP enum'>VolumeCreateArgThinP</a></td><td class='docblock-short'><p>For argument <code>thinp</code> of <code>Client::volume_create()</code></p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.VolumeReplicateType.html" title='lsm::VolumeReplicateType enum'>VolumeReplicateType</a></td><td class='docblock-short'><p>Represent a volume replication type.</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.available_plugins.html" title='lsm::available_plugins fn'>available_plugins</a></td><td class='docblock-short'><p>Query all aviable plugin from libstoragemgmt daemon.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.size_bytes_2_size_human.html" title='lsm::size_bytes_2_size_human fn'>size_bytes_2_size_human</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="fn" href="fn.size_human_2_size_bytes.html" title='lsm::size_human_2_size_bytes fn'>size_human_2_size_bytes</a></td><td class='docblock-short'><p>Convert human readable size string into integer size in bytes.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "lsm";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

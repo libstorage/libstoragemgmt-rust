@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/data.rs`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang">
-
-    <title>data.rs.html -- source</title>
-
-    <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
-    
-
-    
-    
-</head>
-<body class="rustdoc source">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/data.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>data.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../lsm/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1355,7 +1309,14 @@
 <span id="1309">1309</span>
 <span id="1310">1310</span>
 <span id="1311">1311</span>
-</pre><pre class="rust ">
+<span id="1312">1312</span>
+<span id="1313">1313</span>
+<span id="1314">1314</span>
+<span id="1315">1315</span>
+<span id="1316">1316</span>
+<span id="1317">1317</span>
+<span id="1318">1318</span>
+</pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright (C) 2017-2018 Red Hat, Inc.</span>
 <span class="comment">//</span>
 <span class="comment">// Permission is hereby granted, free of charge, to any</span>
@@ -1387,34 +1348,34 @@
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Deserializer</span>, <span class="ident">Serializer</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>;
 
-<span class="kw">fn</span> <span class="ident">gen_system_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_system_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;System&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_pool_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_pool_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;Pool&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_vol_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_vol_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;Volume&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_ag_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_ag_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;AccessGroup&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_fs_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_fs_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;FileSystem&quot;</span>.<span class="ident">to_string</span>()
 }
-<span class="kw">fn</span> <span class="ident">gen_fs_snap_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_fs_snap_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;FsSnapshot&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_exp_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_exp_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;NfsExport&quot;</span>.<span class="ident">to_string</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">gen_disk_class_string</span>() <span class="op">-&gt;</span> <span class="ident">String</span> {
+<span class="kw">fn</span> <span class="ident">gen_disk_class_string</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="string">&quot;Disk&quot;</span>.<span class="ident">to_string</span>()
 }
 
@@ -1429,7 +1390,8 @@
 <span class="doccomment">///  * A Linux system running NFS service</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">System</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_system_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_system_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -1494,15 +1456,15 @@
     <span class="doccomment">/// Plugin failed to query system status.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_UNKNOWN</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
     <span class="doccomment">/// System is up and healthy.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
     <span class="doccomment">/// System is in error state.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// System is degraded.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
     <span class="doccomment">/// System has protential failure.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_PREDICTIVE_FAILURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_PREDICTIVE_FAILURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// Vendor specific status.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i8</span>)]</span>
@@ -1522,20 +1484,21 @@
     <span class="ident">Hba</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_sys_mod</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_sys_mod</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SystemMode</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SystemMode</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i8</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="op">-</span><span class="number">1</span> <span class="op">|</span> <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">SystemMode</span>::<span class="ident">Unknown</span>),
+        <span class="op">-</span><span class="number">1</span> <span class="op">|</span> <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">SystemMode</span>::<span class="ident">Unknown</span>),
     }
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">trivially_copy_pass_by_ref</span>)]</span>
 <span class="kw">fn</span> <span class="ident">sys_mod_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(
     <span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="ident">SystemMode</span>,
     <span class="ident">serializer</span>: <span class="ident">S</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">serializer</span>.<span class="ident">serialize_i8</span>(<span class="kw-2">*</span><span class="ident">m</span> <span class="kw">as</span> <span class="ident">i8</span>)
 }
 
@@ -1546,7 +1509,8 @@
 <span class="doccomment">/// [1]: https://en.wikipedia.org/wiki/Multipath_I/O</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Volume</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_vol_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_vol_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -1573,7 +1537,7 @@
 
 <span class="kw">impl</span> <span class="ident">Volume</span> {
     <span class="doccomment">/// Retried the usable size of volume in bytes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u64</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="self">self</span>.<span class="ident">block_size</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">num_of_blocks</span>
     }
 }
@@ -1640,12 +1604,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RaidType</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">i</span>: <span class="ident">i32</span>) <span class="op">-&gt;</span> <span class="ident">RaidType</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">i</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RaidType</span> {
         <span class="kw">match</span> <span class="ident">i</span> {
-            <span class="number">0</span>...<span class="number">6</span> <span class="op">|</span> <span class="number">10</span> <span class="op">|</span> <span class="number">15</span> <span class="op">|</span> <span class="number">16</span> <span class="op">|</span> <span class="number">50</span> <span class="op">|</span> <span class="number">60</span> <span class="op">|</span> <span class="number">51</span> <span class="op">|</span> <span class="number">61</span> <span class="op">|</span> <span class="number">20</span>...<span class="number">22</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> {
-                <span class="ident">transmute</span>(<span class="ident">i</span>)
-            },
-            _ <span class="op">=&gt;</span> <span class="ident">RaidType</span>::<span class="ident">Unknown</span>,
+            <span class="number">0</span>..<span class="op">=</span><span class="number">6</span> <span class="op">|</span> <span class="number">10</span> <span class="op">|</span> <span class="number">15</span> <span class="op">|</span> <span class="number">16</span> <span class="op">|</span> <span class="number">50</span> <span class="op">|</span> <span class="number">60</span> <span class="op">|</span> <span class="number">51</span> <span class="op">|</span> <span class="number">61</span> <span class="op">|</span> <span class="number">20</span>..<span class="op">=</span><span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="ident">transmute</span>(<span class="ident">i</span>) },
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RaidType</span>::<span class="ident">Unknown</span>,
         }
     }
 }
@@ -1699,20 +1661,18 @@
     <span class="kw">pub</span> <span class="ident">opt_io_size</span>: <span class="ident">u32</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_bool</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_bool</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="number">1</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>),
     }
 }
 
-<span class="kw">fn</span> <span class="ident">bool_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(
-    <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">bool</span>,
-    <span class="ident">serializer</span>: <span class="ident">S</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">trivially_copy_pass_by_ref</span>)]</span>
+<span class="kw">fn</span> <span class="ident">bool_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">bool</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">b</span> {
         <span class="ident">serializer</span>.<span class="ident">serialize_i8</span>(<span class="number">1i8</span>)
     } <span class="kw">else</span> {
@@ -1722,7 +1682,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pool</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_pool_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_pool_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -1834,33 +1795,33 @@
 
 <span class="kw">impl</span> <span class="ident">Pool</span> {
     <span class="doccomment">/// This pool could allocate space for sub-pool.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_POOL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_POOL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
     <span class="doccomment">/// This pool could create volume.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// This pool could create file system.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_FS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_FS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
     <span class="doccomment">/// This pool could hold delta data for snapshots.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_DELTA</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_DELTA</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// This pool could create fully allocated volume.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME_FULL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME_FULL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
     <span class="doccomment">/// This pool could create thin provisioned volume.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME_THIN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">6</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_VOLUME_THIN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
     <span class="doccomment">/// This pool is reserved for system internal use.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_SYS_RESERVED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">10</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELEMENT_TYPE_SYS_RESERVED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
 
     <span class="doccomment">/// This pool cannot grow size of its volume.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNSUPPORTED_VOLUME_GROW</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span>;
     <span class="doccomment">/// This pool cannot shrink size of its volume.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNSUPPORTED_VOLUME_SHRINK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UNSUPPORTED_VOLUME_SHRINK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
 
     <span class="doccomment">/// Plugin failed to query pool status.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_UNKNOWN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span>;
     <span class="doccomment">/// The data of this pool is accessible with not data lose. But it might</span>
     <span class="doccomment">/// along with `Pool::STATUS_DEGRADED` to indicate redundancy lose.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
     <span class="doccomment">/// Vendor specific status. The `Pool.status_info` property will explain</span>
     <span class="doccomment">/// the detail.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// Pool is lost data redundancy due to I/O error or offline of one or more</span>
     <span class="doccomment">/// RAID member. Often come with `Pool::STATUS_OK` to indicate data is</span>
     <span class="doccomment">/// still accessible with not data lose. Example:</span>
@@ -1868,40 +1829,41 @@
     <span class="doccomment">///  * RAID 6 pool lost access to 1 disk or 2 disks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  * RAID 5 pool lost access to 1 disk.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// Pool data is not accessible due to some members offline. Example:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  * RAID 5 pool lost access to 2 disks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  * RAID 0 pool lost access to 1 disks.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
     <span class="doccomment">///  Pool is stopping by administrator. Pool data is not accessible.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">9</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
     <span class="doccomment">///  Pool is reviving from STOPPED status. Pool data is not accessible yet.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STARTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">10</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STARTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
     <span class="doccomment">/// Pool is reconstructing the hash data or mirror data. Mostly happen</span>
     <span class="doccomment">/// when disk revive from offline or disk replaced. `Pool.status_info` may</span>
     <span class="doccomment">/// contain progress of this reconstruction job. Often come with</span>
     <span class="doccomment">/// `Pool::STATUS_DEGRADED` and `Pool::STATUS_OK`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_RECONSTRUCTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">12</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_RECONSTRUCTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12</span>;
     <span class="doccomment">/// Array is running integrity check on data of current pool. It might be</span>
     <span class="doccomment">/// started by administrator or array itself. The I/O performance will be</span>
     <span class="doccomment">/// impacted. Pool.status_info may contain progress of this verification</span>
     <span class="doccomment">/// job. Often come with `Pool::STATUS_OK` to indicate data is still</span>
     <span class="doccomment">/// accessible.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_VERIFYING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">13</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_VERIFYING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>;
     <span class="doccomment">/// Pool is not accessable and performing initializing task. Often happen</span>
     <span class="doccomment">/// on newly created pool.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">14</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">14</span>;
     <span class="doccomment">/// Pool is growing its size and doing internal jobs. `Pool.status_info`</span>
     <span class="doccomment">/// can contain progress of this growing job. Often come with</span>
     <span class="doccomment">/// `Pool::STATUS_OK` to indicate data is still accessible.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_GROWING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">15</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_GROWING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">15</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Disk</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_disk_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_disk_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -2014,20 +1976,21 @@
     <span class="ident">Hybrid</span> <span class="op">=</span> <span class="number">54</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_disk_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_disk_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DiskType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DiskType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">|</span> <span class="number">3</span>...<span class="number">9</span> <span class="op">|</span> <span class="number">51</span>...<span class="number">54</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">DiskType</span>::<span class="ident">Unknown</span>),
+        <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">|</span> <span class="number">3</span>..<span class="op">=</span><span class="number">9</span> <span class="op">|</span> <span class="number">51</span>..<span class="op">=</span><span class="number">54</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">DiskType</span>::<span class="ident">Unknown</span>),
     }
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">trivially_copy_pass_by_ref</span>)]</span>
 <span class="kw">fn</span> <span class="ident">disk_type_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(
     <span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="ident">DiskType</span>,
     <span class="ident">serializer</span>: <span class="ident">S</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="kw-2">*</span><span class="ident">t</span> <span class="kw">as</span> <span class="ident">i32</span>)
 }
 
@@ -2063,23 +2026,24 @@
     <span class="ident">PciE</span> <span class="op">=</span> <span class="number">11</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_disk_link_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_disk_link_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DiskLinkType</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DiskLinkType</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="op">-</span><span class="number">2</span>...<span class="number">11</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">transmute</span>(<span class="ident">i</span>))) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">DiskLinkType</span>::<span class="ident">Unknown</span>)),
+        <span class="op">-</span><span class="number">2</span>..<span class="op">=</span><span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">transmute</span>(<span class="ident">i</span>))) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">DiskLinkType</span>::<span class="ident">Unknown</span>)),
     }
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">trivially_copy_pass_by_ref</span>)]</span>
 <span class="kw">fn</span> <span class="ident">disk_link_type_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(
     <span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DiskLinkType</span><span class="op">&gt;</span>,
     <span class="ident">serializer</span>: <span class="ident">S</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">t</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=&gt;</span> <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="ident">i</span> <span class="kw">as</span> <span class="ident">i32</span>),
-        <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="ident">DiskLinkType</span>::<span class="ident">Unknown</span> <span class="kw">as</span> <span class="ident">i32</span>),
+        <span class="prelude-val">Some</span>(<span class="ident">i</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="ident">i</span> <span class="kw">as</span> <span class="ident">i32</span>),
+        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="ident">DiskLinkType</span>::<span class="ident">Unknown</span> <span class="kw">as</span> <span class="ident">i32</span>),
     }
 }
 
@@ -2087,21 +2051,21 @@
     <span class="doccomment">/// Plugin failed to query out the status of disk.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_UNKNOWN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span>;
     <span class="doccomment">/// Disk is up and healthy.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
     <span class="doccomment">/// Vendor specific status.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// Disk is still functional but will fail soon.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_PREDICTIVE_FAILURE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_PREDICTIVE_FAILURE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
     <span class="doccomment">/// Error make disk not functional.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// Disk was removed by administrator.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_REMOVED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_REMOVED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
     <span class="doccomment">/// Disk is starting up.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STARTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">6</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STARTING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
     <span class="doccomment">/// Disk is shutting down.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">7</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
     <span class="doccomment">/// Disk is stopped by administrator.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">8</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_STOPPED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
     <span class="doccomment">///  Disk is not functional yet, internal storage system is initializing</span>
     <span class="doccomment">///  this disk, it could be:</span>
     <span class="doccomment">///</span>
@@ -2110,27 +2074,28 @@
     <span class="doccomment">///   * Zeroing disk.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   * Scrubbing disk data.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">9</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
     <span class="doccomment">/// In maintenance for bad sector scan, integrity check and etc It might be</span>
     <span class="doccomment">/// combined with `Disk::STATUS_OK` or `Disk::STATUS_STOPPED` for online</span>
     <span class="doccomment">/// maintenance or offline maintenance.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_MAINTENANCE_MODE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">10</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_MAINTENANCE_MODE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
     <span class="doccomment">/// Disk is configured as spare disk.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_SPARE_DISK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">11</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_SPARE_DISK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
     <span class="doccomment">/// Disk is reconstructing its data.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_RECONSTRUCT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">12</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_RECONSTRUCT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12</span>;
     <span class="doccomment">/// Indicate the whole disk is not holding any data or acting as a dedicate</span>
     <span class="doccomment">/// spare disk. This disk could be assigned as a dedicated spare disk or</span>
     <span class="doccomment">/// used for creating pool. If any spare disk(like those on NetApp ONTAP)</span>
     <span class="doccomment">/// does not require any explicit action when assigning to pool, it should</span>
     <span class="doccomment">/// be treated as free disk and marked as</span>
     <span class="doccomment">/// `Disk::STATUS_FREE | Disk::STATUS_SPARE_DISK`.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_FREE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">13</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_FREE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>;
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileSystem</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_fs_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_fs_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -2148,7 +2113,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileSystemSnapShot</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_fs_snap_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_fs_snap_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -2160,7 +2126,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NfsExport</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_exp_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_exp_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier.</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier of file system.</span>
@@ -2193,7 +2160,8 @@
 <span class="doccomment">/// Access group is also known as host group on some storage system, it defines</span>
 <span class="doccomment">/// a group of initiators sharing the same access to the volume.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AccessGroup</span> {
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_ag_class_string&quot;</span>)]</span> <span class="ident">class</span>: <span class="ident">String</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;gen_ag_class_string&quot;</span>)]</span>
+    <span class="ident">class</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Identifier</span>
     <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
     <span class="doccomment">/// Human friendly name.</span>
@@ -2223,20 +2191,21 @@
     <span class="ident">Mixed</span> <span class="op">=</span> <span class="number">7</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_init_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_init_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">InitiatorType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">InitiatorType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">5</span> <span class="op">|</span> <span class="number">7</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">InitiatorType</span>::<span class="ident">Unknown</span>),
+        <span class="number">0</span> <span class="op">|</span> <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">5</span> <span class="op">|</span> <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">InitiatorType</span>::<span class="ident">Unknown</span>),
     }
 }
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">trivially_copy_pass_by_ref</span>)]</span>
 <span class="kw">fn</span> <span class="ident">init_type_to_int</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(
     <span class="ident">i</span>: <span class="kw-2">&amp;</span><span class="ident">InitiatorType</span>,
     <span class="ident">serializer</span>: <span class="ident">S</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="ident">serializer</span>.<span class="ident">serialize_i32</span>(<span class="kw-2">*</span><span class="ident">i</span> <span class="kw">as</span> <span class="ident">i32</span>)
 }
 
@@ -2291,13 +2260,13 @@
     <span class="ident">Iscsi</span> <span class="op">=</span> <span class="number">4</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_port_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_port_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PortType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PortType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">3</span> <span class="op">|</span> <span class="number">4</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">PortType</span>::<span class="ident">Other</span>),
+        <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">3</span> <span class="op">|</span> <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">PortType</span>::<span class="ident">Other</span>),
     }
 }
 
@@ -2353,20 +2322,20 @@
     <span class="doccomment">/// Plugin failed to query battery status.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_UNKNOWN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span>;
     <span class="doccomment">/// Vendor specific status.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">1</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
     <span class="doccomment">/// Battery is healthy and charged.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// Battery is disconnected from power source and discharging.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DISCHARGING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">3</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DISCHARGING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
     <span class="doccomment">/// Battery is not fully charged and charging.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_CHARGING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">4</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_CHARGING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// System is trying to discharge and recharge the battery to learn its</span>
     <span class="doccomment">/// capability.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_LEARNING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_LEARNING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
     <span class="doccomment">/// Battery is degraded and should be checked or replaced.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">6</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
     <span class="doccomment">/// Battery is dead and should be replaced.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;&lt;</span> <span class="number">7</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
@@ -2382,13 +2351,13 @@
     <span class="ident">Capacitor</span> <span class="op">=</span> <span class="number">4</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">int_to_battery_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;&gt;</span>(
+<span class="kw">fn</span> <span class="ident">int_to_battery_type</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">deserializer</span>: <span class="ident">D</span>,
-) <span class="op">-&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">BatteryType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">BatteryType</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">i</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">Deserialize</span>::<span class="ident">deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
     <span class="kw">match</span> <span class="ident">i</span> {
-        <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">3</span> <span class="op">|</span> <span class="number">4</span> <span class="op">=&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
-        _ <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">BatteryType</span>::<span class="ident">Unknown</span>),
+        <span class="number">1</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">3</span> <span class="op">|</span> <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">transmute</span>(<span class="ident">i</span>)) },
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">BatteryType</span>::<span class="ident">Unknown</span>),
     }
 }
 
@@ -2573,13 +2542,13 @@
     <span class="doccomment">/// Check wether certain [`Capacity`][1] is supported or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [1]: struct.Capacity.html</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_supported</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cap</span>: <span class="ident">Capability</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_supported</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cap</span>: <span class="ident">Capability</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">cap_num</span> <span class="op">=</span> <span class="ident">cap</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">cap</span>[<span class="ident">cap_num</span> <span class="op">*</span> <span class="number">2</span>..<span class="ident">cap_num</span> <span class="op">*</span> <span class="number">2</span> <span class="op">+</span> <span class="number">2</span>];
         <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;val {}&quot;</span>, <span class="ident">val</span>);
         <span class="kw">match</span> <span class="ident">val</span> {
-            <span class="string">&quot;01&quot;</span> <span class="op">=&gt;</span> <span class="bool-val">true</span>,
-            _ <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="string">&quot;01&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         }
     }
 }
@@ -2589,18 +2558,17 @@
 <span class="doccomment">/// Represent a block range used `Client::volume_replicate_range()`.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BlockRange</span> {
     <span class="ident">class</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;src_block&quot;</span>)]</span> <span class="ident">src_blk_addr</span>: <span class="ident">u64</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;dest_block&quot;</span>)]</span> <span class="ident">dst_blk_addr</span>: <span class="ident">u64</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;block_count&quot;</span>)]</span> <span class="ident">blk_count</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;src_block&quot;</span>)]</span>
+    <span class="ident">src_blk_addr</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;dest_block&quot;</span>)]</span>
+    <span class="ident">dst_blk_addr</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;block_count&quot;</span>)]</span>
+    <span class="ident">blk_count</span>: <span class="ident">u64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">BlockRange</span> {
     <span class="doccomment">/// Create a block range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">src_blk_addr</span>: <span class="ident">u64</span>,
-        <span class="ident">dst_blk_addr</span>: <span class="ident">u64</span>,
-        <span class="ident">blk_count</span>: <span class="ident">u64</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">BlockRange</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">src_blk_addr</span>: <span class="ident">u64</span>, <span class="ident">dst_blk_addr</span>: <span class="ident">u64</span>, <span class="ident">blk_count</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BlockRange</span> {
         <span class="ident">BlockRange</span> {
             <span class="ident">class</span>: <span class="string">&quot;BlockRange&quot;</span>.<span class="ident">to_string</span>(),
             <span class="ident">src_blk_addr</span>,
@@ -2667,67 +2635,5 @@
     <span class="doccomment">/// Let storage array to decide the volume provisioning type.</span>
     <span class="ident">Default</span>,
 }
-</pre>
-</section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>↑</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>↓</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>↹</dt>
-                    <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "lsm";
-    </script>
-    <script src="../../main.js"></script>
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</pre></div>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "lsm";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
