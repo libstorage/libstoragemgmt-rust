@@ -142,7 +142,7 @@ impl System {
     pub const STATUS_ERROR: u32 = 1 << 2;
     /// System is degraded.
     pub const STATUS_DEGRADED: u32 = 1 << 3;
-    /// System has protential failure.
+    /// System has potential failure.
     pub const STATUS_PREDICTIVE_FAILURE: u32 = 1 << 4;
     /// Vendor specific status.
     pub const STATUS_OTHER: u32 = 1 << 5;
@@ -298,12 +298,12 @@ impl From<i32> for RaidType {
 pub enum PoolMember {
     /// Pool is created from disks.
     Disk(Disk),
-    /// Pool is allocationed from other pool.
+    /// Pool is allocated from other pool.
     Pool(Pool),
 }
 
 #[derive(Debug, Clone)]
-/// Represent pool membership informtion.
+/// Represent pool membership information.
 pub struct PoolMemberInfo {
     /// RAID type
     pub raid_type: RaidType,
@@ -312,7 +312,7 @@ pub struct PoolMemberInfo {
 }
 
 #[derive(Debug, Clone)]
-/// Represent volume RAID informtion.
+/// Represent volume RAID information.
 pub struct VolumeRaidInfo {
     /// RAID type
     pub raid_type: RaidType,
@@ -532,7 +532,7 @@ impl Pool {
     /// job. Often come with `Pool::STATUS_OK` to indicate data is still
     /// accessible.
     pub const STATUS_VERIFYING: u64 = 1 << 13;
-    /// Pool is not accessable and performing initializing task. Often happen
+    /// Pool is not accessible and performing initializing task. Often happen
     /// on newly created pool.
     pub const STATUS_INITIALIZING: u64 = 1 << 14;
     /// Pool is growing its size and doing internal jobs. `Pool.status_info`
@@ -1172,7 +1172,7 @@ pub enum Capability {
     FsSnapshotDelete = 109,
     /// Support `Client::fs_snapshot_restore()`.
     FsSnapshotRestore = 110,
-    /// Support `Client::fs_snapshot_restore()` with `files` arugment.
+    /// Support `Client::fs_snapshot_restore()` with `files` argument.
     FsSnapshotRestoreSpecificFiles = 111,
     /// Support `Client::fs_has_child_dep()`.
     FsHasChildDep = 112,
@@ -1220,7 +1220,7 @@ pub enum Capability {
 }
 
 impl Capabilities {
-    /// Check wether certain [`Capacity`][1] is supported or not.
+    /// Check whether specific [`Capacity`][1] is supported or not.
     ///
     /// [1]: struct.Capacity.html
     pub fn is_supported(&self, cap: Capability) -> bool {
@@ -1264,10 +1264,10 @@ impl BlockRange {
 pub enum CachePolicy {
     /// Cache is enabled.
     Enabled,
-    /// Storage system will determin whethere to use cache based on
+    /// Storage system will determine whether to use cache based on
     /// battery/capacitor health.
     Auto, // Only for write cache
-    /// Cache is disabeld.
+    /// Cache is disabled.
     Disabled,
     /// Plugin failed to query cache setting.
     Unknown,
@@ -1287,7 +1287,7 @@ pub struct VolumeCacheInfo {
     pub read_cache_setting: CachePolicy,
     /// Read cache status
     pub read_cache_status: CachePolicy,
-    /// Physcial disk cache status.
+    /// Physical disk cache status.
     pub physical_disk_cache_status: CachePolicy,
 }
 
@@ -1309,7 +1309,7 @@ pub struct NfsAccess<'a> {
 // TODO(Gris Ge): Update URL of volume_create() here
 /// For argument `thinp` of `Client::volume_create()`
 pub enum VolumeCreateArgThinP {
-    /// Create fully allocationed volume.
+    /// Create fully allocated volume.
     Full,
     /// Create thin provisioning volume.
     Thin,
