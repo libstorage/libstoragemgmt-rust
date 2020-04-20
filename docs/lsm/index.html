@@ -36,7 +36,7 @@ storage hardware in a vendor neutral way supporting these actions:</p>
 <p>Make a connection to plugin via <a href="struct.Client.html"><code>lsm::Client</code></a>.</p>
 </li>
 <li>
-<p>Check required <a href="struct.Capabilities.html"><code>lsm::Capabilities</code></a> is supported.</p>
+<p>Check required <a href="struct.Capabilities.html"><code>lsm::Capabilities</code></a> for supported functionality.</p>
 </li>
 <li>
 <p>Invoke required method of <a href="struct.Client.html"><code>lsm::Client</code></a>.</p>
@@ -87,7 +87,7 @@ a group of initiators sharing the same access to the volume.</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.Client.html" title='lsm::Client struct'>Client</a></td><td class='docblock-short'><p>Represent the connection to plugin.</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.Disk.html" title='lsm::Disk struct'>Disk</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.FileSystem.html" title='lsm::FileSystem struct'>FileSystem</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.FileSystemSnapShot.html" title='lsm::FileSystemSnapShot struct'>FileSystemSnapShot</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.NfsAccess.html" title='lsm::NfsAccess struct'>NfsAccess</a></td><td class='docblock-short'><p>Represent NFS access control information.</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.NfsExport.html" title='lsm::NfsExport struct'>NfsExport</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.PluginInfo.html" title='lsm::PluginInfo struct'>PluginInfo</a></td><td class='docblock-short'><p>Represent a plugin information</p>
-</td></tr><tr class='module-item'><td><a class="struct" href="struct.Pool.html" title='lsm::Pool struct'>Pool</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.PoolMemberInfo.html" title='lsm::PoolMemberInfo struct'>PoolMemberInfo</a></td><td class='docblock-short'><p>Represent pool membership informtion.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Pool.html" title='lsm::Pool struct'>Pool</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.PoolMemberInfo.html" title='lsm::PoolMemberInfo struct'>PoolMemberInfo</a></td><td class='docblock-short'><p>Represent pool membership information.</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.System.html" title='lsm::System struct'>System</a></td><td class='docblock-short'><p>Represent a storage system. Examples:</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.TargetPort.html" title='lsm::TargetPort struct'>TargetPort</a></td><td class='docblock-short'><p>Represent a target port which is the front-end port of storage system which
 storage user/client connect to and get storage service from.</p>
@@ -95,7 +95,7 @@ storage user/client connect to and get storage service from.</p>
 Storage Volume or Virtual Disk. The host OS treats it as block devices (one
 volume can be exposed as many disks when <a href="https://en.wikipedia.org/wiki/Multipath_I/O">multipath I/O</a> is enabled).</p>
 </td></tr><tr class='module-item'><td><a class="struct" href="struct.VolumeCacheInfo.html" title='lsm::VolumeCacheInfo struct'>VolumeCacheInfo</a></td><td class='docblock-short'><p>Represent volume cache informtion.</p>
-</td></tr><tr class='module-item'><td><a class="struct" href="struct.VolumeRaidInfo.html" title='lsm::VolumeRaidInfo struct'>VolumeRaidInfo</a></td><td class='docblock-short'><p>Represent volume RAID informtion.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.VolumeRaidInfo.html" title='lsm::VolumeRaidInfo struct'>VolumeRaidInfo</a></td><td class='docblock-short'><p>Represent volume RAID information.</p>
 </td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table><tr class='module-item'><td><a class="enum" href="enum.BatteryType.html" title='lsm::BatteryType enum'>BatteryType</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.CachePolicy.html" title='lsm::CachePolicy enum'>CachePolicy</a></td><td class='docblock-short'><p>Represent a volume cache policy.</p>
 </td></tr><tr class='module-item'><td><a class="enum" href="enum.Capability.html" title='lsm::Capability enum'>Capability</a></td><td class='docblock-short'><p>Represent a capability supported by specific system.</p>
@@ -106,6 +106,6 @@ volume can be exposed as many disks when <a href="https://en.wikipedia.org/wiki/
 </td></tr><tr class='module-item'><td><a class="enum" href="enum.SystemMode.html" title='lsm::SystemMode enum'>SystemMode</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="enum" href="enum.VolumeCreateArgThinP.html" title='lsm::VolumeCreateArgThinP enum'>VolumeCreateArgThinP</a></td><td class='docblock-short'><p>For argument <code>thinp</code> of <code>Client::volume_create()</code></p>
 </td></tr><tr class='module-item'><td><a class="enum" href="enum.VolumeReplicateType.html" title='lsm::VolumeReplicateType enum'>VolumeReplicateType</a></td><td class='docblock-short'><p>Represent a volume replication type.</p>
 </td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table><tr class='module-item'><td><a class="fn" href="fn.available_plugins.html" title='lsm::available_plugins fn'>available_plugins</a></td><td class='docblock-short'><p>Query all aviable plugin from libstoragemgmt daemon.</p>
+<table><tr class='module-item'><td><a class="fn" href="fn.available_plugins.html" title='lsm::available_plugins fn'>available_plugins</a></td><td class='docblock-short'><p>Query all available plugins from libStorageMgmt daemon (lsmd).</p>
 </td></tr><tr class='module-item'><td><a class="fn" href="fn.size_bytes_2_size_human.html" title='lsm::size_bytes_2_size_human fn'>size_bytes_2_size_human</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="fn" href="fn.size_human_2_size_bytes.html" title='lsm::size_human_2_size_bytes fn'>size_human_2_size_bytes</a></td><td class='docblock-short'><p>Convert human readable size string into integer size in bytes.</p>
 </td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../";window.currentCrate = "lsm";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

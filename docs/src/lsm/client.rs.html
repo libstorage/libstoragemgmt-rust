@@ -1533,7 +1533,7 @@
     <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
 }
 
-<span class="doccomment">/// Query all aviable plugin from libstoragemgmt daemon.</span>
+<span class="doccomment">/// Query all available plugins from libStorageMgmt daemon (lsmd).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Errors</span>
 <span class="doccomment">///</span>
@@ -1554,7 +1554,7 @@
         <span class="prelude-val">Ok</span>(<span class="ident">paths</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">for</span> <span class="ident">path</span> <span class="kw">in</span> <span class="ident">paths</span> {
                 <span class="kw">match</span> <span class="ident">path</span> {
-                    <span class="comment">// Got error when interate, it might happen when</span>
+                    <span class="comment">// Got error when iterate, it might happen when</span>
                     <span class="comment">// daemon is starting.</span>
                     <span class="comment">//</span>
                     <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">continue</span>,
@@ -1894,7 +1894,7 @@
     <span class="doccomment">///  * `in_user` -- The inbound authentication username. The inbound</span>
     <span class="doccomment">///    authentication means the iSCSI initiator authenticates the iSCSI</span>
     <span class="doccomment">///    target using CHAP.</span>
-    <span class="doccomment">///  * `in_pass` -- The inbond authentication password.</span>
+    <span class="doccomment">///  * `in_pass` -- The inbound authentication password.</span>
     <span class="doccomment">///  * `out_user` -- The outbound authentication username. The outbound</span>
     <span class="doccomment">///    authentication means the iSCSI target authenticates the iSCSI</span>
     <span class="doccomment">///    initiator using CHAP.</span>
@@ -2098,7 +2098,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Errors</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  * [`LsmError::EmptyAccessGroup`][1]: Cannot mask voluem to empty</span>
+    <span class="doccomment">///  * [`LsmError::EmptyAccessGroup`][1]: Cannot mask volume to empty</span>
     <span class="doccomment">///    access group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [1]: enum.LsmError.html#variant.EmptyAccessGroup</span>

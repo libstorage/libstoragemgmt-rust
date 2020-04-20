@@ -51,7 +51,7 @@ is mandatory and required to exist.</p>
 <li><code>in_user</code> -- The inbound authentication username. The inbound
 authentication means the iSCSI initiator authenticates the iSCSI
 target using CHAP.</li>
-<li><code>in_pass</code> -- The inbond authentication password.</li>
+<li><code>in_pass</code> -- The inbound authentication password.</li>
 <li><code>out_user</code> -- The outbound authentication username. The outbound
 authentication means the iSCSI target authenticates the iSCSI
 initiator using CHAP.</li>
@@ -85,7 +85,7 @@ administrator or via <a href="#method.volume_disable"><code>Client::volume_disab
 masking or mapping.</p>
 <h1 id="errors-2" class="section-header"><a href="#errors-2">Errors</a></h1>
 <ul>
-<li><a href="enum.LsmError.html#variant.EmptyAccessGroup"><code>LsmError::EmptyAccessGroup</code></a>: Cannot mask voluem to empty
+<li><a href="enum.LsmError.html#variant.EmptyAccessGroup"><code>LsmError::EmptyAccessGroup</code></a>: Cannot mask volume to empty
 access group.</li>
 </ul>
 </div><h4 id='method.volume_unmask' class="method"><code id='volume_unmask.v'>pub fn <a href='#method.volume_unmask' class='fnname'>volume_unmask</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;vol: &amp;<a class="struct" href="../lsm/struct.Volume.html" title="struct lsm::Volume">Volume</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;ag: &amp;<a class="struct" href="../lsm/struct.AccessGroup.html" title="struct lsm::AccessGroup">AccessGroup</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="enum" href="../lsm/enum.LsmError.html" title="enum lsm::LsmError">LsmError</a>&gt;</code><a class='srclink' href='../src/lsm/client.rs.html#688-694' title='goto source code'>[src]</a></h4><div class='docblock'><p>Revokes access to a volume for the specified group</p>
