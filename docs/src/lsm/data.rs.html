@@ -1461,7 +1461,7 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_ERROR</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
     <span class="doccomment">/// System is degraded.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_DEGRADED</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-    <span class="doccomment">/// System has protential failure.</span>
+    <span class="doccomment">/// System has potential failure.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_PREDICTIVE_FAILURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
     <span class="doccomment">/// Vendor specific status.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_OTHER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
@@ -1617,12 +1617,12 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PoolMember</span> {
     <span class="doccomment">/// Pool is created from disks.</span>
     <span class="ident">Disk</span>(<span class="ident">Disk</span>),
-    <span class="doccomment">/// Pool is allocationed from other pool.</span>
+    <span class="doccomment">/// Pool is allocated from other pool.</span>
     <span class="ident">Pool</span>(<span class="ident">Pool</span>),
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Represent pool membership informtion.</span>
+<span class="doccomment">/// Represent pool membership information.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PoolMemberInfo</span> {
     <span class="doccomment">/// RAID type</span>
     <span class="kw">pub</span> <span class="ident">raid_type</span>: <span class="ident">RaidType</span>,
@@ -1631,7 +1631,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Represent volume RAID informtion.</span>
+<span class="doccomment">/// Represent volume RAID information.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VolumeRaidInfo</span> {
     <span class="doccomment">/// RAID type</span>
     <span class="kw">pub</span> <span class="ident">raid_type</span>: <span class="ident">RaidType</span>,
@@ -1851,7 +1851,7 @@
     <span class="doccomment">/// job. Often come with `Pool::STATUS_OK` to indicate data is still</span>
     <span class="doccomment">/// accessible.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_VERIFYING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>;
-    <span class="doccomment">/// Pool is not accessable and performing initializing task. Often happen</span>
+    <span class="doccomment">/// Pool is not accessible and performing initializing task. Often happen</span>
     <span class="doccomment">/// on newly created pool.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STATUS_INITIALIZING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">14</span>;
     <span class="doccomment">/// Pool is growing its size and doing internal jobs. `Pool.status_info`</span>
@@ -2491,7 +2491,7 @@
     <span class="ident">FsSnapshotDelete</span> <span class="op">=</span> <span class="number">109</span>,
     <span class="doccomment">/// Support `Client::fs_snapshot_restore()`.</span>
     <span class="ident">FsSnapshotRestore</span> <span class="op">=</span> <span class="number">110</span>,
-    <span class="doccomment">/// Support `Client::fs_snapshot_restore()` with `files` arugment.</span>
+    <span class="doccomment">/// Support `Client::fs_snapshot_restore()` with `files` argument.</span>
     <span class="ident">FsSnapshotRestoreSpecificFiles</span> <span class="op">=</span> <span class="number">111</span>,
     <span class="doccomment">/// Support `Client::fs_has_child_dep()`.</span>
     <span class="ident">FsHasChildDep</span> <span class="op">=</span> <span class="number">112</span>,
@@ -2539,7 +2539,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Capabilities</span> {
-    <span class="doccomment">/// Check wether certain [`Capacity`][1] is supported or not.</span>
+    <span class="doccomment">/// Check whether specific [`Capacity`][1] is supported or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [1]: struct.Capacity.html</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_supported</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cap</span>: <span class="ident">Capability</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -2583,10 +2583,10 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CachePolicy</span> {
     <span class="doccomment">/// Cache is enabled.</span>
     <span class="ident">Enabled</span>,
-    <span class="doccomment">/// Storage system will determin whethere to use cache based on</span>
+    <span class="doccomment">/// Storage system will determine whether to use cache based on</span>
     <span class="doccomment">/// battery/capacitor health.</span>
     <span class="ident">Auto</span>, <span class="comment">// Only for write cache</span>
-    <span class="doccomment">/// Cache is disabeld.</span>
+    <span class="doccomment">/// Cache is disabled.</span>
     <span class="ident">Disabled</span>,
     <span class="doccomment">/// Plugin failed to query cache setting.</span>
     <span class="ident">Unknown</span>,
@@ -2606,7 +2606,7 @@
     <span class="kw">pub</span> <span class="ident">read_cache_setting</span>: <span class="ident">CachePolicy</span>,
     <span class="doccomment">/// Read cache status</span>
     <span class="kw">pub</span> <span class="ident">read_cache_status</span>: <span class="ident">CachePolicy</span>,
-    <span class="doccomment">/// Physcial disk cache status.</span>
+    <span class="doccomment">/// Physical disk cache status.</span>
     <span class="kw">pub</span> <span class="ident">physical_disk_cache_status</span>: <span class="ident">CachePolicy</span>,
 }
 
@@ -2628,7 +2628,7 @@
 <span class="comment">// TODO(Gris Ge): Update URL of volume_create() here</span>
 <span class="doccomment">/// For argument `thinp` of `Client::volume_create()`</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">VolumeCreateArgThinP</span> {
-    <span class="doccomment">/// Create fully allocationed volume.</span>
+    <span class="doccomment">/// Create fully allocated volume.</span>
     <span class="ident">Full</span>,
     <span class="doccomment">/// Create thin provisioning volume.</span>
     <span class="ident">Thin</span>,
