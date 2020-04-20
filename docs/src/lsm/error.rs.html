@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/error.rs`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang">
-
-    <title>error.rs.html -- source</title>
-
-    <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
-    
-
-    
-    
-</head>
-<body class="rustdoc source">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        
-    </nav>
-
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../lsm/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -369,103 +323,7 @@
 <span id="323">323</span>
 <span id="324">324</span>
 <span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
-<span id="331">331</span>
-<span id="332">332</span>
-<span id="333">333</span>
-<span id="334">334</span>
-<span id="335">335</span>
-<span id="336">336</span>
-<span id="337">337</span>
-<span id="338">338</span>
-<span id="339">339</span>
-<span id="340">340</span>
-<span id="341">341</span>
-<span id="342">342</span>
-<span id="343">343</span>
-<span id="344">344</span>
-<span id="345">345</span>
-<span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
-<span id="396">396</span>
-<span id="397">397</span>
-<span id="398">398</span>
-<span id="399">399</span>
-<span id="400">400</span>
-<span id="401">401</span>
-<span id="402">402</span>
-<span id="403">403</span>
-<span id="404">404</span>
-<span id="405">405</span>
-<span id="406">406</span>
-<span id="407">407</span>
-<span id="408">408</span>
-<span id="409">409</span>
-<span id="410">410</span>
-<span id="411">411</span>
-<span id="412">412</span>
-<span id="413">413</span>
-<span id="414">414</span>
-<span id="415">415</span>
-<span id="416">416</span>
-<span id="417">417</span>
-<span id="418">418</span>
-<span id="419">419</span>
-<span id="420">420</span>
-<span id="421">421</span>
-</pre><pre class="rust ">
+</pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright (C) 2017-2018 Red Hat, Inc.</span>
 <span class="comment">//</span>
 <span class="comment">// Permission is hereby granted, free of charge, to any</span>
@@ -493,8 +351,8 @@
 <span class="comment">// DEALINGS IN THE SOFTWARE.</span>
 <span class="comment">//</span>
 <span class="comment">// Author: Gris Ge &lt;fge@redhat.com&gt;</span>
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">result</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">result</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LsmError</span> {
@@ -542,79 +400,57 @@
 }
 
 <span class="kw">impl</span> ::<span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Library bug&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">PluginBug</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Plugin bug&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">TimeOut</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Timeout&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">DaemonNotRunning</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;LibStoragemgmt daemon is not running&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">PermissionDenied</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Permission denied&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NameConflict</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Name conflict&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">ExistsInitiator</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Initiator exists and in use&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">InvalidArgument</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Invalid argument&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NoStateChange</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;No state change&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NetworkConRefused</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Network connection refused&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NetworkHostDown</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Network host down&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NetworkError</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Network error&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NoMemory</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Plugin ran out of memory&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NoSupport</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Not supported&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">IsMasked</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Volume masked to access group&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">HasChildDependency</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Volume or file system has child dependency&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundAccessGroup</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Access group not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundFs</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;File system not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundJob</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Job not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundPool</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Pool not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundFsSnapshot</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;File system snapshot not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundVolume</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Volume not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundNfsExport</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;NFS export not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundSystem</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;System not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotFoundDisk</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Disk not found&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NotLicensed</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Specified feature is not licensed in storage system&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">NoSupportOnlineChange</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Specified action require item in offline mode&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">NoSupportOfflineChange</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Specified action require item in online mode&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">PluginAuthFailed</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Authentication failed in plugin&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">PluginIpcFail</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;IPC communication to plugin failed&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">PluginSocketPermission</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Permission deny on IPC communication to plugin&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">PluginNotExist</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Specified plugin does not exist&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">NoEnoughSpace</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;No enough space&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">TransportCommunication</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Error when communicating with plug-in&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Incorrect transport serialization&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">TransportInvalidArg</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Invalid transport argument&quot;</span>,
-            <span class="ident">LsmError</span>::<span class="ident">LastInitInAccessGroup</span>(_) <span class="op">=&gt;</span> {
+            <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Library bug&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PluginBug</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Plugin bug&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">TimeOut</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Timeout&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">DaemonNotRunning</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;LibStoragemgmt daemon is not running&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PermissionDenied</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Permission denied&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NameConflict</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Name conflict&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">ExistsInitiator</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Initiator exists and in use&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">InvalidArgument</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Invalid argument&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoStateChange</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;No state change&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NetworkConRefused</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Network connection refused&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NetworkHostDown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Network host down&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NetworkError</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Network error&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoMemory</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Plugin ran out of memory&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoSupport</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Not supported&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">IsMasked</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Volume masked to access group&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">HasChildDependency</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Volume or file system has child dependency&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundAccessGroup</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Access group not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundFs</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;File system not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundJob</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Job not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundPool</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Pool not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundFsSnapshot</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;File system snapshot not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundVolume</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Volume not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundNfsExport</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;NFS export not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundSystem</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;System not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotFoundDisk</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Disk not found&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NotLicensed</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Specified feature is not licensed in storage system&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoSupportOnlineChange</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Specified action require item in offline mode&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoSupportOfflineChange</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Specified action require item in online mode&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PluginAuthFailed</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Authentication failed in plugin&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PluginIpcFail</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;IPC communication to plugin failed&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PluginSocketPermission</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Permission deny on IPC communication to plugin&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PluginNotExist</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Specified plugin does not exist&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">NoEnoughSpace</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;No enough space&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">TransportCommunication</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Error when communicating with plug-in&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Incorrect transport serialization&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">TransportInvalidArg</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Invalid transport argument&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">LastInitInAccessGroup</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="string">&quot;Refused to remove the last initiator from access group&quot;</span>
             }
-            <span class="ident">LsmError</span>::<span class="ident">UnSupportedSearchKey</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Specified search key is not supported&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">EmptyAccessGroup</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Refused to mask volume to empty access group&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">PoolNotReady</span>(_) <span class="op">=&gt;</span> {
-                <span class="string">&quot;Pool is not ready for specified action&quot;</span>
-            }
-            <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(_) <span class="op">=&gt;</span> <span class="string">&quot;Disk is not free for specified action&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">UnSupportedSearchKey</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Specified search key is not supported&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">EmptyAccessGroup</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Refused to mask volume to empty access group&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">PoolNotReady</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Pool is not ready for specified action&quot;</span>,
+            <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Disk is not free for specified action&quot;</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="macro">write</span><span class="macro">!</span>(
             <span class="ident">f</span>,
             <span class="string">&quot;{}&quot;</span>,
@@ -659,7 +495,7 @@
                 <span class="op">|</span> <span class="ident">LsmError</span>::<span class="ident">UnSupportedSearchKey</span>(<span class="kw-2">ref</span> <span class="ident">x</span>)
                 <span class="op">|</span> <span class="ident">LsmError</span>::<span class="ident">EmptyAccessGroup</span>(<span class="kw-2">ref</span> <span class="ident">x</span>)
                 <span class="op">|</span> <span class="ident">LsmError</span>::<span class="ident">PoolNotReady</span>(<span class="kw-2">ref</span> <span class="ident">x</span>)
-                <span class="op">|</span> <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">x</span>,
+                <span class="op">|</span> <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">x</span>,
             }
         )
     }
@@ -668,7 +504,7 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">LsmError</span><span class="op">&gt;</span>;
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">FromUtf8Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">FromUtf8Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">FromUtf8Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="macro">format</span><span class="macro">!</span>(
             <span class="string">&quot;Failed to convert IPC message to UTF-8 string: {}&quot;</span>,
             <span class="ident">e</span>
@@ -677,7 +513,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">ParseIntError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="macro">format</span><span class="macro">!</span>(
             <span class="string">&quot;Failed to convert IPC message to UTF-8 integer: {}&quot;</span>,
             <span class="ident">e</span>
@@ -686,7 +522,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">Utf8Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">Utf8Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">Utf8Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="macro">format</span><span class="macro">!</span>(
             <span class="string">&quot;Failed to convert IPC message to UTF-8 string: {}&quot;</span>,
             <span class="ident">e</span>
@@ -695,7 +531,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">serde_json</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">serde_json</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">serde_json</span>::<span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="macro">format</span><span class="macro">!</span>(
             <span class="string">&quot;Failed to convert IPC message to libstoragemgmt \
              struct: {}&quot;</span>,
@@ -705,13 +541,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">TransportCommunication</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>))
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>::<span class="ident">regex</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">regex</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: ::<span class="ident">regex</span>::<span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Regex error: {}&quot;</span>, <span class="ident">e</span>))
     }
 }
@@ -768,186 +604,50 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">LsmErrorIpc</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LsmError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: <span class="ident">LsmErrorIpc</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">e</span>: <span class="ident">LsmErrorIpc</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">match</span> <span class="ident">e</span>.<span class="ident">code</span> {
-            <span class="ident">ERROR_NUMBER_LIB_BUG</span> <span class="op">=&gt;</span> <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>)),
-            <span class="ident">ERROR_NUMBER_PLUGIN_BUG</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PluginBug</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_TIMEOUT</span> <span class="op">=&gt;</span> <span class="ident">LsmError</span>::<span class="ident">TimeOut</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>)),
-            <span class="ident">ERROR_NUMBER_NAME_CONFLICT</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NameConflict</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_EXISTS_INITIATOR</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">ExistsInitiator</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_INVALID_ARGUMENT</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">InvalidArgument</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NO_STATE_CHANGE</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoStateChange</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NETWORK_CONNREFUSED</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NetworkConRefused</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NETWORK_HOSTDOWN</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NetworkHostDown</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NETWORK_ERROR</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NetworkError</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NO_MEMORY</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoMemory</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NO_SUPPORT</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoSupport</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_IS_MASKED</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">IsMasked</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_HAS_CHILD_DEPENDENCY</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">HasChildDependency</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_ACCESS_GROUP</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundAccessGroup</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_FS</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundFs</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_JOB</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundJob</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_POOL</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundPool</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_FS_SS</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundFsSnapshot</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_VOLUME</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundVolume</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_NFS_EXPORT</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundNfsExport</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_SYSTEM</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundSystem</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_FOUND_DISK</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotFoundDisk</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_LICENSED</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NotLicensed</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NO_SUPPORT_ONLINE_CHANGE</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoSupportOnlineChange</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NO_SUPPORT_OFFLINE_CHANGE</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoSupportOfflineChange</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_PLUGIN_AUTH_FAILED</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PluginAuthFailed</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_PLUGIN_IPC_FAIL</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PluginIpcFail</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_PLUGIN_SOCKET_PERMISSION</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PluginSocketPermission</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_PLUGIN_NOT_EXIST</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PluginNotExist</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_NOT_ENOUGH_SPACE</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">NoEnoughSpace</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_TRANSPORT_COMMUNICATION</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">TransportCommunication</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_TRANSPORT_SERIALIZATION</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_TRANSPORT_INVALID_ARG</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">TransportInvalidArg</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_LAST_INIT_IN_ACCESS_GROUP</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">LastInitInAccessGroup</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_UNSUPPORTED_SEARCH_KEY</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">UnSupportedSearchKey</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_EMPTY_ACCESS_GROUP</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">EmptyAccessGroup</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_POOL_NOT_READY</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">PoolNotReady</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            <span class="ident">ERROR_NUMBER_DISK_NOT_FREE</span> <span class="op">=&gt;</span> {
-                <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">e</span>.<span class="ident">message</span>))
-            }
-            _ <span class="op">=&gt;</span> <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid error: {:?}&quot;</span>, <span class="ident">e</span>)),
+            <span class="ident">ERROR_NUMBER_LIB_BUG</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_PLUGIN_BUG</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PluginBug</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_TIMEOUT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">TimeOut</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NAME_CONFLICT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NameConflict</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_EXISTS_INITIATOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">ExistsInitiator</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_INVALID_ARGUMENT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">InvalidArgument</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NO_STATE_CHANGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoStateChange</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NETWORK_CONNREFUSED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NetworkConRefused</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NETWORK_HOSTDOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NetworkHostDown</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NETWORK_ERROR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NetworkError</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NO_MEMORY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoMemory</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NO_SUPPORT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoSupport</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_IS_MASKED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">IsMasked</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_HAS_CHILD_DEPENDENCY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">HasChildDependency</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_ACCESS_GROUP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundAccessGroup</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_FS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundFs</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_JOB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundJob</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_POOL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundPool</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_FS_SS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundFsSnapshot</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_VOLUME</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundVolume</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_NFS_EXPORT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundNfsExport</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_SYSTEM</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundSystem</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_FOUND_DISK</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotFoundDisk</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_LICENSED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NotLicensed</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NO_SUPPORT_ONLINE_CHANGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoSupportOnlineChange</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NO_SUPPORT_OFFLINE_CHANGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoSupportOfflineChange</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_PLUGIN_AUTH_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PluginAuthFailed</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_PLUGIN_IPC_FAIL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PluginIpcFail</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_PLUGIN_SOCKET_PERMISSION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PluginSocketPermission</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_PLUGIN_NOT_EXIST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PluginNotExist</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_NOT_ENOUGH_SPACE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">NoEnoughSpace</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_TRANSPORT_COMMUNICATION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">TransportCommunication</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_TRANSPORT_SERIALIZATION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">TransportSerialization</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_TRANSPORT_INVALID_ARG</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">TransportInvalidArg</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_LAST_INIT_IN_ACCESS_GROUP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">LastInitInAccessGroup</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_UNSUPPORTED_SEARCH_KEY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">UnSupportedSearchKey</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_EMPTY_ACCESS_GROUP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">EmptyAccessGroup</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_POOL_NOT_READY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">PoolNotReady</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="ident">ERROR_NUMBER_DISK_NOT_FREE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">DiskNotFree</span>(<span class="ident">e</span>.<span class="ident">message</span>),
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">LsmError</span>::<span class="ident">LibBug</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Invalid error: {:?}&quot;</span>, <span class="ident">e</span>)),
         }
     }
 }
-</pre>
-</section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt>?</dt>
-                    <dd>Show this help dialog</dd>
-                    <dt>S</dt>
-                    <dd>Focus the search field</dd>
-                    <dt>↑</dt>
-                    <dd>Move up in search results</dd>
-                    <dt>↓</dt>
-                    <dd>Move down in search results</dd>
-                    <dt>↹</dt>
-                    <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
-                    <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "lsm";
-    </script>
-    <script src="../../main.js"></script>
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</pre></div>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "lsm";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
