@@ -1017,8 +1017,8 @@ impl Client {
             let restore_files = restore_files.unwrap_or(&[]);
             if !restore_files.is_empty() && files.len() != restore_files.len() {
                 return Err(LsmError::InvalidArgument(
-                    "Invalid argument: `all_file` and `restore_files` have \
-                     different length"
+                    "Invalid argument: `files` and `restore_files` have \
+                     different lengths"
                         .to_string(),
                 ));
             }
