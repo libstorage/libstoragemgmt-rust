@@ -612,7 +612,7 @@ impl Client {
     /// Block size for the [`Client::volume_replicate_range()`][1].
     ///
     /// [1]: #method.volume_replicate_range
-    pub fn volume_rep_range_blk_size(&mut self, sys: &System) -> Result<i32> {
+    pub fn volume_rep_range_blk_size(&mut self, sys: &System) -> Result<u32> {
         let mut args = Map::new();
         args.insert("system".to_string(), serde_json::to_value(sys)?);
         Ok(serde_json::from_value(self.tp.invoke(
