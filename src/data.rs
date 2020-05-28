@@ -868,7 +868,7 @@ pub enum InitiatorType {
     Wwpn = 2,
     /// iSCSI IQN
     IscsiIqn = 5,
-    /// This access group contains more 1 type of initiator.
+    /// This access group contains more than 1 type of initiator.
     Mixed = 7,
 }
 
@@ -1277,7 +1277,7 @@ pub enum CachePolicy {
 }
 
 #[derive(Debug, Clone)]
-/// Represent volume cache informtion.
+/// Represent volume cache information.
 pub struct VolumeCacheInfo {
     /// Write cache setting.
     pub write_cache_setting: CachePolicy,
