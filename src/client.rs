@@ -1154,7 +1154,7 @@ impl Client {
             serde_json::from_value(self.tp.invoke("volume_raid_info", Some(args))?)?;
         if ret.len() != 5 {
             return Err(LsmError::PluginBug(format!(
-                "vol_raid_info() is expecting 5 i64 from plugin, \
+                "vol_raid_info() is expecting 5 integers from plugin, \
                  but got '{:?}'",
                 ret
             )));
