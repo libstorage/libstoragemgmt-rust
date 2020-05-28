@@ -1313,7 +1313,7 @@ impl Client {
     pub fn vol_ident_led_off(&mut self, vol: &Volume) -> Result<()> {
         let mut args = Map::new();
         args.insert("volume".to_string(), serde_json::to_value(vol)?);
-        self.tp.invoke("vol_ident_led_off", Some(args))?;
+        self.tp.invoke("volume_ident_led_off", Some(args))?;
         Ok(())
     }
 
