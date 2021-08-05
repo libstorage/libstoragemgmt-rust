@@ -1227,10 +1227,7 @@ impl Capabilities {
         let cap_num = cap as usize;
         let val = &self.cap[cap_num * 2..cap_num * 2 + 2];
         println!("val {}", val);
-        match val {
-            "01" => true,
-            _ => false,
-        }
+        matches!(val, "01")
     }
 }
 
