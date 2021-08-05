@@ -70,23 +70,23 @@
 //!                 // Error handling goes here
 //!                 LsmError::DaemonNotRunning(_) =>
 //!                     panic!("Please start the libstoragemgmt daemon"),
-//!                 _ => panic!(e)
+//!                 _ => panic!("{}", e)
 //!             };
 //!         },
 //!     };
 //!     let syss = match c.systems() {
 //!         Ok(i) => i,
-//!         Err(e) => panic!(e)         // Please use error handling as above.
+//!         Err(e) => panic!("{}", e)         // Please use error handling as above.
 //!     };
 //!     for s in syss {
 //!         let cap = match c.capabilities(&s) {
 //!             Ok(i) => i,
-//!             Err(e) => panic!(e)     // Please use error handling as above.
+//!             Err(e) => panic!("{}", e)     // Please use error handling as above.
 //!         };
 //!         if cap.is_supported(lsm::Capability::Volumes) {
 //!             let vols = match c.volumes() {
 //!                 Ok(i) => i,
-//!                 Err(e) => panic!(e) // Please use error handling as above.
+//!                 Err(e) => panic!("{}", e) // Please use error handling as above.
 //!             };
 //!             for vol in vols {
 //!                 println!("Got volume: {} {}", vol.name, vol.id);
