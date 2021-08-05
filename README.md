@@ -1,3 +1,7 @@
+[![libstorage](https://circleci.com/gh/libstorage/libstoragemgmt-rust.svg?style=svg)](https://github.com/libstorage/libstoragemgmt-rust)
+
+
+
 # Rust binding of LibStorageMgmt
 
 `LibStorageMgmt` provides a set of API for programmatically manage their
