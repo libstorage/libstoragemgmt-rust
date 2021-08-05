@@ -55,4 +55,4 @@ fi
 # Speed up tests
 export LSM_SIM_TIME=0
 
-cargo test || exit 1
+cargo test -- --test-threads=1 || exit 1
