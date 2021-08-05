@@ -1,0 +1,25 @@
+version: 2.1
+jobs:
+  fedora:
+    docker:
+      - image: fedora:33
+    steps:
+      - checkout
+      - run:
+         command: ./tests/ci_test.sh
+         no_output_timeout: 20m
+  el8:
+    docker:
+      - image: centos:8
+    steps:
+      - checkout
+      - run:
+         command: ./tests/ci_test.sh
+         no_output_timeout: 20m
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - fedora
+    - el8
