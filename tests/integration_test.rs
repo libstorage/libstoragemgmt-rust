@@ -165,7 +165,7 @@ fn disks() {
     let mut c = make_connection();
     let ds = c.disks().unwrap();
     println!("got disks '{:?}'", ds);
-    assert_eq!(20, ds.len());
+    assert_eq!(18, ds.len());
 }
 
 #[test]

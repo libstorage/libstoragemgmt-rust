@@ -38,6 +38,9 @@ use super::error::*;
 use super::ipc::{uds_path, TransPort};
 use super::misc::verify_init_id_str;
 
+use std::fs;
+use std::os::linux::fs::MetadataExt;
+
 const DEFAULT_TIMEOUT: u32 = 30_000;
 const JOB_RETRY_INTERVAL: u64 = 1;
 
@@ -138,6 +141,19 @@ pub fn available_plugins() -> Result<Vec<PluginInfo>> {
                             Err(_) => continue,
                         };
                         let plugin_ipc_path = get_plugin_ipc_path(&plugin_name);
+
+                        // Make sure the file refers to a unix domain socket as the library
+                        // added a lock file to prevent concurrent access to same unix domain
+                        // socket directory for the lsm daemon.
+                        match fs::metadata(&plugin_ipc_path) {
+                            Ok(meta) => {
+                                if meta.st_mode() & 0o140000 != 0o140000 {
+                                    continue;
+                                }
+                            }
+                            Err(_) => continue,
+                        }
+
                         // We cannot use self.plugin_info() here, as we need
                         // to bypass the plugin_register() and
                         // plugin_unregister()
