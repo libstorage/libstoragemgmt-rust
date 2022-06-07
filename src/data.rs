@@ -890,6 +890,7 @@ fn init_type_to_int<S: Serializer>(
     serializer.serialize_i32(*i as i32)
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug, Clone)]
 /// Represent a target port which is the front-end port of storage system which
 /// storage user/client connect to and get storage service from.
@@ -951,6 +952,7 @@ fn int_to_port_type<'de, D: Deserializer<'de>>(
     }
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug, Clone)]
 /// Represent a battery.
 pub struct Battery {
