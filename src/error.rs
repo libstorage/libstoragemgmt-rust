@@ -270,6 +270,7 @@ const ERROR_NUMBER_EMPTY_ACCESS_GROUP: i32 = 511;
 const ERROR_NUMBER_POOL_NOT_READY: i32 = 512;
 const ERROR_NUMBER_DISK_NOT_FREE: i32 = 513;
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub(crate) struct LsmErrorIpc {
     pub(crate) code: i32,

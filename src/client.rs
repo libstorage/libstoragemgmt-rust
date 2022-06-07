@@ -50,6 +50,7 @@ pub struct Client {
     plugin_name: String,
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 struct Job {
     status: u32,
