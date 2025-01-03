@@ -116,4 +116,5 @@ mod client;
 mod data;
 mod error;
 mod ipc;
+pub mod local_disk;
 mod misc;
