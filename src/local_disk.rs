@@ -43,21 +43,35 @@ enum c_lsm_led_handle {}
 enum c_lsm_led_slot_itr {}
 enum c_lsm_led_slot {}
 
+/// Possible values of link type.
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum LinkType {
+    /// No support
     NoSupport = -2,
+    /// Unknown
     Unknown = -1,
+    /// Fibre channel
     Fc = 0,
+    /// Serial Storage Architecture, old IBM tech.
     Ssa = 2,
+    /// Serial Bus Protocol, used by IEEE 1394
     Sbp = 3,
+    /// SCSI RDMA Protocol
     Srp = 4,
+    /// Internet Small Computer System Interface
     Iscsi = 5,
+    /// Serial attached SCSI
     Sas = 6,
+    /// Automation/Drive Interface Transport Protocol, often used by Tape.
     Adt = 7,
+    /// PATA/IDE or SATA.
     Ata = 8,
+    // USB - Universal Serial Bus
     Usb = 9,
+    /// SCSI over PCI-e
     Sop = 10,
+    /// PCI-e, e.g. NVMe
     Pcie = 11,
 }
 
@@ -243,6 +257,13 @@ fn c_lsm_string_list_to_vec(c_string_list: *const c_lsm_string_list) -> Vec<Stri
     result_list
 }
 
+/// Searches disk by supplied SCSI VPD 0x83 page NAA type ID.
+///
+/// Search all the disk paths of specified SCSI VPD 0x83 page NAA type ID.
+/// For any ATA and other non-SCSI protocol disks supporting VPD 0x83 pages
+/// NAA ID, their disk path will also be included.
+///
+/// Note: There maybe more than one disk path for any specified disk.
 pub fn vpd83_search(vpd83: &str) -> Result<Vec<String>> {
     let c_search_string = CString::new(vpd83).expect("CString::new failed");
     let mut disk_paths = std::ptr::null_mut();
@@ -259,6 +280,10 @@ pub fn vpd83_search(vpd83: &str) -> Result<Vec<String>> {
     }
 }
 
+/// Query serial number of specified disk path
+///
+/// Query the serial number of specified disk path.
+/// For SCSI/SAS/SATA/ATA disks, it will be extracted from SCSI VPD 0x80 page.
 pub fn serial_num_get(disk_path: &str) -> Result<String> {
     let mut serial_num = std::ptr::null_mut();
     let mut lsm_error = std::ptr::null_mut();
@@ -277,6 +302,7 @@ pub fn serial_num_get(disk_path: &str) -> Result<String> {
     }
 }
 
+/// Query scsi VPD 0x83 NAA ID.
 pub fn vpd83_get(disk_path: &str) -> Result<String> {
     let mut vpd83 = std::ptr::null_mut();
     let mut lsm_error = std::ptr::null_mut();
@@ -295,10 +321,15 @@ pub fn vpd83_get(disk_path: &str) -> Result<String> {
     }
 }
 
+/// Possible health status of any disk.
 pub enum LocalDiskStatus {
+    /// Unknown
     Unknown = -1,
+    /// Device self reports failure
     Fail = 0,
+    /// Device self reports warning
     Warn = 1,
+    /// Device self reports good
     Good = 2,
 }
 
@@ -315,11 +346,16 @@ impl TryFrom<i32> for LocalDiskStatus {
     }
 }
 
+/// Possible values for disk RPM.
 #[repr(i32)]
 pub enum LocalDiskRpm {
+    /// Unknown
     Unknown = -1,
+    /// Non-rotational media disk
     NonRotatingMedium = 0,
+    /// rotational disk with unknown speed
     UnknownRotationalSpeed = 1,
+    /// Rotating disk with specified speed in RPM
     Rpm(i32),
 }
 
@@ -337,6 +373,7 @@ impl TryFrom<i32> for LocalDiskRpm {
     }
 }
 
+/// Query the health status of the specified disk path.
 pub fn health_get(disk_path: &str) -> Result<LocalDiskStatus> {
     let mut status: i32 = 0;
     let mut lsm_error = std::ptr::null_mut();
@@ -353,6 +390,7 @@ pub fn health_get(disk_path: &str) -> Result<LocalDiskStatus> {
     }
 }
 
+/// Query disk rotation speed.
 pub fn rpm_get(disk_path: &str) -> Result<LocalDiskRpm> {
     let mut rpm: i32 = 0;
     let mut lsm_error = std::ptr::null_mut();
@@ -369,6 +407,7 @@ pub fn rpm_get(disk_path: &str) -> Result<LocalDiskRpm> {
     }
 }
 
+/// Query local disk paths. Currently, only SCSI, SAS, ATA and NVMe disks will be included.
 pub fn list() -> Result<Vec<String>> {
     let mut disk_paths = std::ptr::null_mut();
     let mut lsm_error = std::ptr::null_mut();
@@ -382,6 +421,7 @@ pub fn list() -> Result<Vec<String>> {
     }
 }
 
+/// Query disk link type.
 pub fn link_type_get(disk_path: &str) -> Result<LinkType> {
     let mut link_type = LinkType::Unknown;
     let mut lsm_error = std::ptr::null_mut();
@@ -418,22 +458,46 @@ fn disk_path_led(disk_path: &str, fault_led: bool, on: bool) -> Result<()> {
     }
 }
 
+/// Turn the identification LED on for specified disk path.
 pub fn ident_led_on(disk_path: &str) -> Result<()> {
     disk_path_led(disk_path, false, true)
 }
 
+/// Turn the identification LED off for specified disk path.
 pub fn ident_led_off(disk_path: &str) -> Result<()> {
     disk_path_led(disk_path, false, false)
 }
 
+/// Turn the fault LED on for specified disk path.
 pub fn fault_led_on(disk_path: &str) -> Result<()> {
     disk_path_led(disk_path, true, true)
 }
 
+/// Turn the fault LED off for specified disk path.
 pub fn fault_led_off(disk_path: &str) -> Result<()> {
     disk_path_led(disk_path, true, false)
 }
 
+/// LED has unknown status
+pub const LED_STATUS_UNKNOWN: u32 = 0x0000000000000001;
+/// Identification LED is on
+pub const LED_STATUS_IDENT_ON: u32 = 0x0000000000000002;
+/// Identification LED is off
+pub const LED_STATUS_IDENT_OFF: u32 = 0x0000000000000004;
+/// Identification LED is unknown
+pub const LED_STATUS_IDENT_UNKNOWN: u32 = 0x0000000000000008;
+/// Fault LED is on
+pub const LED_STATUS_FAULT_ON: u32 = 0x0000000000000010;
+/// Fault LED is off
+pub const LED_STATUS_FAULT_OFF: u32 = 0x0000000000000020;
+/// Fault LED is unknown
+pub const LED_STATUS_FAULT_UNKNOWN: u32 = 0x0000000000000040;
+
+/// Retrieve current state of LED for specified disk path.
+///
+/// Note: Not all enclosures support both identification and fault LEDs.
+///
+/// Result is a bit sensitive field, see LED_STATUS_* constants
 pub fn led_status_get(disk_path: &str) -> Result<u32> {
     let mut lsm_error = std::ptr::null_mut();
     let mut led_status = 0;
@@ -449,6 +513,7 @@ pub fn led_status_get(disk_path: &str) -> Result<u32> {
     }
 }
 
+/// Query the current negotiated disk link speed in Mbps
 pub fn link_speed_get(disk_path: &str) -> Result<u32> {
     let mut lsm_error = std::ptr::null_mut();
     let mut link_speed = 0;
@@ -486,6 +551,7 @@ fn slot_device_get(slot: *const c_lsm_led_slot) -> Option<String> {
     }
 }
 
+/// Opaque type for interacting with LED slots functionality.
 pub struct LedSlots {
     handle: *mut c_lsm_led_handle,
     itr: *mut c_lsm_led_slot_itr,
@@ -547,6 +613,7 @@ impl LedSlots {
         }
     }
 
+    /// Create a new instance of LED slots
     pub fn new() -> Result<Self> {
         unsafe {
             let mut handle = std::ptr::null_mut();
@@ -579,6 +646,7 @@ impl LedSlots {
         }
     }
 
+    /// Retrieve the slots
     pub fn slots_get(&mut self) -> Vec<LedSlot> {
         let mut rc = Vec::new();
 
@@ -599,11 +667,28 @@ impl LedSlots {
         rc
     }
 
+    /// Retrieve the LED status for the specified slot.
     pub fn slot_status_get(&mut self, slot: &LedSlot) -> u32 {
         self.slot_set(&slot.id());
         unsafe { lsm_led_slot_status_get(self.curr_slot) }
     }
 
+    /// Set the status of the specified slot, bit sensitive input state.
+    ///
+    /// Please note that not all LED hardware supports both
+    /// identification and fault LEDs.
+    ///
+    /// Using this API, please specify what you
+    /// would like regardless of support and the hardware will adhere to your request as best it can.
+    /// * LED_STATUS_IDENT_ON => Implies fault off
+    /// * LED_STATUS_FAULT_ON => Implies ident and fault on
+    /// * LED_STATUS_IDENT_OFF => Implies both ident and fault are off
+    /// * LED_STATUS_FAULT_OFF => Implies both ident and fault are off
+    /// * LSM_DISK_LED_STATUS_IDENT_OFF|LSM_DISK_LED_STATUS_FAULT_OFF
+    /// * LED_STATUS_IDENT_ON|LSM_DISK_LED_STATUS_FAULT_OFF
+    /// * LED_STATUS_FAULT_ON|LSM_DISK_LED_STATUS_IDENT_OFF
+    /// * LED_STATUS_IDENT_ON|LSM_DISK_LED_STATUS_FAULT_ON
+    ///
     pub fn slot_status_set(&mut self, slot: &LedSlot, state: u32) -> Result<()> {
         self.slot_set(&slot.id());
 
@@ -620,8 +705,13 @@ impl LedSlots {
     }
 }
 
+/// Information about specific slot
+///
+/// Note: you can retrieve/set set of LED with out a block device present
 pub struct LedSlot {
+    /// Slot ID
     id: String,
+    /// Device node for slot which may not be present (used for correlation)
     dev: Option<String>,
 }
 impl LedSlot {
@@ -632,10 +722,12 @@ impl LedSlot {
         }
     }
 
+    /// Slot ID of slot (this is not persistent across boots or dynamic reconfiguration)
     pub fn id(&self) -> String {
         self.id.clone()
     }
 
+    /// Device node for block device which may not be present (you don't need a functional disk to change LED state)
     pub fn device(&self) -> Option<String> {
         self.dev.clone()
     }
