@@ -33,6 +33,7 @@ use super::error::*;
 use std::convert::TryFrom;
 use std::ffi::CStr;
 use std::ffi::CString;
+use std::os::raw::c_void;
 use std::os::raw::{c_char, c_int};
 
 // Types for opaque C types
@@ -183,6 +184,10 @@ extern "C" {
     fn lsm_led_slot_device(slot: *const c_lsm_led_slot) -> *const c_char;
 }
 
+extern "C" {
+    fn free(ptr: *mut c_void);
+}
+
 fn c_char_ptr_to_string(c_str: *const c_char) -> String {
     let m_str;
     unsafe {
@@ -263,7 +268,9 @@ pub fn serial_num_get(disk_path: &str) -> Result<String> {
         let rc = lsm_local_disk_serial_num_get(c_sn.as_ptr(), &mut serial_num, &mut lsm_error);
 
         if rc == 0 {
-            Ok(CStr::from_ptr(serial_num).to_string_lossy().into_owned())
+            let sn = CStr::from_ptr(serial_num).to_string_lossy().into_owned();
+            free(serial_num as *mut c_void);
+            Ok(sn)
         } else {
             Err(lsm_c_error_to_rust(lsm_error))
         }
@@ -279,7 +286,9 @@ pub fn vpd83_get(disk_path: &str) -> Result<String> {
         let rc = lsm_local_disk_vpd83_get(disk_path.as_ptr(), &mut vpd83, &mut lsm_error);
 
         if rc == 0 {
-            Ok(CStr::from_ptr(vpd83).to_string_lossy().into_owned())
+            let vpd = CStr::from_ptr(vpd83).to_string_lossy().into_owned();
+            free(vpd83 as *mut c_void);
+            Ok(vpd)
         } else {
             Err(lsm_c_error_to_rust(lsm_error))
         }
