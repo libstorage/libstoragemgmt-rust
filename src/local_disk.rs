@@ -407,8 +407,22 @@ pub fn rpm_get(disk_path: &str) -> Result<LocalDiskRpm> {
     }
 }
 
-/// Query local disk paths. Currently, only SCSI, SAS, ATA and NVMe disks will be included.
 pub fn list() -> Result<Vec<String>> {
+    // Query local disk paths. Currently, only SCSI, SAS, ATA and NVMe disks will be included.
+    //
+    //! ```rust
+    //! extern crate lsm;
+    //!
+    //! use lsm::local_disk;
+    //!
+    //!fn main() {
+    //!    let disks = local_disk::list().unwrap();
+    //!
+    //!    for d in disks {
+    //!        println!("{}", d);
+    //!    }
+    //!}
+    //! ```
     let mut disk_paths = std::ptr::null_mut();
     let mut lsm_error = std::ptr::null_mut();
     unsafe {
@@ -458,8 +472,21 @@ fn disk_path_led(disk_path: &str, fault_led: bool, on: bool) -> Result<()> {
     }
 }
 
-/// Turn the identification LED on for specified disk path.
 pub fn ident_led_on(disk_path: &str) -> Result<()> {
+    // Turn the identification LED on for specified disk path.
+    //
+    //! ```rust
+    //! extern crate lsm;
+    //!
+    //! use lsm::local_disk;
+    //!
+    //!fn main() {
+    //!     match local_disk::ident_led_on("/dev/sda") {
+    //!         Err(e) => println!("Unable to turn on identification LED: reason {:?}", e),
+    //!         Ok(_) => println!("Enjoy your blinking LED"),
+    //!     }
+    //!}
+    //! ```
     disk_path_led(disk_path, false, true)
 }
 
