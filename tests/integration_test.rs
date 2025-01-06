@@ -20,7 +20,8 @@ extern crate lsm;
 extern crate rand;
 
 use lsm::{
-    CachePolicy, Client, Disk, NfsAccess, Pool, RaidType, System, Volume, VolumeCreateArgThinP,
+    local_disk, CachePolicy, Client, Disk, NfsAccess, Pool, RaidType, System, Volume,
+    VolumeCreateArgThinP,
 };
 use rand::Rng;
 
@@ -451,4 +452,149 @@ fn test_size_human() {
     assert_eq!(lsm::size_human_2_size_bytes("2 K"), 2048u64);
     assert_eq!(lsm::size_human_2_size_bytes("2 k"), 2048u64);
     assert_eq!(lsm::size_human_2_size_bytes("2 KB"), 2000u64);
+}
+
+#[test]
+fn test_local_disk_list() {
+    use lsm::local_disk;
+    let disks = local_disk::list().unwrap();
+
+    for d in disks {
+        assert!(d.len() > 0);
+    }
+}
+
+#[test]
+fn test_local_disk_vpd() {
+    use lsm::local_disk;
+
+    let disks = local_disk::list().unwrap();
+    for d in disks {
+        if let Ok(vpd) = local_disk::vpd83_get(&d) {
+            if let Ok(vpd_search) = local_disk::vpd83_search(&vpd) {
+                let mut found = false;
+
+                for i in &vpd_search {
+                    if *i == vpd {
+                        found = true;
+                        break;
+                    }
+                }
+                assert!(
+                    found,
+                    "{}",
+                    format!("device {} with vpd {} not found?", d, vpd)
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn test_local_disk_serial_num_get() {
+    use lsm::local_disk;
+
+    let disks = local_disk::list().unwrap();
+    for d in disks {
+        if let Ok(sn) = local_disk::serial_num_get(&d) {
+            assert!(
+                sn.len() > 0,
+                "{}",
+                format!("Good return for serial_num_get, but value is empty! {}", d)
+            );
+        }
+    }
+}
+
+#[test]
+fn test_local_disk_health_get() {
+    use lsm::local_disk;
+
+    let disks = local_disk::list().unwrap();
+    for d in disks {
+        if let Ok(_health) = local_disk::health_get(&d) {}
+    }
+}
+
+#[test]
+fn test_local_disk_rpm_get() {
+    use lsm::local_disk;
+
+    let disks = local_disk::list().unwrap();
+    for d in disks {
+        if let Ok(rpm) = local_disk::rpm_get(&d) {
+            if d.contains("nvme") {
+                assert_eq!(
+                    rpm,
+                    local_disk::Rpm::NonRotatingMedium,
+                    "{}",
+                    format!(
+                        "Expecting NVMe disk rpm {} to be NonRotatingMedium, not {:?}",
+                        d, rpm
+                    )
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn test_local_disk_link_type_get() {
+    use lsm::local_disk;
+
+    let disks = local_disk::list().unwrap();
+    for d in disks {
+        if let Ok(link_type) = local_disk::link_type_get(&d) {
+            if d.contains("nvme") {
+                assert_eq!(
+                    link_type,
+                    local_disk::LinkType::Pcie,
+                    "{}",
+                    format!(
+                        "Expecting NVMe disk rpm {} to have Pcie link type, not {:?}",
+                        d, link_type
+                    )
+                );
+            }
+        }
+    }
+}
+
+fn led_set(slots: &mut local_disk::LedSlots, slot: &local_disk::LedSlot, new_state: u32) {
+    slots.slot_status_set(&slot, new_state).unwrap();
+    let current = local_disk::led_status_get(&slot.device().unwrap()).unwrap();
+    assert_eq!(new_state, current);
+
+    let state_by_slot = slots.slot_status_get(&slot);
+    assert_eq!(new_state, state_by_slot);
+}
+
+#[test]
+fn test_local_disk_led() {
+    use lsm::local_disk;
+
+    let mut slots_handle = local_disk::LedSlots::new().unwrap();
+
+    let slots = slots_handle.slots_get();
+
+    for s in slots.iter() {
+        if let Some(device_node) = s.device() {
+            let state_by_device_node = local_disk::led_status_get(&device_node).unwrap();
+            let state_by_slot = slots_handle.slot_status_get(&s);
+            assert_eq!(state_by_device_node, state_by_slot);
+
+            // Turn everything off, then on, then place back to start
+            led_set(
+                &mut slots_handle,
+                &s,
+                local_disk::LED_STATUS_IDENT_OFF | local_disk::LED_STATUS_FAULT_OFF,
+            );
+            led_set(
+                &mut slots_handle,
+                &s,
+                local_disk::LED_STATUS_IDENT_ON | local_disk::LED_STATUS_FAULT_ON,
+            );
+            led_set(&mut slots_handle, &s, state_by_slot);
+        }
+    }
 }
