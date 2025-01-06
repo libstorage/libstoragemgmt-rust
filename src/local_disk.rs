@@ -322,7 +322,8 @@ pub fn vpd83_get(disk_path: &str) -> Result<String> {
 }
 
 /// Possible health status of any disk.
-pub enum LocalDiskStatus {
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum HealthStatus {
     /// Unknown
     Unknown = -1,
     /// Device self reports failure
@@ -333,22 +334,23 @@ pub enum LocalDiskStatus {
     Good = 2,
 }
 
-impl TryFrom<i32> for LocalDiskStatus {
+impl TryFrom<i32> for HealthStatus {
     type Error = LsmError;
 
     fn try_from(value: i32) -> Result<Self> {
         match value {
-            0 => Ok(LocalDiskStatus::Fail),
-            1 => Ok(LocalDiskStatus::Warn),
-            2 => Ok(LocalDiskStatus::Good),
-            _ => Ok(LocalDiskStatus::Unknown),
+            0 => Ok(HealthStatus::Fail),
+            1 => Ok(HealthStatus::Warn),
+            2 => Ok(HealthStatus::Good),
+            _ => Ok(HealthStatus::Unknown),
         }
     }
 }
 
 /// Possible values for disk RPM.
 #[repr(i32)]
-pub enum LocalDiskRpm {
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum Rpm {
     /// Unknown
     Unknown = -1,
     /// Non-rotational media disk
@@ -359,22 +361,22 @@ pub enum LocalDiskRpm {
     Rpm(i32),
 }
 
-impl TryFrom<i32> for LocalDiskRpm {
+impl TryFrom<i32> for Rpm {
     type Error = LsmError;
 
     fn try_from(value: i32) -> Result<Self> {
         let rc = match value {
-            -1 => LocalDiskRpm::Unknown,
-            0 => LocalDiskRpm::NonRotatingMedium,
-            1 => LocalDiskRpm::UnknownRotationalSpeed,
-            _ => LocalDiskRpm::Rpm(value),
+            -1 => Rpm::Unknown,
+            0 => Rpm::NonRotatingMedium,
+            1 => Rpm::UnknownRotationalSpeed,
+            _ => Rpm::Rpm(value),
         };
         Ok(rc)
     }
 }
 
 /// Query the health status of the specified disk path.
-pub fn health_get(disk_path: &str) -> Result<LocalDiskStatus> {
+pub fn health_get(disk_path: &str) -> Result<HealthStatus> {
     let mut status: i32 = 0;
     let mut lsm_error = std::ptr::null_mut();
 
@@ -383,7 +385,7 @@ pub fn health_get(disk_path: &str) -> Result<LocalDiskStatus> {
         let rc = lsm_local_disk_health_status_get(disk_path.as_ptr(), &mut status, &mut lsm_error);
 
         if rc == 0 {
-            LocalDiskStatus::try_from(status)
+            HealthStatus::try_from(status)
         } else {
             Err(lsm_c_error_to_rust(lsm_error))
         }
@@ -391,7 +393,7 @@ pub fn health_get(disk_path: &str) -> Result<LocalDiskStatus> {
 }
 
 /// Query disk rotation speed.
-pub fn rpm_get(disk_path: &str) -> Result<LocalDiskRpm> {
+pub fn rpm_get(disk_path: &str) -> Result<Rpm> {
     let mut rpm: i32 = 0;
     let mut lsm_error = std::ptr::null_mut();
 
@@ -400,7 +402,7 @@ pub fn rpm_get(disk_path: &str) -> Result<LocalDiskRpm> {
         let rc = lsm_local_disk_rpm_get(disk_path.as_ptr(), &mut rpm, &mut lsm_error);
 
         if rc == 0 {
-            LocalDiskRpm::try_from(rpm)
+            Rpm::try_from(rpm)
         } else {
             Err(lsm_c_error_to_rust(lsm_error))
         }
