@@ -475,7 +475,7 @@ fn test_local_disk_vpd() {
                 let mut found = false;
 
                 for i in &vpd_search {
-                    if *i == vpd {
+                    if *i == d {
                         found = true;
                         break;
                     }
