@@ -480,10 +480,15 @@ fn test_local_disk_vpd() {
                         break;
                     }
                 }
+                let what_returned = vpd_search.join(" ");
+
                 assert!(
                     found,
                     "{}",
-                    format!("device {} with vpd {} not found?", d, vpd)
+                    format!(
+                        "device {} with vpd {} not found? ({}) vpd83_search results",
+                        d, vpd, what_returned
+                    )
                 );
             }
         }
