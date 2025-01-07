@@ -4,7 +4,7 @@ build:
 	cargo build
 
 check:
-	cargo test
+	export LSM_SIM_TIME=0 && cargo test -- --test-threads=1
 
 doc:
 	cargo doc --no-deps
