@@ -9,6 +9,7 @@ keywords = ["libstoragemgmt", "storage"]
 categories = ["api-bindings"]
 documentation = "https://libstorage.github.io/libstoragemgmt-rust/"
 edition = "2015"
+description = "Rust bindings for libStorageMgmt"
 
 [lib]
 name = "lsm"
