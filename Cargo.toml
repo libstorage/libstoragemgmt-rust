@@ -1,6 +1,6 @@
 [package]
 name = "libstoragemgmt-rust"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Gris Ge <fge@redhat.com>"]
 license = "MIT"
 repository = "https://github.com/libstorage/libstoragemgmt-rust"
@@ -8,6 +8,7 @@ readme = "README.md"
 keywords = ["libstoragemgmt", "storage"]
 categories = ["api-bindings"]
 documentation = "https://libstorage.github.io/libstoragemgmt-rust/"
+edition = "2015"
 
 [lib]
 name = "lsm"

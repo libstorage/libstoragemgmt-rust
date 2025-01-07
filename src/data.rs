@@ -170,7 +170,7 @@ fn int_to_sys_mod<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<SystemMode, D::Error> {
     let i: i8 = Deserialize::deserialize(deserializer)?;
     match i {
-        -1 | 0 | 1 => unsafe { Ok(transmute(i)) },
+        -1..=1 => unsafe { Ok(transmute::<i8, SystemMode>(i)) },
         _ => Ok(SystemMode::Unknown),
     }
 }
@@ -287,7 +287,9 @@ pub enum RaidType {
 impl From<i32> for RaidType {
     fn from(i: i32) -> RaidType {
         match i {
-            0..=6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20..=22 => unsafe { transmute(i) },
+            0..=6 | 10 | 15 | 16 | 50 | 60 | 51 | 61 | 20..=22 => unsafe {
+                transmute::<i32, RaidType>(i)
+            },
             _ => RaidType::Unknown,
         }
     }
@@ -662,7 +664,7 @@ fn int_to_disk_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<DiskType, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        0 | 1 | 3..=9 | 51..=54 => unsafe { Ok(transmute(i)) },
+        0 | 1 | 3..=9 | 51..=54 => unsafe { Ok(transmute::<i32, DiskType>(i)) },
         _ => Ok(DiskType::Unknown),
     }
 }
@@ -712,7 +714,7 @@ fn int_to_disk_link_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<Option<DiskLinkType>, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        -2..=11 => unsafe { Ok(Some(transmute(i))) },
+        -2..=11 => unsafe { Ok(Some(transmute::<i32, DiskLinkType>(i))) },
         _ => Ok(Some(DiskLinkType::Unknown)),
     }
 }
@@ -877,7 +879,7 @@ fn int_to_init_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<InitiatorType, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        0 | 1 | 2 | 5 | 7 => unsafe { Ok(transmute(i)) },
+        0 | 1 | 2 | 5 | 7 => unsafe { Ok(transmute::<i32, InitiatorType>(i)) },
         _ => Ok(InitiatorType::Unknown),
     }
 }
@@ -905,6 +907,7 @@ pub struct TargetPort {
     ///  * FC and FCoE:    WWPN
     ///
     ///  * iSCSI:          IQN
+    ///
     /// The string is in lower case, split with `:` every two digits if WWPN.
     pub service_address: String,
     /// The address used by network layer like FC and TCP/IP:
@@ -912,6 +915,7 @@ pub struct TargetPort {
     ///  * FC/FCoE:        WWPN
     ///
     ///  * iSCSI:          `IPv4:Port` or `[IPv6]:Port`
+    ///
     /// The string is in lower case, split with `:` every two digits if WWPN.
     pub network_address: String,
     /// The address used by physical layer like FC-0 and MAC:
@@ -919,7 +923,8 @@ pub struct TargetPort {
     ///  * FC and FCoE :   WWPN
     ///
     ///  * iSCSI:          MAC
-    /// The string is in Lower case, split with `:` every two digits.
+    ///
+    ///  The string is in Lower case, split with `:` every two digits.
     pub physical_address: String,
     /// The name of physical port. Administrator could use this name to locate
     /// the port on storage system. E.g. 'eth0'
@@ -947,7 +952,7 @@ fn int_to_port_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<PortType, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        1 | 2 | 3 | 4 => unsafe { Ok(transmute(i)) },
+        1..=4 => unsafe { Ok(transmute::<i32, PortType>(i)) },
         _ => Ok(PortType::Other),
     }
 }
@@ -1039,7 +1044,7 @@ fn int_to_battery_type<'de, D: Deserializer<'de>>(
 ) -> ::std::result::Result<BatteryType, D::Error> {
     let i: i32 = Deserialize::deserialize(deserializer)?;
     match i {
-        1 | 2 | 3 | 4 => unsafe { Ok(transmute(i)) },
+        1..=4 => unsafe { Ok(transmute::<i32, BatteryType>(i)) },
         _ => Ok(BatteryType::Unknown),
     }
 }

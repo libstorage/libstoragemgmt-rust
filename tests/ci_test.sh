@@ -12,11 +12,11 @@
 
 if [ -z "$@" ]; then
     if [ "CHK$(rpm -E "%{?fedora}")" != "CHK" ];then
-        dnf install libstoragemgmt python3-six cargo rust -y || exit 1
+        dnf install libstoragemgmt libstoragemgmt-devel python3-six cargo rust -y || exit 1
     elif [ "CHK$(rpm -E "%{?el8}")" != "CHK" ];then
         dnf install dnf-plugins-core -y || exit 1
 	dnf config-manager --set-enabled ol8_codeready_builder -y || exit 1
-        dnf install libstoragemgmt python3-six cargo rust -y || exit 1
+        dnf install libstoragemgmt libstoragemgmt-devel python3-six cargo rust -y || exit 1
     else
         echo "Unsupported distribution"
         exit 1

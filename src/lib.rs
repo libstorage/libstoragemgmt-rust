@@ -43,7 +43,7 @@
 //!
 //!  * List Linux local SCSI/ATA/NVMe disks.
 //!
-//!  * Control IDENT/FAULT LED of local disk via SES(SCSI Enclosure Service).
+//!  * Control IDENT/FAULT LED of local disks via SES(SCSI Enclosure Service), NPEM, VMD (utilizes ledmon library)
 //!
 //! To use `LibStorageMgmt` rust binding, you need:
 //!
@@ -116,4 +116,5 @@ mod client;
 mod data;
 mod error;
 mod ipc;
+pub mod local_disk;
 mod misc;

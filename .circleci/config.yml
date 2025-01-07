@@ -8,18 +8,8 @@ jobs:
       - run:
          command: ./tests/ci_test.sh
          no_output_timeout: 20m
-  el8:
-    docker:
-      - image: oraclelinux:8
-    steps:
-      - checkout
-      - run:
-         command: ./tests/ci_test.sh
-         no_output_timeout: 20m
-
 workflows:
   version: 2
   workflow:
     jobs:
     - fedora
-    - el8

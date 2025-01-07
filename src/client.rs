@@ -162,7 +162,7 @@ pub fn available_plugins() -> Result<Vec<PluginInfo>> {
                         let mut tp = TransPort::new(&plugin_ipc_path)?;
                         let val = tp.invoke("plugin_info", None)?;
                         let data: Vec<String> = serde_json::from_value(val.clone())?;
-                        let desc = data.get(0).ok_or_plugin_bug(&val)?;
+                        let desc = data.first().ok_or_plugin_bug(&val)?;
                         let version = data.get(1).ok_or_plugin_bug(&val)?;
                         ret.push(PluginInfo {
                             version: version.to_string(),
@@ -449,7 +449,7 @@ impl Client {
     pub fn plugin_info(&mut self) -> Result<PluginInfo> {
         let val = self.tp.invoke("plugin_info", None)?;
         let data: Vec<String> = serde_json::from_value(val.clone())?;
-        let desc = data.get(0).ok_or_plugin_bug(&val)?;
+        let desc = data.first().ok_or_plugin_bug(&val)?;
         let version = data.get(1).ok_or_plugin_bug(&val)?;
         Ok(PluginInfo {
             version: version.to_string(),
@@ -502,19 +502,19 @@ impl Client {
         args.insert("init_id".to_string(), serde_json::to_value(init_id)?);
         args.insert(
             "in_user".to_string(),
-            serde_json::to_value(in_user.unwrap_or(&String::new()))?,
+            serde_json::to_value(in_user.unwrap_or(""))?,
         );
         args.insert(
             "in_password".to_string(),
-            serde_json::to_value(in_pass.unwrap_or(&String::new()))?,
+            serde_json::to_value(in_pass.unwrap_or(""))?,
         );
         args.insert(
             "out_user".to_string(),
-            serde_json::to_value(out_user.unwrap_or(&String::new()))?,
+            serde_json::to_value(out_user.unwrap_or(""))?,
         );
         args.insert(
             "out_password".to_string(),
-            serde_json::to_value(out_pass.unwrap_or(&String::new()))?,
+            serde_json::to_value(out_pass.unwrap_or(""))?,
         );
         self.tp.invoke("iscsi_chap_auth", Some(args))?;
         Ok(())
@@ -553,7 +553,7 @@ impl Client {
                 ret
             )));
         }
-        let job_id = ret_array.get(0).ok_or_plugin_bug(ret)?;
+        let job_id = ret_array.first().ok_or_plugin_bug(ret)?;
         if job_id.is_null() {
             Ok(serde_json::from_value(
                 ret_array.get(1).ok_or_plugin_bug(ret)?.clone(),
@@ -571,7 +571,7 @@ impl Client {
                 ret
             )));
         }
-        let job_id = ret_array.get(0).ok_or_plugin_bug(ret)?;
+        let job_id = ret_array.first().ok_or_plugin_bug(ret)?;
         if job_id.is_null() {
             Ok(serde_json::from_value(
                 ret_array.get(1).ok_or_plugin_bug(ret)?.clone(),
@@ -589,10 +589,10 @@ impl Client {
                 ret
             )));
         }
-        let job_id = ret_array.get(0).ok_or_plugin_bug(ret)?;
+        let job_id = ret_array.first().ok_or_plugin_bug(ret)?;
         if job_id.is_null() {
             Ok(serde_json::from_value(
-                ret_array.get(1).ok_or_plugin_bug(ret)?.clone(),
+                ret_array.first().ok_or_plugin_bug(ret)?.clone(),
             )?)
         } else {
             self.wait_job_fs_snap(job_id.as_str().ok_or_plugin_bug(ret)?)
@@ -791,8 +791,7 @@ impl Client {
     /// # Errors
     ///
     ///  * [`LsmError::LastInitInAccessGroup`][1]: Specified initiator is the
-    ///  last initiator of access group. Use
-    ///  [`Client::access_group_delete()`][2] instead.
+    ///     last initiator of access group. Use [`Client::access_group_delete()`][2] instead.
     ///
     /// [1]: enum.LsmError.html#variant.LastInitInAccessGroup
     /// [2]: #method.access_group_delete
@@ -1139,9 +1138,9 @@ impl Client {
             "export_path".to_string(),
             serde_json::to_value(export_path)?,
         );
-        args.insert("root_list".to_string(), serde_json::to_value(&root_list)?);
-        args.insert("rw_list".to_string(), serde_json::to_value(&rw_list)?);
-        args.insert("ro_list".to_string(), serde_json::to_value(&ro_list)?);
+        args.insert("root_list".to_string(), serde_json::to_value(root_list)?);
+        args.insert("rw_list".to_string(), serde_json::to_value(rw_list)?);
+        args.insert("ro_list".to_string(), serde_json::to_value(ro_list)?);
 
         let anon_uid = access.anon_uid.unwrap_or(NfsExport::ANON_UID_GID_NA);
         let anon_gid = access.anon_gid.unwrap_or(NfsExport::ANON_UID_GID_NA);
@@ -1198,7 +1197,7 @@ impl Client {
             )));
         }
         let raid_type: i32 =
-            serde_json::from_value(ret_array.get(0).ok_or_plugin_bug(&ret)?.clone())?;
+            serde_json::from_value(ret_array.first().ok_or_plugin_bug(&ret)?.clone())?;
         let raid_type: RaidType = From::from(raid_type);
         let member_type: u32 =
             serde_json::from_value(ret_array.get(1).ok_or_plugin_bug(&ret)?.clone())?;
@@ -1242,7 +1241,7 @@ impl Client {
             )));
         }
         let raid_types: Vec<i32> =
-            serde_json::from_value(ret_array.get(0).ok_or_plugin_bug(&ret)?.clone())?;
+            serde_json::from_value(ret_array.first().ok_or_plugin_bug(&ret)?.clone())?;
         let strip_sizes: Vec<u32> =
             serde_json::from_value(ret_array.get(1).ok_or_plugin_bug(&ret)?.clone())?;
         let mut new_raid_types: Vec<RaidType> = Vec::new();
